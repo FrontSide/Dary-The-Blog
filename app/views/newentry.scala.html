@@ -1,0 +1,46 @@
+
+@templ(title = "Create New Entry"){
+    <b> New Blog Entry </b><br />
+
+    <form id="newentry_form" action="#" method="post">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">Title</span>
+            <input type="text" class="form-control">
+        </div>
+        <br />
+        <div role="forma" id="newentry_content_form">
+            <textarea class="form-control" rows="10"> dsdf </textarea>
+        </div>
+        
+        <br />
+        
+        <!-- Buttons/Submit are handled in submitcontrol.js -->
+        <!-- Publish Button -->
+        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger">
+            <span class="glyphicon glyphicon-bullhorn"> </span>
+            Publish Entry NOW             
+        </button>
+
+        <!-- Save Only Button -->
+        <button id="newentry_save_btn" type="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-floppy-disk"> </span>
+            Save Post And Go Back            
+        </button> 
+
+        <div id="newentry_pub_inst_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Are You Completely Sure You Want To <b>Publish</b> This <b>Post Right Now ?</b></h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No. Go Back!</button>
+                    <button type="button" class="btn btn-primary">Yes, Absolutely</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </form>
+}

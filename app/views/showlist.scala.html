@@ -1,0 +1,10 @@
+@(list: List[String])
+
+
+@templ(title = "List") {
+    <ul>
+    @for(line <- list) {
+        <li> @line </li>
+    }
+    </ul>
+} 
