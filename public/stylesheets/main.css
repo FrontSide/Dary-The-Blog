@@ -1,0 +1,32 @@
+body {
+    padding-top: 20px;
+    background-color: #FFF;
+}
+
+footer {
+    color: #999;
+}
+
+.btn {
+    margin: 5px;
+    margin-left: 0px;
+}
+
+.jumbotron {
+   background-color: #F8F8F8; 
+   border: 1px solid #DDD;
+}
+
+#newentry_title_field {
+    font-size: 30px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#newentry_content_field {
+    font-size: 15px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
