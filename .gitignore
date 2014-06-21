@@ -13,3 +13,14 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+
+## Unnecessary Activator/Play Files and Libraries
+
+/Vagrantfile
+/activator
+/activator-launch-1.2.2.jar
+/activator.bat
+/default-create.sql
+/default-drop.sql
+
+
