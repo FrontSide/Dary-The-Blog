@@ -9,12 +9,18 @@ $('#newentry_pub_inst_btn').click(function () {
 
 });
 
-/* Save Entry and Publish now - From Modal Dialog
+/* Save Entry and Publish now - From Modal Dialog */
 $('#newentry_pub_inst_send').click(function () {
     var btn = $(this)
     btn.button('Publishing ...')
 
-    console.log("publish post right now acknowledged ...")
-    $('#newentry_pub_inst_modal').modal('show')
-
-}); */
+    jsRoutes.controllers.Application.authenticate().ajax({
+        data : $("#my_form").serialize(),
+        success : function(data) {
+        // ...
+        },
+        error : function(err) {
+        // ...
+        }
+    });
+}); 

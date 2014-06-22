@@ -12,13 +12,13 @@
 
 @templ(title = "Create New Entry"){
 
-    @helper.form(action = routes.Application.home("x")) {    
+    @helper.form(action = routes.NewEntry.submit) {    
         
         <fieldset>
             <legend>New Blog Post</legend>
                         
             @inputText(
-                newEntryForm("title"),
+                newEntryForm("post_title"),
                 '_id -> "newenty_input_title",
                 '_label -> "Title", '_label_class -> "input-group-addon",
                 'class -> "form-control",
@@ -28,7 +28,7 @@
             
             
             @textarea(
-                newEntryForm("content"), 
+                newEntryForm("post_content"), 
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
@@ -36,22 +36,25 @@
             )
                         
         </fieldset>
-    }
 
-    <form id="newentry_form" action="#" method="post">
-                
+
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Sign Up">
+        </div>
+
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
-        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger">
+
+        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
             <span class="glyphicon glyphicon-bullhorn"> </span>
             Publish Entry NOW             
         </button>
 
         <!-- Save Only Button -->
-        <button id="newentry_save_btn" type="button" class="btn btn-primary">
+        <button id="newentry_save_btn" type="button" class="btn btn-primary actions">
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             Save Post And Go Back            
-        </button> 
+        </button>
 
         <div id="newentry_pub_inst_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm">
@@ -68,5 +71,6 @@
           </div>
         </div>
 
-    </form>
+    }
+
 }

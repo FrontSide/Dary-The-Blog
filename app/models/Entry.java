@@ -6,7 +6,8 @@ import javax.persistence.*;
 import play.db.ebean.*;
 
 import play.data.format.*;
-import play.data.validation.*;
+import play.data.Form;
+import play.data.validation.Constraints;
 
 /* Blog Entry Model */
 @Entity
@@ -21,10 +22,10 @@ public class Entry extends Model {
 
     /* Task Description */
     @Constraints.Required
-    public String title;   
+    public String post_title;   
 
     @Constraints.Required
-    public String content; 
+    public String post_content; 
 
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date creDate = new Date();
@@ -40,5 +41,18 @@ public class Entry extends Model {
       * Play interprests every ""public"" field in an Entity class
       * as a property to persist
       **/
+
+    /* Form Validators */
+    public String validate() {
+
+        if(post_title == null) {
+            return "Please enter a title and conent!";
+        }
+
+        if(post_content == null) {
+            return "Please enter a conent!";
+        }
+        return null;
+    }
 
 }
