@@ -15,12 +15,12 @@ public class Application extends Controller {
     /* ------ Show Home Page ------ */
     public static Result home(String operation) {
         if (!operation.trim().equals("new"))
-            return Application.initShowBlog();
+            return Application.blog();
         return NewEntry.create();
     }
 
     /* ------ Show Blog Entries --- */
-    public static Result initShowBlog() {
+    public static Result blog() {
         return ok(blog.render("Welcome to the Blog"));
     }
 
