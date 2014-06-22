@@ -12,9 +12,9 @@
     --> 
 
 <div class="clearfix @if(element.hasErrors){error}">  
+  <h4><span class="label label-danger">@element.errors.mkString(", ")</span></h4>
   <div class="input-group input-group-lg">
-    <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>
-    @element.input
-    <span class="val-error-lab">@element.errors.mkString(", ")</span>
-  </div>  
+    <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>    
+    @element.input    
+  </div>    
 </div>

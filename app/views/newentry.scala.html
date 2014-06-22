@@ -12,6 +12,14 @@
 
 @templ(title = "Create New Entry"){
 
+    @if(newEntryForm.hasErrors) {
+        <div class="alert alert-danger fade in">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button"> x </button>
+            <span class="glyphicon glyphicon-flash"></span> 
+            Your form contains errors!
+        </div>
+    }
+
     @helper.form(action = routes.NewEntry.submit, 'id -> "newentry_form") {    
        
         <fieldset>

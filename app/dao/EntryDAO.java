@@ -8,7 +8,7 @@ import play.Logger;
 import com.avaje.ebean.Ebean; 
 import play.db.ebean.Model;
 
-public class EntryDAO implements DAO {
+public class EntryDAO implements DAO<Entry> {
 
     /** Create logger for this class
       * Play uses Logback as Logging Engine
@@ -25,7 +25,7 @@ public class EntryDAO implements DAO {
       * it automatically creates DDL Files to create tables 
       * if evolution is enabled. (see ebean.properties)
       */
-    public void create(Model model) {
+    public void create(Entry model) {
 
         //TODO: Check typesafety
 
@@ -38,12 +38,17 @@ public class EntryDAO implements DAO {
 
     }
 
-    public Model getById(Long id) {
+    public Entry getById(Long id) {
         return null;
     }
 
-    public List<Model> getAll() {
-        return null;
+    public List<Entry> getAll() {
+      logger.debug("Fetch all published Posts");
+      return getAllPublishedPosts();
+    }
+
+    private List<Entry> getAllPublishedPosts() {
+      return Entry.find.where().eq("isPublished", true).findList();
     }
 
 }

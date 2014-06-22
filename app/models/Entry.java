@@ -37,24 +37,24 @@ public class Entry extends Model {
 
     /** Setter and Getter are automatically generated from play.
       * However, if you want to create your own getters/setters 
-      * (e.g. for validation checking) you can do so and play
-      * will use the existing mathods.
+      * you can do so and play
+      * will use the existing methods.
 
       * Play interprests every ""public"" field in an Entity class
       * as a property to persist
       **/
 
     /* Form Validators */
+    /* With this method additional (to the annotation validators)
+       validators can be defined */
     public String validate() {
-
-        if(post_title == null) {
-            return "Please enter a title and conent!";
-        }
-
-        if(post_content == null) {
-            return "Please enter a conent!";
-        }
-        return null;
+      //None
+      return null;
     }
+
+    /* The find helps executing SELECT statemebts via Ebean
+       See how it's used in the EntryDAO */
+    public static Finder<Long,Entry> find = 
+      new Finder<Long,Entry>(Long.class, Entry.class);
 
 }

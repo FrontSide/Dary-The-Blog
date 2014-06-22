@@ -7,6 +7,7 @@ import play.Logger;
 
 public class EntryDAOService implements DAOService {
 
+  /* UNUSED
   final Logger.ALogger logger = Logger.of(this.getClass());
 
   EntryDAO dao;
@@ -15,7 +16,7 @@ public class EntryDAOService implements DAOService {
     * create new Entry
     * Receive title and content form Form 
     * @param description: description of new task
-    */ 
+    *
   public void createEntryFromForm() {
       
     logger.debug("generate Entry from newentry Post-Form");
@@ -29,5 +30,6 @@ public class EntryDAOService implements DAOService {
     //this.dao.create(e);
      
   }
+  */
 
 }

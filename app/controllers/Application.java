@@ -2,10 +2,13 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.*;
+import java.util.*;
 
-import services.*;
-
+import models.*;
+import dao.*;
 import views.html.*;
+import views.html.error.*;
 import play.Logger;
 
 public class Application extends Controller {
@@ -19,9 +22,20 @@ public class Application extends Controller {
         return NewEntry.create();
     }
 
-    /* ------ Show Blog Entries --- */
+    /* ------ Show Blog Entries ------ */
     public static Result blog() {
-        return ok(blog.render("Welcome to the Blog"));
+        return ok(blog.render((List<Entry>) new EntryDAO().getAll()));
+    }
+
+    /* ------ ERROR PAGES ------ */
+    /* TODO */
+    /* Internal Server Error 500 */
+    public static Result onError(RequestHeader req, Throwable t) {
+        return internalServerError(errorpage.render(500));
+    }
+    /* Internal Server Error 404 */
+    public static Result onActionNotFound(RequestHeader req) {
+        return internalServerError(errorpage.render(404));
     }
 
 }
