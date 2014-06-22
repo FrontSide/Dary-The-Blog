@@ -39,11 +39,3 @@ textarea {
     padding: 10px;
     margin-bottom: 10px;
 }
-
-.val-error-lab {
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #FF2222;
-    color: #FFF;
-}

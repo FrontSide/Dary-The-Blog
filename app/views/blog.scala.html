@@ -1,5 +1,12 @@
-@(description: String)
+@(posts: List[Entry])
 
 @templ(title = "The Dary Blog"){
-    <b> @description </b>
+    
+    @for(p <- posts) {
+        <h2> @p.post_title </h2>
+        </br />
+        @p.post_content
+        <hr />
+    }
+
 }
