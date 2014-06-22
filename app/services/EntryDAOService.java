@@ -7,32 +7,27 @@ import play.Logger;
 
 public class EntryDAOService implements DAOService {
 
-    final Logger.ALogger logger = Logger.of(this.getClass());
+  final Logger.ALogger logger = Logger.of(this.getClass());
 
-    EntryDAO dao;
-    Entry e;
+  EntryDAO dao;
 
-    /**
-      * create new Entry
-      * Receive title and content form Form 
-      * @param description: description of new task
-      */ 
-    public void createEntryFromForm() {
-        
-        logger.debug("create new Entry from form");
+  /**
+    * create new Entry
+    * Receive title and content form Form 
+    * @param description: description of new task
+    */ 
+  public void createEntryFromForm() {
+      
+    logger.debug("generate Entry from newentry Post-Form");
 
-        //TODO
-        //if (description == null || description.trim().equals(""))
-        //    throw new IllegalStateException("No Description for Task available.");
+    //Bind data directly from HTTP Request and create new Entry-Object
+    //Entry e = entryForm.bindFromRequest().get();
 
-        this.e = new Entry();
-        //this.e.description = description;
+    logger.debug("delegation to EntryDAO"); 
 
-        logger.debug("delegation to EntryDAO"); 
-
-        this.dao = new EntryDAO();
-        //this.dao.create(e);
-
-    }
+    this.dao = new EntryDAO();
+    //this.dao.create(e);
+     
+  }
 
 }

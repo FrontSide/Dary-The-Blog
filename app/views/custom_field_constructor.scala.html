@@ -1,0 +1,19 @@
+@(element: helper.FieldElements)
+
+<!-- This overrides the Bootstrap field constructor 
+    We use it to assign a custom style to the "label" beforea a form element
+    
+    A custom field constructor is absolutely NOT necessary unless you want to tweak
+    the appearance of a form and its fields, respectively, in some unusual way. Like here 
+
+    Thanks to the guys on stackoverflow who described this methodic
+    http://stackoverflow.com/questions/16606042/scala-template-apply-style-to-inputtexts-label-play-2-html5-helper-tag
+
+    --> 
+
+<div class="clearfix @if(element.hasErrors){error}">  
+  <div class="input-group input-group-lg">
+    <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>
+        @element.input
+  </div>
+</div>
