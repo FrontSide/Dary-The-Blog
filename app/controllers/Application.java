@@ -4,7 +4,10 @@ import play.*;
 import play.mvc.*;
 
 import services.*;
+import models.*;
+
 import views.html.*;
+import play.data.Form;
 import play.Logger;
 
 public class Application extends Controller {
@@ -29,9 +32,10 @@ public class Application extends Controller {
         logger.debug("called initCreateNewEntry"); 
         
         //TODO
+        Form<Entry> entryForm = Form.form(Entry.class);
 
         logger.debug("render newentry.html");
-        return ok(newentry.render());
+        return ok(newentry.render(entryForm));
     }
 
 }

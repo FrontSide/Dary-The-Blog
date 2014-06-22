@@ -40,4 +40,5 @@ public class Entry extends Model {
       * Play interprests every ""public"" field in an Entity class
       * as a property to persist
       **/
+
 }

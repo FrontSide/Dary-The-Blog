@@ -17,14 +17,23 @@ footer {
    border: 1px solid #DDD;
 }
 
-#newentry_title_field {
+.input #title {
     font-size: 30px;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
 }
 
-#newentry_content_field {
+#newenty_input_content {
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+textarea {
     font-size: 15px;
     width: 100%;
     padding: 10px;
