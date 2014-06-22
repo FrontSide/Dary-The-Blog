@@ -14,6 +14,7 @@
 <div class="clearfix @if(element.hasErrors){error}">  
   <div class="input-group input-group-lg">
     <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>
-        @element.input
-  </div>
+    @element.input
+    <span class="val-error-lab">@element.errors.mkString(", ")</span>
+  </div>  
 </div>

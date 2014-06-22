@@ -30,14 +30,21 @@ public class NewEntry extends Controller {
 
         logger.debug("receive data from form");         
         Form<Entry> entryForm = Form.form(Entry.class);
-        Entry entry = entryForm.bindFromRequest().get();        
+        Form<Entry> filledForm = entryForm.bindFromRequest();
+
+        logger.debug("validate form");
+        if (filledForm.hasErrors()) {
+            return badRequest(newentry.render(filledForm));
+        }
+
+        Entry entry = filledForm.get();        
 
         logger.debug("init persistence in Database");
         EntryDAO edao = new EntryDAO();
         edao.create(entry); 
 
         logger.debug("render blog view");
-        return ok(blog.render("New Form Was Created"));
+        return redirect("/");
     }
 
 }

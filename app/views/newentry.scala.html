@@ -12,8 +12,8 @@
 
 @templ(title = "Create New Entry"){
 
-    @helper.form(action = routes.NewEntry.submit) {    
-        
+    @helper.form(action = routes.NewEntry.submit, 'id -> "newentry_form") {    
+       
         <fieldset>
             <legend>New Blog Post</legend>
                         
@@ -23,7 +23,7 @@
                 '_label -> "Title", '_label_class -> "input-group-addon",
                 'class -> "form-control",
                 '_help -> "Your Posts title",
-                '_error -> newEntryForm.globalError
+                '_error -> newEntryForm("profile.title").error.map(_.withMessage("Please select your country"))
             )
             
             
@@ -32,26 +32,26 @@
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
-                '_help -> "Enter your Post here!"
+                '_help -> "Enter your Post here!",
+                '_error -> newEntryForm.globalError
             )
+
+            <!-- Hidden Field for isPublished parameter 
+                 changed (if necessary) in submitcontrol.js 
+                 when modal dialog is closed positively -->
+            <input type="hidden" id="newenty_hidden_publish" name="isPublished" value='false' >
                         
         </fieldset>
 
-
-        <div class="actions">
-            <input type="submit" class="btn primary" value="Sign Up">
-        </div>
-
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
-
         <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
             <span class="glyphicon glyphicon-bullhorn"> </span>
             Publish Entry NOW             
         </button>
 
         <!-- Save Only Button -->
-        <button id="newentry_save_btn" type="button" class="btn btn-primary actions">
+        <button id="newentry_save_btn" type="submit" class="btn btn-primary actions">
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             Save Post And Go Back            
         </button>

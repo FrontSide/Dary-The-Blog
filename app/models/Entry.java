@@ -7,7 +7,9 @@ import play.db.ebean.*;
 
 import play.data.format.*;
 import play.data.Form;
-import play.data.validation.Constraints;
+
+import javax.validation.*;
+import play.data.validation.Constraints.*;
 
 /* Blog Entry Model */
 @Entity
@@ -21,10 +23,10 @@ public class Entry extends Model {
      */  
 
     /* Task Description */
-    @Constraints.Required
+    @Required
     public String post_title;   
 
-    @Constraints.Required
+    @Required
     public String post_content; 
 
     @Formats.DateTime(pattern="dd/MM/yyy")
