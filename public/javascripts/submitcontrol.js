@@ -20,5 +20,19 @@ $('#newentry_pub_inst_send').click(function () {
 
 }); 
 
+/* Summernote HTML Editor (with costum toolbar) */
+$(document).ready(function() {
+  $('.summernote').summernote({
+      height: 100,
+      toolbar: [
+        //[groupname, [button list]]         
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+      ]
+  });
+});
 
 
