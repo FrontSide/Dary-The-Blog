@@ -35,14 +35,14 @@
             )
             
             <!-- The 'Symbol' class is needed because of the hypehn in the "data-provide" attribute -->
+            <!-- Symbol("data-provide") -> "markdown", -->
             @textarea(
                 newEntryForm("post_content"), 
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
                 '_help -> "Enter your Post here!",
-                Symbol("data-provide") -> "markdown",
-                'class -> "summernote",
+                'class -> "form-control textarea",
                 '_error -> newEntryForm.globalError
             )
 
