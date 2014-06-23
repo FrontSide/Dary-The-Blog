@@ -26,7 +26,9 @@ public class Entry extends Model {
     @Required
     public String post_title;   
 
+    /* Type Lob makes a Blob saved as "text" in the psql-db */
     @Required
+    @Lob
     public String post_content; 
 
     @Formats.DateTime(pattern="dd/MM/yyy")

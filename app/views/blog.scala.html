@@ -5,7 +5,7 @@
     @for(p <- posts) {
         <h2> @p.post_title </h2>
         </br />
-        @p.post_content
+        @Html(p.post_content)
         <hr />
     }
 
