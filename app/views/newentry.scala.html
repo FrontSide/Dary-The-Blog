@@ -34,13 +34,14 @@
                 '_error -> newEntryForm("profile.title").error.map(_.withMessage("Please select your country"))
             )
             
-            
+            <!-- The 'Symbol' class is needed because of the hypehn in the "data-provide" attribute -->
             @textarea(
                 newEntryForm("post_content"), 
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
                 '_help -> "Enter your Post here!",
+                Symbol("data-provide") -> "markdown",
                 '_error -> newEntryForm.globalError
             )
 

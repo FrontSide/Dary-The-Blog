@@ -39,3 +39,7 @@ textarea {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+#post_content {
+    padding: 10px;
+}
