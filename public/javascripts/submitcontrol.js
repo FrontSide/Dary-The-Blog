@@ -5,6 +5,8 @@ $('#newentry_pub_inst_btn').click(function () {
     console.log("publish post...")
     $('#newentry_pub_inst_modal').modal('show')
 
+
+
 });
 
 /* Save Entry and Publish now - From Modal Dialog 
@@ -17,3 +19,6 @@ $('#newentry_pub_inst_send').click(function () {
     $( "#newentry_form" ).submit();
 
 }); 
+
+
+
