@@ -44,7 +44,8 @@
                 '_help -> "Enter your Post here!",
                 'class -> "form-control textarea",
                 '_error -> newEntryForm.globalError,
-                Symbol("data-provide") -> "markdown"
+                Symbol("data-provide") -> "markdown",
+                Symbol("data-iconlibrary") -> "fa"
             )
 
             <!-- Hidden Field for isPublished parameter 
@@ -62,7 +63,7 @@
         </button>
 
         <!-- Save Only Button -->
-        <button id="newentry_save_btn" type="submit" class="btn btn-primary actions">
+        <button id="newentry_save_btn" type="button" class="btn btn-primary actions">
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             Save Post And Go Back            
         </button>

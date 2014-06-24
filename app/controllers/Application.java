@@ -24,6 +24,21 @@ public class Application extends Controller {
 
     /* ------ Show Blog Entries ------ */
     public static Result blog() {
+
+        /*
+        //Get all public blog posts
+        List<Entry> posts = (List<Entry>) new EntryDAO().getAll())
+
+        //Convert all post entires from markdown to html        
+        MarkdownProcessor markdown = new MarkdownProcessor();
+
+        for (Entry e : posts) {
+            e.post_content = markdown.markdown(e.post_content);
+        }
+
+        String html = markdown.markdown("*italic*   **bold**\n_italic_   __bold__");
+        */
+
         return ok(blog.render((List<Entry>) new EntryDAO().getAll()));
     }
 
