@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                            controllers.Application.home(operation="")
-GET     /blog/:operation             controllers.Application.home(operation: String)
+GET     /                            controllers.Application.home()
+GET     /blog/new                    controllers.NewEntry.create()
 
 # New entry Submit
 POST    /blog/new/submit             controllers.NewEntry.submit()
