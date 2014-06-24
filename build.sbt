@@ -9,6 +9,5 @@ scalaVersion := "2.11.1"
 libraryDependencies ++= Seq(  
   javaEbean,
   javaJdbc,
-  "postgresql" % "postgresql" % "9.1-901.jdbc4",
-  "org.markdownj" % "markdownj" % "0.4.0"
+  "postgresql" % "postgresql" % "9.1-901.jdbc4"
 )
