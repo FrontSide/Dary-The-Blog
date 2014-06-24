@@ -20,9 +20,8 @@ $('#newentry_pub_inst_send').click(function () {
 
 }); 
 
-/* CK HTML Editor */
+/* ?? */
 $(document).ready(function() {
-  CKEDITOR.replace( 'post_content' );
 });
 
 
