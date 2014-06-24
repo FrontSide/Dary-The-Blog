@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(addjs: Html)
 
 <!DOCTYPE html>
 
@@ -34,12 +34,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Dary Blog</a>
+          <a class="navbar-brand" href="/">Dary Blog</a>
         </div> 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/blog">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/register">Sign Up</a></li>
+                <li><a href="/register">Login</a></li>
             </ul>
         </div>
     </div>
@@ -55,14 +57,10 @@
     <!-- CDN Bootstrap -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>    
 
-    <!-- Markdown wysiwyg -->
-    <script src="/assets/markdown/addons/markdown.min.js"></script>
-    <script src="/assets/markdown/addons/marked.min.js"></script>
-    <script src="/assets/markdown/addons/to-markdown.js"></script>
-    <script src="/assets/markdown/js/bootstrap-markdown.js"></script>   
+    <!-- Additional JavaScripts from other pages --> 
+    @addjs     
 
-    <script src="/assets/javascripts/stylecontrol.js"></script>
-    <script src="/assets/javascripts/submitcontrol.js"></script>
+    <script src="/assets/javascripts/stylecontrol.js"></script>    
 
 </body>
 <footer>

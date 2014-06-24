@@ -1,10 +1,13 @@
 
-@(code: Integer)
+@import play.mvc.Http._
 
+@(request: RequestHeader)
 
-@if(code == 404) {
-    @templ(title = "Sorry. Page Not Found. 404"){
-        <h2> PAGE NOT FOUND </h2>
-    }
+@templ(title = "Sorry. Page Not Found. 404"){
+    <h1> 4 <i class="fa fa-question-circle"></i> 4 </h1> 
+    <h2> This page doesn't exist. </h2>
+}{
+    
 }
+
 
