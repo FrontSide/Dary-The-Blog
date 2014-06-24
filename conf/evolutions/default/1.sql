@@ -1,5 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
@@ -19,7 +17,4 @@ create sequence entry_seq;
 
 # --- !Downs
 
-drop table if exists entry cascade;
-
-drop sequence if exists entry_seq;
 
