@@ -1,11 +1,11 @@
 
+/* Markdown is converted to HTML on save */
+
 /* Publish NOW Button - Opens Modal */
 $('#newentry_pub_inst_btn').click(function () {
 
     console.log("publish post...")
     $('#newentry_pub_inst_modal').modal('show')
-
-
 
 });
 
@@ -13,16 +13,24 @@ $('#newentry_pub_inst_btn').click(function () {
     Submit Form */
 $('#newentry_pub_inst_send').click(function () {
 
+    /* Convert */
+    $('#post_content').val(markdown.toHTML($('#post_content').val()));
+
     /* If "Absolutely" Button clicked.. submit form with
        "publishNow" variable set true */
     $('#newenty_hidden_publish').val("true");
-    $( "#newentry_form" ).submit();
+    $("#newentry_form").submit();
 
 }); 
 
-/* ?? */
-$(document).ready(function() {
+/* Save Without Publish Button */
+$('#newentry_save_btn').click(function () {
+  /* Convert */
+  $('#post_content').val(markdown.toHTML($('#post_content').val()));
+  $("#newentry_form").submit();
 });
 
-
-
+/* On Load */
+$(document).ready(function() {
+  // Empty
+}); 

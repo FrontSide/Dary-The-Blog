@@ -5,8 +5,12 @@
     @for(p <- posts) {
         <h2> @p.post_title </h2>
         </br />
+        <span id="show_post">      
         @Html(p.post_content)
+        </span>
         <hr />
     }
+
+    <!-- <div id="testmark">**This is Bold**</div> -->
 
 }
