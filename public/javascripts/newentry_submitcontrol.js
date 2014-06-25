@@ -14,7 +14,7 @@ $('#newentry_pub_inst_btn').click(function () {
 $('#newentry_pub_inst_send').click(function () {
 
     /* Convert */
-    $('#post_content').val(markdown.toHTML($('#post_content').val()));
+    $('#content').val(markdown.toHTML($('#content').val()));
 
     /* If "Absolutely" Button clicked.. submit form with
        "publishNow" variable set true */
@@ -26,7 +26,7 @@ $('#newentry_pub_inst_send').click(function () {
 /* Save Without Publish Button */
 $('#newentry_save_btn').click(function () {
   /* Convert */
-  $('#post_content').val(markdown.toHTML($('#post_content').val()));
+  $('#content').val(markdown.toHTML($('#content').val()));
   $("#newentry_form").submit();
 });
 

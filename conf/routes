@@ -12,6 +12,3 @@ POST    /blog/new/submit             controllers.NewEntry.submit()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                controllers.Assets.at(path="/public", file)
 
-# Map static resources from the /vendors folder to the /vendorsassets URL path
-# I did this because of the linguist of github. so it ignores the javascripts in there
-# GET     /vendorsassets/*file         controllers.Assets.at(path="/vendors", file)

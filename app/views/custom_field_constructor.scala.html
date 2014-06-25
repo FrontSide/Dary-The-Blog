@@ -12,7 +12,15 @@
     --> 
 
 <div class="clearfix @if(element.hasErrors){error}">  
-  <h4><span class="label label-danger">@element.errors.mkString(", ")</span></h4>
+  @if(element.hasErrors){
+  <h4>     
+    <span class="label label-danger">
+      <span class="glyphicon glyphicon-flash"></span>
+      @element.errors.mkString(", ")
+    </span>
+  </h4>
+  }
+  
   <div class="input-group input-group-lg">
     <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>    
     @element.input    

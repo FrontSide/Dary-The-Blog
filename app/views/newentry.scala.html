@@ -26,24 +26,22 @@
             <legend>New Blog Post</legend>
                         
             @inputText(
-                newEntryForm("post_title"),
+                newEntryForm("title"),
                 '_id -> "newenty_input_title",
                 '_label -> "Title", '_label_class -> "input-group-addon",
                 'class -> "form-control",
-                '_help -> "Your Posts title",
-                '_error -> newEntryForm("profile.title").error.map(_.withMessage("Please select your country"))
+                '_help -> "Your Posts title"
             )
             
             <!-- The 'Symbol' class is needed because of the hypehn in the "data-provide" attribute -->
             <!-- Symbol("data-provide") -> "markdown", -->
             @textarea(
-                newEntryForm("post_content"), 
+                newEntryForm("content"), 
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
                 '_help -> "Enter your Post here!",
                 'class -> "form-control textarea",
-                '_error -> newEntryForm.globalError,
                 Symbol("data-provide") -> "markdown",
                 Symbol("data-iconlibrary") -> "fa"
             )
@@ -87,7 +85,7 @@
 
 } {
      <!-- Markdown wysiwyg -->
-    <script src="/assets/vendor/markdown.min.js"></script>    
+    <script src="/assets/vendors/markdown/addons/markdown.min.js"></script>    
     <!-- <script src="/assets/thirdparty/markdown/js/bootstrap-markdown.js"></script> -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.2.1/js/bootstrap-markdown.min.js"></script>
     <script src="/assets/javascripts/newentry_submitcontrol.js"></script>

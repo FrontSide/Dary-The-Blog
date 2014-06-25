@@ -24,15 +24,15 @@ public class Entry extends Model {
 
     /* Task Description */
     @Required
-    public String post_title;   
+    public String title;   
 
     /* Type Lob makes a Blob saved as "text" in the psql-db */
     @Required
     @Lob
-    public String post_content; 
+    public String content; 
 
     @Formats.DateTime(pattern="dd/MM/yyy")
-    public Date creDate = new Date();
+    public Date creDate;
 
     /* Open to public Flag */
     public boolean isPublished;
