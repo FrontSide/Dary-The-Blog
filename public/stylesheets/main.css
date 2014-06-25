@@ -5,6 +5,11 @@ body {
 
 footer {
     color: #999;
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100%;
 }
 
 .btn {
@@ -12,9 +17,31 @@ footer {
     margin-left: 0px;
 }
 
-.jumbotron {
-   background-color: #F8F8F8; 
-   border: 1px solid #DDD;
+.content-body {  
+   border-left: 2px solid #DDD;
+   padding-left: 20px;
+   font-size: 18px;
+   margin-bottom: 20px;
+   text-align: justify;
+}
+
+.blog-content {
+    font-family: "serif";
+    background-color: #F8F8F8;
+    padding: 50px;
+    border: 1px solid #DDD;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.blog-footer {
+    color: #AAA;
+    font-size: 12px;
+    text-align: right;
+}
+
+.label-bloghead {
+    background-color: #7ac3ce;
 }
 
 .input #title {
