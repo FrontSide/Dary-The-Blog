@@ -4,12 +4,23 @@
     
     @for(p <- posts) {
 
-        <h2> <span class="label label-default">@p.post_title</span> </h2>
-        <br />
-        <span id="show_post">      
-        @Html(p.post_content)
-        </span>
+        <div class="blog-content">
+
+        <h2> @p.post_title </h2>
+        <h5>
+        <span class="label label-bloghead">@p.isPublished</span>
+        <span class="label label-bloghead">@p.creDate</span>
+        </h5>
         <hr />
+        <br />             
+        @Html(p.post_content) 
+        <hr /> 
+        <p class="blog-footer"> written by #MrMan </p>     
+        </div>
+       
+
+
+
     }
 }{    
 }

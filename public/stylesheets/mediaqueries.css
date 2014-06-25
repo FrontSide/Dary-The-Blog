@@ -1,0 +1,11 @@
+/* Breakpoint value taken from Bootstrap's website */
+@media (max-width: 768px) {
+    .content-body {  
+       border-left: none;
+       padding-left: 0px;
+    }    
+
+    .blog-content {
+        padding: 20px;
+    }
+}
