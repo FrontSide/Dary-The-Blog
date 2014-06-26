@@ -22,5 +22,5 @@ dist
 /activator.bat
 /default-create.sql
 /default-drop.sql
-
+/public/vendors/*
 
