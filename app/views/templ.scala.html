@@ -12,13 +12,42 @@
 
     <!-- FontAwsomwe -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
+   
     <!-- View Port Meta Tag for Mobile First Rendering -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> The Dary Blog | @title </title>
+
+    <style shim-shadowdom>
+  /* [START styles] */
+  body {
+    font-family: sans-serif;
+  }
+  #navheader {
+    background-color: #56BA89;
+  }
+  .content {
+    padding: 20px;
+  }
+  /* [END styles] */
+  /* secret demo-only styles */
+  core-scaffold /deep/ #drawer {
+    width: 140px;
+  }
+  core-scaffold /deep/ #main {
+    left: 140px;
+  }
+</style>
+
 </head>
-<body>
+<body unresolved>
+      
+      <span tool>Title</span>
+
+      <div class="content">
+          If drawer is hidden, press button to display drawer.
+      </div>
+    </core-scaffold>
 
     <div class="container">
 

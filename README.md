@@ -14,10 +14,10 @@ Add the following libraries and third-party plugins in order to successfully run
   Dary uses the [bootstrap-markdown] (http://toopay.github.io/bootstrap-markdown/) editor, however,
   it (and some of its dependencies) are included via CDNs.
 
-- [Polymer] (http://www.polymer-project.org)
+- ~~[Polymer] (http://www.polymer-project.org)
   This is a Google UI-Element Library. 
   Install its core- and paper-elements into the **/public/vendors/polymer** folder 
-  preferably by using Twitter's package manager **Bower* 
+  preferably by using Twitter's package manager **Bower*~~ 
 
 
 ## Technologies
