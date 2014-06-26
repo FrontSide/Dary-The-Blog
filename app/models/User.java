@@ -22,8 +22,10 @@ public class User extends Model {
     public String firstname;
     public String lastname;
 
+    @Required
+    public String email;
+
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate;
-
 
 }

@@ -1,34 +1,34 @@
-@(newEntryForm: Form[Entry])
+@(newPostForm: Form[Post])
 
 <!-- Form Helper -->
 @import helper._
 
-<!-- You could use the bootstrap Fiels-Constructor if you wanted
-     but we're gonna use our own -->
-@* @import helper.twitterBootstrap._ *@
-
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Create New Entry"){
+@templ(title = "Write A New Story"){
 
-    @if(newEntryForm.hasErrors) {
+    @if(newPostForm.hasErrors) {
         <div class="alert alert-danger fade in">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button"> x </button>
             <span class="glyphicon glyphicon-flash"></span> 
             Your form contains errors!
         </div>
     }
 
-    @helper.form(action = routes.NewEntry.submit, 'id -> "newentry_form") {    
+    @helper.form(action = routes.NewPost.submit, 'id -> "newpost_form") {    
        
         <fieldset>
-            <legend>New Blog Post</legend>
+            <legend>
+                <i class="fa fa-edit"> </i>
+                New Blog Post
+            </legend>
                         
             @inputText(
-                newEntryForm("title"),
+                newPostForm("title"),
                 '_id -> "newenty_input_title",
-                '_label -> "Title", '_label_class -> "input-group-addon",
+                '_label -> "Title", 
+                '_label_class -> "input-group-addon",
+                '_label_fa_icon -> "fa-header fa-5",
                 'class -> "form-control",
                 '_help -> "Your Posts title"
             )
@@ -36,7 +36,7 @@
             <!-- The 'Symbol' class is needed because of the hypehn in the "data-provide" attribute -->
             <!-- Symbol("data-provide") -> "markdown", -->
             @textarea(
-                newEntryForm("content"), 
+                newPostForm("content"), 
                 '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,

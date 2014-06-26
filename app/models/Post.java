@@ -11,9 +11,9 @@ import play.data.Form;
 import javax.validation.*;
 import play.data.validation.Constraints.*;
 
-/* Blog Entry Model */
+/* Blog Post Model */
 @Entity
-public class Entry extends Model {
+public class Post extends Model {
     
     /* Task ID  Unique Identifier */
     @Id    
@@ -31,11 +31,16 @@ public class Entry extends Model {
     @Lob
     public String content; 
 
+    @Required
+    public User user;
+
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date creDate;
 
     /* Open to public Flag */
     public boolean isPublished;
+
+    /* Blog this Post Belongs to */
 
     /** Setter and Getter are automatically generated from play.
       * However, if you want to create your own getters/setters 
@@ -55,8 +60,8 @@ public class Entry extends Model {
     }
 
     /* The find helps executing SELECT statemebts via Ebean
-       See how it's used in the EntryDAO */
-    public static Finder<Long,Entry> find = 
-      new Finder<Long,Entry>(Long.class, Entry.class);
+       See how it's used in the PostDAO */
+    public static Finder<Long,Post> find = 
+      new Finder<Long,Post>(Long.class, Post.class);
 
 }

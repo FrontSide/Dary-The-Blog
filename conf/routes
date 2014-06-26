@@ -4,10 +4,11 @@
 
 # Home page
 GET     /                            controllers.Application.home()
-GET     /blog/new                    controllers.NewEntry.create()
+GET     /blog/:title                 controllers.Application.show(title : String)
+GET     /new                         controllers.NewPost.create()
 
 # New entry Submit
-POST    /blog/new/submit             controllers.NewEntry.submit()
+POST    /blog/new/submit             controllers.NewPost.submit()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                controllers.Assets.at(path="/public", file)

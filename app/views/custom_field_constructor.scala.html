@@ -22,7 +22,9 @@
   }
   
   <div class="input-group input-group-lg">
-    <span for="@element.id" class="@element.args.get('_label_class)">@element.label</span>    
+    <span for="@element.id" class="@element.args.get('_label_class)"> 
+      <i class="fa @element.args.get('_label_fa_icon)"> </i> @element.label
+    </span>    
     @element.input    
   </div>    
 </div>

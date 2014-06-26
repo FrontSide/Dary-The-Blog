@@ -16,11 +16,12 @@ public class Application extends Controller {
 
     /* ------ Show Home Page ------ */
     public static Result home() {
-        return Application.blog();
+        return NewUser.signup();
     }
 
-    /* ------ Show Blog Entries ------ */
-    public static Result blog() {
-        return ok(blog.render((List<Entry>) new EntryDAO().getAll()));
+    /* ------ Show Blog Posts ------ */
+    public static Result show(String title) {
+        return ok(blog.render((List<Post>) new PostDAO().getPubPostsFromBlog(title)));
     }
+
 }

@@ -1,0 +1,63 @@
+@(newEntryForm: Form[User])
+
+<!-- Form Helper -->
+@import helper._
+
+<!-- Use self-made field constructor -->
+@implicitField = @{ FieldConstructor(custom_field_constructor.f) }
+
+@templ(title = "Become An Author"){
+
+    @if(newEntryForm.hasErrors) {
+        <div class="alert alert-danger fade in">
+            <span class="glyphicon glyphicon-flash"></span> 
+            Your form contains errors!
+        </div>
+    }
+
+    <fieldset>
+            <legend>Become An Author in 10 Seconds</legend>
+                        
+            @inputText(
+                newEntryForm("blogname"),
+                '_id -> "reg_input_blogname",
+                '_label -> "Blog-Title", '_label_class -> "input-group-addon",
+                'class -> "form-control",
+                '_help -> "Your Blog's Title"
+            )
+
+            @inputText(
+                newEntryForm("email"),
+                '_id -> "reg_input_email",
+                '_label -> "E-mail Address", 
+                '_label_class -> "input-group-addon",
+                'class -> "form-control",
+                '_help -> "Your E-mail Address"
+            )
+            
+            @inputPassword(
+                newEntryForm("password"), 
+                '_id -> "reg_input_password",
+                '_label -> "Password",
+                '_help -> "Enter a Password here!",
+                'class -> "form-control"
+            )
+
+            @inputPassword(
+                newEntryForm("password"), 
+                '_id -> "reg_input_passwordrepeat",
+                '_label -> "Password",
+                '_help -> "Repeat the Password here!",
+                'class -> "form-control"
+            )
+                        
+        </fieldset>
+
+        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
+            <span class="glyphicon glyphicon-bullhorn"> </span>
+            Sign Up and Become An Author      
+        </button>
+
+}{
+    
+}
