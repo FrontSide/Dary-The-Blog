@@ -1,6 +1,6 @@
 body {
     padding-top: 20px;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
 footer {
@@ -17,12 +17,23 @@ img {
     margin-left: 0px;
 }
 
+.loginformbox {
+    padding: 30px;
+    background-color: #f8f8f8;
+}
+
+.label-white {
+    background-color: #FFF;
+    color: #222;
+}
+
 .content-body {  
    border-left: 2px solid #DDD;
-   padding-left: 20px;
+   padding: 20px;
    font-size: 18px;
    margin-bottom: 20px;
    text-align: justify;
+   box-shadow: -2px 0px 2px -1px #555;
 }
 
 .blog-content {

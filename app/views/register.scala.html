@@ -1,4 +1,4 @@
-@(newEntryForm: Form[User])
+@(loginForm: Form[User], signupForm: Form[User])
 
 <!-- Form Helper -->
 @import helper._
@@ -6,58 +6,145 @@
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Become An Author"){
+@templ(title = "Become An Author and Share Your Experiences"){
 
-    @if(newEntryForm.hasErrors) {
+    <h2>
+    Dary is a blogging and sharing platform for everybody. <br />
+    <b>Become an author and share your experiences with the world.</b>
+    </h2>
+
+    <div class="row">
+
+    <!-- Login Form -->    
+
+    <div class="col-md-6 loginformbox"> 
+
+        @if(loginForm.hasErrors) {
         <div class="alert alert-danger fade in">
             <span class="glyphicon glyphicon-flash"></span> 
             Your form contains errors!
         </div>
-    }
+        }
 
-    <fieldset>
+        @helper.form(action = routes.UserController.submitLogin, 'id -> "login_form") {  
+
+        <fieldset>
+            <legend>Login</legend>
+                      
+            @inputText(
+                loginForm("blogname"),
+                '_id -> "reg_input_blogname",
+                '_label -> "Blog-Title or E-Mail Address", 
+                '_label_class -> "label label-white",
+                'class -> "form-control",
+                '_help -> "Your Blog's Title"
+            )
+            
+            @inputPassword(
+                loginForm("password"), 
+                '_id -> "reg_input_password",
+                '_label -> "Password",
+                '_label_class -> "label label-white",
+                '_help -> "Enter a Password here!",
+                'class -> "form-control"
+            )
+                        
+        </fieldset>
+
+        <button id="login_btn" type="submit" data-toggle="modal" class="btn btn-danger actions">
+            <span class="glyphicon glyphicon-bullhorn"> </span>
+            Login to your Account      
+        </button>
+
+        }
+
+    </div>
+
+    <!-- Sign Up Form -->
+
+    <div class="col-md-6 loginformbox">
+
+        @if(signupForm.hasErrors) {
+        <div class="alert alert-danger fade in">
+            <span class="glyphicon glyphicon-flash"></span> 
+            Your form contains errors!
+        </div>
+        }
+
+        @helper.form(action = routes.UserController.submitRegister, 'id -> "signup_form") {
+
+        <fieldset>
+
             <legend>Become An Author in 10 Seconds</legend>
                         
             @inputText(
-                newEntryForm("blogname"),
+                signupForm("blogname"),
                 '_id -> "reg_input_blogname",
-                '_label -> "Blog-Title", '_label_class -> "input-group-addon",
+                '_label -> "Blog-Title", 
+                '_label_class -> "label label-white",
                 'class -> "form-control",
                 '_help -> "Your Blog's Title"
             )
 
             @inputText(
-                newEntryForm("email"),
+                signupForm("email"),
                 '_id -> "reg_input_email",
                 '_label -> "E-mail Address", 
-                '_label_class -> "input-group-addon",
+                '_label_class -> "label label-white",
                 'class -> "form-control",
                 '_help -> "Your E-mail Address"
             )
             
             @inputPassword(
-                newEntryForm("password"), 
+                signupForm("password"), 
                 '_id -> "reg_input_password",
                 '_label -> "Password",
+                '_label_class -> "label label-white",
                 '_help -> "Enter a Password here!",
                 'class -> "form-control"
             )
 
             @inputPassword(
-                newEntryForm("password"), 
+                signupForm("password"), 
                 '_id -> "reg_input_passwordrepeat",
                 '_label -> "Password",
+                '_label_class -> "label label-white",
                 '_help -> "Repeat the Password here!",
                 'class -> "form-control"
             )
                         
         </fieldset>
 
-        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
+        <button id="register_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
             <span class="glyphicon glyphicon-bullhorn"> </span>
             Sign Up and Become An Author      
         </button>
 
+        }
+
+    </div>
+    </div>
+
+    <!-- Terms of conditions in Modal -->
+
+    <div id="register_terms_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-bg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Please read through this <b>Terms and Conditions</b> carefully!</h4>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu augue ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur eu mollis sem. In sem augue, auctor ac turpis ac, faucibus ultrices lacus. Phasellus egestas ultricies commodo. Duis varius venenatis commodo. Proin mollis dictum enim, non pellentesque justo ornare ut. Vivamus dolor tortor, posuere vel adipiscing sed, interdum eget risus. Quisque ultrices lacinia nisi, quis ullamcorper tortor vehicula at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut in lectus mi. Etiam vitae luctus dolor. Morbi bibendum sapien at velit pretium luctus. 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button id="register_terms_accept_send" type="button" class="btn btn-primary">I accept the Terms and Conditions</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
 }{
-    
+    <script src="/assets/javascripts/register_login_submitcontrol.js"></script>
 }

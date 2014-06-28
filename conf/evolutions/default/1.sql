@@ -15,6 +15,7 @@ create table post (
 create table blog_user (
   id                        bigint not null,
   blogname                  varchar(255),
+  password                  varchar(255),
   firstname                 varchar(255),
   lastname                  varchar(255),
   email                     varchar(255),

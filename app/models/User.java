@@ -19,6 +19,9 @@ public class User extends Model {
     @Required
     public String blogname;
 
+    @Required
+    public String password;
+
     public String firstname;
     public String lastname;
 
@@ -27,5 +30,8 @@ public class User extends Model {
 
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate;
+
+    public static Finder<Long,User> find = 
+      new Finder<Long,User>(Long.class, User.class);
 
 }

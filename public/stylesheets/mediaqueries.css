@@ -2,7 +2,8 @@
 @media (max-width: 768px) {
     .content-body {  
        border-left: none;
-       padding-left: 0px;
+       padding: 0px;
+       box-shadow: none;
     }    
 
     .blog-content {

@@ -16,6 +16,7 @@ public class Application extends Controller {
 
     /* ------ Show Home Page ------ */
     public static Result home() {
+        /* Redirect to Logn/Signup Form if User not logged in */
         return NewUser.signup();
     }
 
