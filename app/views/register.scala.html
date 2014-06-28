@@ -1,4 +1,4 @@
-@(loginForm: Form[User], signupForm: Form[User])
+@(loginForm: Form[UserController.Login], signupForm: Form[User])
 
 <!-- Form Helper -->
 @import helper._
@@ -26,13 +26,20 @@
         </div>
         }
 
+        @if(loginForm.hasGlobalErrors) {
+        <div class="alert alert-danger fade in">
+            <span class="glyphicon glyphicon-flash"></span> 
+            @loginForm.globalError.message
+        </div>
+        }
+
         @helper.form(action = routes.UserController.submitLogin, 'id -> "login_form") {  
 
         <fieldset>
             <legend>Login</legend>
                       
             @inputText(
-                loginForm("blogname"),
+                loginForm("name"),
                 '_id -> "reg_input_blogname",
                 '_label -> "Blog-Title or E-Mail Address", 
                 '_label_class -> "label label-white",
@@ -67,7 +74,7 @@
         @if(signupForm.hasErrors) {
         <div class="alert alert-danger fade in">
             <span class="glyphicon glyphicon-flash"></span> 
-            Your form contains errors!
+            Your form contains errors!            
         </div>
         }
 
