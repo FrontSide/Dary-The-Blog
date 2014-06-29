@@ -7,18 +7,11 @@
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
 @templ(title = "Become An Author and Share Your Experiences"){
-
-    <h2>
-    Dary is a blogging and sharing platform for everybody. <br />
-    <b>Become an author and share your experiences with the world.</b>
-    </h2>
+    
 
     <div class="row">
-
-    <!-- Login Form -->    
-
     <div class="col-md-6 loginformbox"> 
-
+        <!-- Login Form --> 
         @if(loginForm.hasErrors){
         <div id="formalert-login" class="alert alert-danger fade in" >
             <span class="glyphicon glyphicon-flash"></span> 
@@ -63,6 +56,21 @@
         </button>
 
         }
+
+    </div>
+
+    <div class="col-md-6 loginformbox">
+        <!-- EMPTY -->
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-6 loginformbox"> 
+
+    <h2>
+    Dary is a blogging and sharing platform for everybody. <br />
+    <b>Become an author and share your experiences with the world.</b>
+    </h2>
 
     </div>
 
