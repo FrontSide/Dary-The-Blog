@@ -22,6 +22,10 @@ img {
     background-color: #f8f8f8;
 }
 
+.nodisplay {
+    display: none;
+}
+
 .label-white {
     background-color: #FFF;
     color: #222;

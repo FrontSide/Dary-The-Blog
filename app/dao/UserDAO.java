@@ -32,12 +32,14 @@ public class UserDAO implements DAO<User> {
       return null;
     }
 
-    public User getUserByLogin(String loginname, String password) {
-      
+    public User getUserByLogin(String loginname, String password) {      
       return User.find.where().or(
                   Expr.eq("blogname", loginname),
                   Expr.eq("email", loginname)).eq("password", password).findUnique();
+    }
 
+    public User getUserbyBlogname(String blogname) {
+      return User.find.where().eq("blogname", blogname).findUnique();
     }
 
 }

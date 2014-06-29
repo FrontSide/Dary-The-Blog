@@ -19,12 +19,13 @@
 
     <div class="col-md-6 loginformbox"> 
 
-        @if(loginForm.hasErrors) {
-        <div class="alert alert-danger fade in">
+        @if(loginForm.hasErrors){
+        <div id="formalert-login" class="alert alert-danger fade in" >
             <span class="glyphicon glyphicon-flash"></span> 
             Your form contains errors!
         </div>
-        }
+        }    
+        
 
         @if(loginForm.hasGlobalErrors) {
         <div class="alert alert-danger fade in">
@@ -40,7 +41,6 @@
                       
             @inputText(
                 loginForm("name"),
-                '_id -> "reg_input_blogname",
                 '_label -> "Blog-Title or E-Mail Address", 
                 '_label_class -> "label label-white",
                 'class -> "form-control",
@@ -48,8 +48,7 @@
             )
             
             @inputPassword(
-                loginForm("password"), 
-                '_id -> "reg_input_password",
+                loginForm("password"),
                 '_label -> "Password",
                 '_label_class -> "label label-white",
                 '_help -> "Enter a Password here!",
@@ -71,13 +70,13 @@
 
     <div class="col-md-6 loginformbox">
 
-        @if(signupForm.hasErrors) {
-        <div class="alert alert-danger fade in">
+        @if(signupForm.hasErrors){
+        <div id="formalert-signup" class="alert alert-danger fade in" >
             <span class="glyphicon glyphicon-flash"></span> 
             Your form contains errors!            
         </div>
         }
-
+        
         @helper.form(action = routes.UserController.submitRegister, 'id -> "signup_form") {
 
         <fieldset>
@@ -86,16 +85,15 @@
                         
             @inputText(
                 signupForm("blogname"),
-                '_id -> "reg_input_blogname",
                 '_label -> "Blog-Title", 
                 '_label_class -> "label label-white",
                 'class -> "form-control",
-                '_help -> "Your Blog's Title"
+                '_help -> "Your Blog's Title",
+                'id -> "reg_blogname"
             )
 
             @inputText(
                 signupForm("email"),
-                '_id -> "reg_input_email",
                 '_label -> "E-mail Address", 
                 '_label_class -> "label label-white",
                 'class -> "form-control",
@@ -103,21 +101,26 @@
             )
             
             @inputPassword(
-                signupForm("password"), 
-                '_id -> "reg_input_password",
+                signupForm("password"),
                 '_label -> "Password",
                 '_label_class -> "label label-white",
                 '_help -> "Enter a Password here!",
-                'class -> "form-control"
+                'class -> "form-control",
+                'id -> "reg_pwd"
             )
 
+            <div id="signup_pwd_nomatch" class="alert alert-danger fade in nodisplay" >
+                <span class="glyphicon glyphicon-flash"></span> 
+                The passwords do not match!          
+            </div>
+
             @inputPassword(
-                signupForm("password"), 
-                '_id -> "reg_input_passwordrepeat",
-                '_label -> "Password",
+                signupForm("password"),
+                '_label -> "Repeat Password",
                 '_label_class -> "label label-white",
                 '_help -> "Repeat the Password here!",
-                'class -> "form-control"
+                'class -> "form-control",
+                'id -> "reg_pwd_repeat"
             )
                         
         </fieldset>

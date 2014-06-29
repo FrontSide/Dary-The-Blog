@@ -9,6 +9,10 @@ import play.mvc.*;
 import play.Logger;
 import play.data.Form;
 import play.data.validation.Constraints.*;
+import play.libs.Json;
+/* Useful Doc for Json 
+   http://www.playframework.com/documentation/2.3.x/api/java/play/libs/Json.html
+   */
 
 public class UserController extends Controller {
 
@@ -66,6 +70,13 @@ public class UserController extends Controller {
 
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result checkBlognameAvailable(String blogname) {
+        if (new UserDAO().getUserbyBlogname(blogname) == null)
+            return ok(Json.newObject().put("available", true));
+        return ok(Json.newObject().put("available", false));        
+    }
+
     /* Login Form Class 
        Not sure whether it belongs here but found it in the Play Doc
        --> http://www.playframework.com/documentation/2.1.0/JavaGuide4 */
@@ -75,10 +86,8 @@ public class UserController extends Controller {
 
         public String validate() {
             logger.debug("Login class validator");
-            if (new UserDAO().getUserByLogin(name, password) == null) {
-                logger.debug("credentials wrong");
+            if (new UserDAO().getUserByLogin(name, password) == null)
                 return "Wrong Blogname/Mail - Password combination";
-            }
             return null;
         }
 

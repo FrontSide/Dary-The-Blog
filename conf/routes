@@ -16,6 +16,9 @@ POST    /login/submit                controllers.UserController.submitLogin()
 # Signup Submit
 POST    /signup/submit               controllers.UserController.submitRegister()
 
+# Check availability of blogname
+POST    /avail/:title                controllers.UserController.checkBlognameAvailable(title : String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                controllers.Assets.at(path="/public", file)
 
