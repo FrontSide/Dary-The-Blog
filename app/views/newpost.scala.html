@@ -25,7 +25,6 @@
                         
             @inputText(
                 newPostForm("title"),
-                '_id -> "newenty_input_title",
                 '_label -> "Title", 
                 '_label_class -> "input-group-addon",
                 '_label_fa_icon -> "fa-header fa-5",
@@ -37,7 +36,6 @@
             <!-- Symbol("data-provide") -> "markdown", -->
             @textarea(
                 newPostForm("content"), 
-                '_id -> "newenty_input_content",
                 '_label -> "",
                 'rows -> 10,
                 '_help -> "Enter your Post here!",
@@ -49,33 +47,33 @@
             <!-- Hidden Field for isPublished parameter 
                  changed (if necessary) in submitcontrol.js 
                  when modal dialog is closed positively -->
-            <input type="hidden" id="newenty_hidden_publish" name="isPublished" value='false' >
+            <input type="hidden" id="newpost_hidden_publish" name="isPublished" value='false' >
                         
         </fieldset>
 
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
-        <button id="newentry_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
+        <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
             <span class="glyphicon glyphicon-bullhorn"> </span>
             Publish Entry NOW             
         </button>
 
         <!-- Save Only Button -->
-        <button id="newentry_save_btn" type="button" class="btn btn-primary actions">
+        <button id="newpost_save_btn" type="button" class="btn btn-primary actions">
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             Save Post And Go Back            
         </button>
 
-        <div id="newentry_pub_inst_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div id="newpost_pub_inst_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Are You Completely Sure You Want To <b>Publish</b> This <b>Post Right Now ?</b></h4>
+                    <h4 class="modal-title">Are You Completely Sure You Want To <b>Publish</b> This <b>Post Right Now ?</b></h4>
                 </div>
                 <div class="modal-body">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No. Go Back!</button>
-                    <button id="newentry_pub_inst_send" type="button" class="btn btn-primary">Yes, Absolutely</button>
+                    <button id="newpost_pub_inst_send" type="button" class="btn btn-primary">Yes, Absolutely</button>
                 </div>
             </div>
           </div>
@@ -88,5 +86,5 @@
     <script src="/assets/vendors/markdown/addons/markdown.min.js"></script>    
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.2.1/js/bootstrap-markdown.min.js"></script>
-    <script src="/assets/javascripts/newentry_submitcontrol.js"></script>
+    <script src="/assets/javascripts/newpost_submitcontrol.js"></script>
 }

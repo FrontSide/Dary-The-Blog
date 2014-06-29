@@ -1,6 +1,12 @@
 body {
     padding-top: 20px;
-    background-color: #fff;
+    background-color: #f8f8f8;
+
+    background: -webkit-linear-gradient(left, #f8f8ff , #fff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #f8f8ff , #fff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #f8f8ff , #fff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #f8f8ff , #fff); /* Standard syntax (must be last) */
+
 }
 
 footer {
@@ -17,9 +23,16 @@ img {
     margin-left: 0px;
 }
 
+.navbar-dary {
+    border-left: none;
+    border-right: none;
+    background-color: #fff; 
+    box-shadow: -2px 0px 2px -1px #aaa;
+}
+
 .loginformbox {
     padding: 30px;
-    background-color: #f8f8f8;
+    background-color: #FFF;
 }
 
 .nodisplay {
@@ -32,12 +45,12 @@ img {
 }
 
 .content-body {  
-   border-left: 2px solid #DDD;
    padding: 20px;
    font-size: 18px;
    margin-bottom: 20px;
    text-align: justify;
-   box-shadow: -2px 0px 2px -1px #555;
+   box-shadow: -2px 0px 2px -1px #aaa;
+   background-color: #FFF;
 }
 
 .blog-content {
