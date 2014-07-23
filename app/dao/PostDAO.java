@@ -1,6 +1,7 @@
 package dao;
 
 import models.Post;
+import dao.UserDAO;
 
 import java.util.List;
 import play.Logger;
@@ -46,8 +47,9 @@ public class PostDAO implements DAO<Post> {
       return null;
     }
 
-    public List<Post> getPubPostsFromBlog(String blogtitle) {
-      return Post.find.where().eq("isPublished", true).eq("blog", blogtitle).findList();
+    public List<Post> getPubPostsByBlogname(String blogname) {
+      logger.debug("Get Posts from \"" + blogname + "\"");
+      return Post.find.where().eq("isPublished", true).eq("user.blogname", blogname).findList();
     }
 
 }

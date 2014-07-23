@@ -32,6 +32,10 @@ public class UserDAO implements DAO<User> {
       return null;
     }
 
+    /**
+      * Checks is User has entered a valid blogname or email address and
+      * the korresponding valid password
+      */
     public User getUserByLogin(String loginname, String password) {      
       return User.find.where().or(
                   Expr.eq("blogname", loginname),

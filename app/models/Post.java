@@ -11,7 +11,11 @@ import play.data.Form;
 import javax.validation.*;
 import play.data.validation.Constraints.*;
 
-/* Blog Post Model */
+/**
+  * Post Model
+  * Stores a Post
+  * related to a certain user 
+  */
 @Entity
 public class Post extends Model {
     
@@ -31,7 +35,8 @@ public class Post extends Model {
     @Lob
     public String content; 
 
-    @Required
+    @OneToOne
+    @JoinColumn(name = "user_id")
     public User user;
 
     @Formats.DateTime(pattern="dd/MM/yyy")

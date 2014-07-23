@@ -1,6 +1,6 @@
-@(posts: List[Post])
+@(posts: List[Post], user: User)
 
-@templ(title = "The Dary Blog"){
+@templ(title = "The Dary Blog", user){
     
     @for(p <- posts) {
 

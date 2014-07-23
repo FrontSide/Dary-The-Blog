@@ -3,6 +3,9 @@ package controllers;
 import views.html.*;
 import dao.*;
 import models.User;
+import models.UserLog;
+
+import java.util.Date;
 
 import play.*;
 import play.mvc.*;
@@ -22,7 +25,7 @@ public class UserController extends Controller {
     public static Result signup() {
         logger.debug("called create new user"); 
         logger.debug("render register.html");
-        return ok(register.render(Form.form(Login.class), Form.form(User.class)));
+        return ok(register.render(Form.form(Login.class), Form.form(User.class), new UserDAO().getUserbyBlogname(request().username())));
     }
 
     /* ------ Check/Submit Login Form ------ */
@@ -35,14 +38,24 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(register.render(filledForm, Form.form(User.class)));
+            return badRequest(register.render(filledForm, Form.form(User.class), new UserDAO().getUserbyBlogname(request().username())));
         }
 
-        Login login = filledForm.get(); 
-              
+        Login login = filledForm.get();               
         logger.debug("login correct");
 
-        logger.debug("render view");
+        logger.debug("create userLog Entry with uuid");
+        UserLog userLog = new UserLog();
+        userLog.user = login.findUser();
+        userLog.loginDate = new Date();
+        // currently UNUSED 
+        userLog.generateUuid(request().remoteAddress());
+        new UserLogDAO().create(userLog);
+
+        //Set Session
+        session().clear();
+        session("user", userLog.user.blogname);
+
         return redirect("/new");
 
     }
@@ -57,7 +70,7 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors())
-            return badRequest(register.render(Form.form(Login.class), filledForm));
+            return badRequest(register.render(Form.form(Login.class), filledForm, new UserDAO().getUserbyBlogname(session("user"))));
 
         User user = filledForm.get(); 
 
@@ -84,9 +97,14 @@ public class UserController extends Controller {
         @Required public String name;
         @Required public String password;
 
+        /* Check if user with this credentials exists in DB and return it */
+        public User findUser() {
+            return new UserDAO().getUserByLogin(this.name, this.password);
+        }
+
         public String validate() {
             logger.debug("Login class validator");
-            if (new UserDAO().getUserByLogin(name, password) == null)
+            if (findUser() == null)
                 return "Wrong Blogname/Mail - Password combination";
             return null;
         }

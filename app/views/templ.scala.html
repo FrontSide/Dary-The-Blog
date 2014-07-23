@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(addjs: Html)
+@(title: String, user: User)(content: Html)(addjs: Html)
 
 <!DOCTYPE html>
 
@@ -39,8 +39,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"> <a href="/about">About</a> </li>
-                <li><a href="/">Sign Up</a></li>
-                <li><a href="/">Login</a></li>
+                @if(user == null) { 
+                    <li><a href="/">Sign Up</a></li>
+                    <li><a href="/">Login</a></li>
+                } else {
+                    @user.blogname                
+                    <li><a href="/logout">Logout</a></li>
+                }
             </ul>
         </div>
     </div>

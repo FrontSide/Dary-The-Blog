@@ -1,4 +1,4 @@
-@(newPostForm: Form[Post])
+@(newPostForm: Form[Post], user: User)
 
 <!-- Form Helper -->
 @import helper._
@@ -6,7 +6,7 @@
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Write A New Story"){
+@templ(title = "Write A New Story", user){
 
     @if(newPostForm.hasErrors) {
         <div class="alert alert-danger fade in">

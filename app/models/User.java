@@ -9,7 +9,10 @@ import javax.validation.*;
 import play.data.validation.Constraints.*;
 import play.data.validation.ValidationError;
 
-/* User Model */
+/**
+  * User Model
+  * Stores a User's information and its blogname
+  */
 @Entity
 @Table(name="blog_user")
 public class User extends Model {

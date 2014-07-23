@@ -2,11 +2,13 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                            controllers.Application.home()
+### Navigation
+GET     /                            controllers.Application.login()
 GET     /blog/:title                 controllers.Application.show(title : String)
-GET     /new                         controllers.NewPost.create()
+GET     /new                         controllers.Application.newPost()
+GET     /logout                      controllers.Application.logout()
 
+### Form Submits
 # New entry Submit
 POST    /blog/new/submit             controllers.NewPost.submit()
 
@@ -19,6 +21,7 @@ POST    /signup/submit               controllers.UserController.submitRegister()
 # Check availability of blogname
 POST    /avail/:title                controllers.UserController.checkBlognameAvailable(title : String)
 
+### Resources
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                controllers.Assets.at(path="/public", file)
 

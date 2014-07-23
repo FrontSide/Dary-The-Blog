@@ -23,7 +23,7 @@ public class NewPost extends Controller {
         // TODO Get currently logged user
 
         logger.debug("render newpost.html");
-        return ok(newpost.render(postForm));
+        return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user"))));
     }
 
     /* ------ Submit ------ */
@@ -35,17 +35,19 @@ public class NewPost extends Controller {
 
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(newpost.render(filledForm));
+            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user"))));
         }
 
-        Post post = filledForm.get();        
+        logger.debug("Form is valid. Create 'Post' Object!");
+        Post post = filledForm.get();   
+        post.user = new UserDAO().getUserbyBlogname(session("user"));     
 
         logger.debug("init persistence in Database");
         PostDAO edao = new PostDAO();
         edao.create(post); 
 
         logger.debug("render blog view");
-        return redirect("/");
+        return redirect("/blog/" + session("user"));
     }
 
 }

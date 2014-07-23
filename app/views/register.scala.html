@@ -1,4 +1,4 @@
-@(loginForm: Form[UserController.Login], signupForm: Form[User])
+@(loginForm: Form[UserController.Login], signupForm: Form[User], user: User)
 
 <!-- Form Helper -->
 @import helper._
@@ -6,7 +6,7 @@
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Become An Author and Share Your Experiences"){
+@templ(title = "Become An Author and Share Your Experiences", user){
     
 
     <div class="row">
