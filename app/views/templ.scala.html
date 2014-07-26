@@ -16,7 +16,7 @@
     <!-- View Port Meta Tag for Mobile First Rendering -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> The Dary Blog | @title </title>
+    <title> The Dary Blog BETA | @title </title>
 
 </head>
 <body >
@@ -28,31 +28,69 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Dary Blog</a>
+          <a class="navbar-brand no-top-padding" href="/">
+            @if(user == null) { 
+                <span class="label label-danger">
+            } else {
+                <span class="label label-primary">
+            }
+              <img src="/assets/images/logo_min_small.png" width="50%"/>
+              BETA </span>
+          </a>
         </div> 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"> <a href="/about">About</a> </li>
                 @if(user == null) { 
                     <li><a href="/">Sign Up</a></li>
                     <li><a href="/">Login</a></li>
-                } else {
-                    @user.blogname                
-                    <li><a href="/logout">Logout</a></li>
+                } else {                    
+                    <li><a href="/blog/@user.blogname"> <i class="fa fa-home"></i> My Blog </a></li>
+                    <li><a href="/new"> <span class="fa fa-pencil"></span> <b>Write a new Article</b></a></li>  
+            </ul> <!-- close left nav-bar if logout button -->
+            <ul class="nav navbar-nav navbar-right"> <!-- open right nav-bar if logout button -->
+                    <li><a href="/blog/@user.blogname"> Signed in as  @user.blogname </a></li>          
+                    <a type="button" class="btn btn-danger navbar-btn" href="/logout"> <i class="fa fa-power-off"></i> Logout </a>
                 }
-            </ul>
+            </ul> <!-- close either left or tight nav-bar -->            
         </div>
     </div>
     </nav>
 
     <div class="content-body">
-      <p>@content</p>  
+
+        <!-- Flash -->
+        @if(flash.contains("success")) {
+            <div class="alert alert-success" role="alert">
+                @flash.get("success")
+            </div>
+        }
+
+        @if(flash.contains("warning")) {
+            <div class="alert alert-warning" role="alert">
+                @flash.get("warning")
+            </div>
+        }
+
+        @if(flash.contains("error")) {
+            <div class="alert alert-error" role="alert">
+                @flash.get("error")
+            </div>
+        }
+
+        @if(flash.contains("info")) {
+            <div class="alert alert-info" role="alert">
+                @flash.get("info")
+            </div>
+        }
+
+        <p>@content</p> 
+
     </div>
     
 

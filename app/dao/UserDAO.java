@@ -46,4 +46,8 @@ public class UserDAO implements DAO<User> {
       return User.find.where().eq("blogname", blogname).findUnique();
     }
 
+    public User getUserbyEmail(String email) {
+      return User.find.where().eq("email", email).findUnique();
+    }
+
 }

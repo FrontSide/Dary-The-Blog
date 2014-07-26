@@ -44,6 +44,23 @@ img {
     color: #222;
 }
 
+.min-txt {
+    font-size: 9px;
+}
+
+.min-txt a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+.min-txt a:hover {
+    text-decoration: none;
+}
+
+ .no-top-padding {
+     padding-top: 0px;
+ }
+
 .content-body {  
    padding: 20px;
    font-size: 18px;

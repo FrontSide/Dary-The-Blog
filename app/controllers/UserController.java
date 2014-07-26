@@ -25,7 +25,7 @@ public class UserController extends Controller {
     public static Result signup() {
         logger.debug("called create new user"); 
         logger.debug("render register.html");
-        return ok(register.render(Form.form(Login.class), Form.form(User.class), new UserDAO().getUserbyBlogname(request().username())));
+        return ok(register.render(Form.form(Login.class), Form.form(User.class), null));
     }
 
     /* ------ Check/Submit Login Form ------ */
@@ -38,7 +38,7 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(register.render(filledForm, Form.form(User.class), new UserDAO().getUserbyBlogname(request().username())));
+            return badRequest(register.render(filledForm, Form.form(User.class), null));
         }
 
         Login login = filledForm.get();               
@@ -56,7 +56,10 @@ public class UserController extends Controller {
         session().clear();
         session("user", userLog.user.blogname);
 
-        return redirect("/new");
+        //Success flash
+        flash("success", "Hi. You successfully logged into your blog \"" + userLog.user.blogname + "\"");
+
+        return redirect("/blog/"+userLog.user.blogname);
 
     }
 
@@ -70,7 +73,7 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors())
-            return badRequest(register.render(Form.form(Login.class), filledForm, new UserDAO().getUserbyBlogname(session("user"))));
+            return badRequest(register.render(Form.form(Login.class), filledForm, null));
 
         User user = filledForm.get(); 
 
@@ -78,8 +81,11 @@ public class UserController extends Controller {
         UserDAO edao = new UserDAO();
         edao.create(user); 
 
+        //Success flash
+        flash("success", "Great! You successfully signed up to dary and now your own blog called \"" + user.blogname + "\"!");
+
         logger.debug("render view");
-        return redirect("/new");
+        return Application.login();
 
     }
 

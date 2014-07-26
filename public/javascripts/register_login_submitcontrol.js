@@ -22,6 +22,15 @@ $('#register_terms_accept_send').click(function () {
 
 /* Interactive availability check for blogname at registration */
 $('#reg_blogname').keyup(function () {
+  checkBlocknameAvailable();
+});
+
+$('#reg_blogname').blur(function () {
+  checkBlocknameAvailable();
+});
+
+function checkBlocknameAvailable() {
+
   $.post("/avail/" + $('#reg_blogname').val(),{}).done( function(receivedData) {
     if (receivedData.available === false) {
       $('#reg_blogname').css("background-color", "#d9534f");
@@ -35,7 +44,8 @@ $('#reg_blogname').keyup(function () {
     $('#reg_blogname').css("background-color", "#fff");
     $('#reg_blogname').css("color", "#222");
   });
-});
+
+}
 
 /* On Load */
 $(document).ready(function() {

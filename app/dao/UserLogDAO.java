@@ -25,6 +25,15 @@ public class UserLogDAO implements DAO<UserLog> {
     public void deleteById(Long id) {
     }
 
+    public void deleteByBlogname(String blogname) {
+        Ebean.delete(getByBlogname(blogname));
+    }
+
+    public UserLog getByBlogname(String blogname) {
+        logger.debug("get UserLog by blogname::" + blogname);
+        return UserLog.find.where().eq("user.blogname", blogname).findUnique();
+    }
+
     public UserLog getById(Long id) {
         return UserLog.find.where().eq("uuid", id).findUnique();
     }

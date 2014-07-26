@@ -19,9 +19,7 @@ public class NewPost extends Controller {
         logger.debug("called create new post"); 
         
         Form<Post> postForm = Form.form(Post.class);
-
-        // TODO Get currently logged user
-
+        
         logger.debug("render newpost.html");
         return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user"))));
     }
@@ -45,6 +43,9 @@ public class NewPost extends Controller {
         logger.debug("init persistence in Database");
         PostDAO edao = new PostDAO();
         edao.create(post); 
+
+        //Success flash
+        flash("success", "Nice! You just successfully wrote an article for your blog!");
 
         logger.debug("render blog view");
         return redirect("/blog/" + session("user"));

@@ -16,7 +16,7 @@ import play.data.validation.Constraints.*;
   * and its uuid (relating to cookie) 
   */
 @Entity
-//Add unique constraint for userid
+//Add unique constraint for userid // This constraint probably doesn't do anything
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "user_id"))
 public class UserLog extends Model {
     

@@ -17,13 +17,23 @@ public class Application extends Controller {
 
     /* ------ Show Home Page ------ */
     public static Result login() {
+        /* If user is logged in. Send user to own blog */
+        if (session("user") != null) {
+            return show(session("user"));
+        }
         /* Redirect to Logn/Signup Form */
         return UserController.signup();
     }
 
     public static Result logout() {
+        /* Delete UserLog Entry from DB */
+        new UserLogDAO().deleteByBlogname(session("user"));
         /* Destroy User session and Return to Login-Page */
         session().clear();
+
+        //Success flash
+        flash("info", "You are now logged out from dary. See you soon!");
+
         return UserController.signup();
     }
 
@@ -33,11 +43,11 @@ public class Application extends Controller {
     }
 
     /* ------ Show Blog Posts ------ */
-    public static Result show(String title) {
+    public static Result show(String title) {        
         List<Post> public_posts = (List<Post>) new PostDAO().getPubPostsByBlogname(title);
             if (public_posts.size() == 0) {
-                return notFound(no_posts_found.render());
-            }
+                return notFound(no_posts_found.render(new UserDAO().getUserbyBlogname(session("user"))));
+            }            
         return ok(blog.render(public_posts, new UserDAO().getUserbyBlogname(session("user"))));
     }
 

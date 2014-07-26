@@ -1,7 +1,6 @@
 @(posts: List[Post], user: User)
 
-@templ(title = "The Dary Blog", user){
-    
+@templ(title = "The Dary Blog", user){    
     @for(p <- posts) {
 
         <div class="blog-content">

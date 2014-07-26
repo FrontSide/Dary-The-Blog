@@ -6,142 +6,148 @@
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Become An Author and Share Your Experiences", user){
-    
+@templ(title = "Become An Author and Share Your Experiences", user){    
 
     <div class="row">
-    <div class="col-md-6 loginformbox"> 
-        <!-- Login Form --> 
-        @if(loginForm.hasErrors){
-        <div id="formalert-login" class="alert alert-danger fade in" >
-            <span class="glyphicon glyphicon-flash"></span> 
-            Your form contains errors!
-        </div>
-        }    
-        
-
-        @if(loginForm.hasGlobalErrors) {
-        <div class="alert alert-danger fade in">
-            <span class="glyphicon glyphicon-flash"></span> 
-            @loginForm.globalError.message
-        </div>
-        }
-
-        @helper.form(action = routes.UserController.submitLogin, 'id -> "login_form") {  
-
-        <fieldset>
-            <legend>Login</legend>
-                      
-            @inputText(
-                loginForm("name"),
-                '_label -> "Blog-Title or E-Mail Address", 
-                '_label_class -> "label label-white",
-                'class -> "form-control",
-                '_help -> "Your Blog's Title"
-            )
+        <div class="col-md-6 loginformbox"> 
+            <!-- Login Form --> 
+            @if(loginForm.hasErrors){
+            <div id="formalert-login" class="alert alert-danger fade in" >
+                <span class="glyphicon glyphicon-flash"></span> 
+                Your form contains errors!
+            </div>
+            }    
             
-            @inputPassword(
-                loginForm("password"),
-                '_label -> "Password",
-                '_label_class -> "label label-white",
-                '_help -> "Enter a Password here!",
-                'class -> "form-control"
-            )
-                        
-        </fieldset>
 
-        <button id="login_btn" type="submit" data-toggle="modal" class="btn btn-danger actions">
-            <span class="glyphicon glyphicon-bullhorn"> </span>
-            Login to your Account      
-        </button>
+            @if(loginForm.hasGlobalErrors) {
+            <div class="alert alert-danger fade in">
+                <span class="glyphicon glyphicon-flash"></span> 
+                @loginForm.globalError.message
+            </div>
+            }
 
-        }
+            @helper.form(action = routes.UserController.submitLogin, 'id -> "login_form") {  
 
-    </div>
+            <fieldset>
+                <legend>Login</legend>
+                          
+                @inputText(
+                    loginForm("name"),
+                    '_label -> "Blog-Title or E-Mail Address", 
+                    '_label_class -> "label label-white",
+                    'class -> "form-control",
+                    '_help -> "Your Blog's Title"
+                )
+                
+                @inputPassword(
+                    loginForm("password"),
+                    '_label -> "Password",
+                    '_label_class -> "label label-white",
+                    '_help -> "Enter a Password here!",
+                    'class -> "form-control"
+                )
+                            
+            </fieldset>
 
-    <div class="col-md-6 loginformbox">
-        <!-- EMPTY -->
-    </div>
+            <button id="login_btn" type="submit" data-toggle="modal" class="btn btn-danger actions">
+                <span class="glyphicon glyphicon-bullhorn"> </span>
+                Login to your Account      
+            </button>
+
+            }
+
+        </div>
+
+        <div class="col-md-6 loginformbox">
+            <!-- Logo .. or something -->
+            <img src="/assets/images/logo_big.png" />
+        </div>
     </div>
 
     <div class="row">
-    <div class="col-md-6 loginformbox"> 
-
-    <h2>
-    Dary is a blogging and sharing platform for everybody. <br />
-    <b>Become an author and share your experiences with the world.</b>
-    </h2>
-
-    </div>
+        
+        <div class="col-md-6 loginformbox min-txt">
+            <h2>   
+                Dary is a blogging and sharing platform for everybody.<br />
+                <b>Become an author and share your experiences with the world.</b>
+            </h2>        
+        </div>
 
     <!-- Sign Up Form -->
 
-    <div class="col-md-6 loginformbox">
+        <div class="col-md-6 loginformbox">
 
-        @if(signupForm.hasErrors){
-        <div id="formalert-signup" class="alert alert-danger fade in" >
-            <span class="glyphicon glyphicon-flash"></span> 
-            Your form contains errors!            
-        </div>
-        }
-        
-        @helper.form(action = routes.UserController.submitRegister, 'id -> "signup_form") {
-
-        <fieldset>
-
-            <legend>Become An Author in 10 Seconds</legend>
-                        
-            @inputText(
-                signupForm("blogname"),
-                '_label -> "Blog-Title", 
-                '_label_class -> "label label-white",
-                'class -> "form-control",
-                '_help -> "Your Blog's Title",
-                'id -> "reg_blogname"
-            )
-
-            @inputText(
-                signupForm("email"),
-                '_label -> "E-mail Address", 
-                '_label_class -> "label label-white",
-                'class -> "form-control",
-                '_help -> "Your E-mail Address"
-            )
-            
-            @inputPassword(
-                signupForm("password"),
-                '_label -> "Password",
-                '_label_class -> "label label-white",
-                '_help -> "Enter a Password here!",
-                'class -> "form-control",
-                'id -> "reg_pwd"
-            )
-
-            <div id="signup_pwd_nomatch" class="alert alert-danger fade in nodisplay" >
+            @if(signupForm.hasErrors){
+            <div id="formalert-signup" class="alert alert-danger fade in" >
                 <span class="glyphicon glyphicon-flash"></span> 
-                The passwords do not match!          
+                Your form contains errors!            
             </div>
+            }
+            
+            @helper.form(action = routes.UserController.submitRegister, 'id -> "signup_form") {
 
-            @inputPassword(
-                signupForm("password"),
-                '_label -> "Repeat Password",
-                '_label_class -> "label label-white",
-                '_help -> "Repeat the Password here!",
-                'class -> "form-control",
-                'id -> "reg_pwd_repeat"
-            )
-                        
-        </fieldset>
+            <fieldset>
 
-        <button id="register_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
-            <span class="glyphicon glyphicon-bullhorn"> </span>
-            Sign Up and Become An Author      
-        </button>
+                <legend>Become An Author in 10 Seconds</legend>
+                            
+                @inputText(
+                    signupForm("blogname"),
+                    '_label -> "Blog-Title", 
+                    '_label_class -> "label label-white",
+                    'class -> "form-control",
+                    '_help -> "Your Blog's Title",
+                    'id -> "reg_blogname"
+                )
 
-        }
+                @inputText(
+                    signupForm("email"),
+                    '_label -> "E-mail Address", 
+                    '_label_class -> "label label-white",
+                    'class -> "form-control",
+                    '_help -> "Your E-mail Address"
+                )
+                
+                @inputPassword(
+                    signupForm("password"),
+                    '_label -> "Password",
+                    '_label_class -> "label label-white",
+                    '_help -> "Enter a Password here!",
+                    'class -> "form-control",
+                    'id -> "reg_pwd"
+                )
 
+                <div id="signup_pwd_nomatch" class="alert alert-danger fade in nodisplay" >
+                    <span class="glyphicon glyphicon-flash"></span> 
+                    The passwords do not match!          
+                </div>
+
+                @inputPassword(
+                    signupForm("password"),
+                    '_label -> "Repeat Password",
+                    '_label_class -> "label label-white",
+                    '_help -> "Repeat the Password here!",
+                    'class -> "form-control",
+                    'id -> "reg_pwd_repeat"
+                )
+                            
+            </fieldset>
+
+            <button id="register_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
+                <span class="glyphicon glyphicon-bullhorn"> </span>
+                Sign Up and Become An Author      
+            </button>
+
+            }
+
+        </div>
     </div>
-    </div>
+
+    <p class="min-txt">
+        *This image (the pencil) is published under the 
+        <a href="http://en.wikipedia.org/wiki/en:Creative_Commons"> Creative Commons </a> 
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en"> Attribution-Share Alike 3.0 Unported </a>
+        license and was created by <a href="http://commons.wikimedia.org/wiki/User:Takkk"> Takkk </a>.
+    </p>
 
     <!-- Terms of conditions in Modal -->
 
@@ -150,14 +156,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Please read through this <b>Terms and Conditions</b> carefully!</h4>
+                <h4 class="modal-title" id="myModalLabel">Please read through this <b>Conditions</b> carefully!</h4>
             </div>
             <div class="modal-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu augue ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur eu mollis sem. In sem augue, auctor ac turpis ac, faucibus ultrices lacus. Phasellus egestas ultricies commodo. Duis varius venenatis commodo. Proin mollis dictum enim, non pellentesque justo ornare ut. Vivamus dolor tortor, posuere vel adipiscing sed, interdum eget risus. Quisque ultrices lacinia nisi, quis ullamcorper tortor vehicula at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut in lectus mi. Etiam vitae luctus dolor. Morbi bibendum sapien at velit pretium luctus. 
+                Dary is a privately non-commercial project. We can not guarantee that your data will be stored forever and/or that you will always be able to access the website and your data. <br /> We do guarentee however that <b> none </b> of your data is undisclosed to anyone who is not a memer of the dary development team. <br /> We will try everything in our power to make your user-experience as convenient and secure as possible.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button id="register_terms_accept_send" type="button" class="btn btn-primary">I accept the Terms and Conditions</button>
+                <button id="register_terms_accept_send" type="button" class="btn btn-primary">I understand and accept this conditions</button>
             </div>
         </div>
       </div>
