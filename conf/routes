@@ -10,7 +10,10 @@ GET     /logout                      controllers.Application.logout()
 
 ### Form Submits
 # New entry Submit
-POST    /blog/new/submit             controllers.NewPost.submit()
+POST    /new/submit                  controllers.NewPost.submit()
+
+# Picture Upload Submit
+POST    /new/picture                 controllers.NewPost.uploadPicture()
 
 # Login Submit
 POST    /login/submit                controllers.UserController.submitLogin()

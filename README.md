@@ -2,7 +2,7 @@
 
 A Blogging Web-App written in Java using the Framework Play.
 
-## Dependencies
+## Dependencies and Third-Party Software
 
 Some vendors are not included in the git repository.
 Add the following libraries and third-party plugins in order to successfully run the App.
@@ -18,7 +18,6 @@ Add the following libraries and third-party plugins in order to successfully run
   This is a Google UI-Element Library. 
   Install its core- and paper-elements into the **/public/vendors/polymer** folder 
   preferably by using Twitter's package manager **Bower*~~ 
-
 
 ## Technologies
 
