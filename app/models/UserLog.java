@@ -16,8 +16,6 @@ import play.data.validation.Constraints.*;
   * and its uuid (relating to cookie) 
   */
 @Entity
-//Add unique constraint for userid // This constraint probably doesn't do anything
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "user_id"))
 public class UserLog extends Model {
     
     /* User UUID as saved in Cookie */
@@ -43,11 +41,15 @@ public class UserLog extends Model {
     // currently UNUSED
     public UserLog generateUuid(String ipAddress)  {
       String joinedIp = ipAddress.replaceAll("[\\.:]","");
-      Long time = this.loginDate.getTime(); //Date/Time as Milliseconds (UNIX)
+      //Get Last 7 digits of UNIX Timestamp
+      String strTime = Long.toString(this.loginDate.getTime());
+      String strTimeL7 = strTime.substring(strTime.length()-8, strTime.length()-1);
+
       this.uuid =  Long.parseLong(
                       new StringBuilder()
-                        .append(this.user.id)
-                        .append(joinedIp).toString());
+                        .append(joinedIp)
+                        .append(strTimeL7)
+                        .append(this.user.id).toString());
       return this; 
     }
 

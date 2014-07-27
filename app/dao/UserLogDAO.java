@@ -26,12 +26,14 @@ public class UserLogDAO implements DAO<UserLog> {
     }
 
     public void deleteByBlogname(String blogname) {
-        Ebean.delete(getByBlogname(blogname));
+        for (UserLog ul : getByBlogname(blogname)) {
+            Ebean.delete(ul);
+        }
     }
 
-    public UserLog getByBlogname(String blogname) {
+    public List<UserLog> getByBlogname(String blogname) {
         logger.debug("get UserLog by blogname::" + blogname);
-        return UserLog.find.where().eq("user.blogname", blogname).findUnique();
+        return UserLog.find.where().eq("user.blogname", blogname).findList();
     }
 
     public UserLog getById(Long id) {

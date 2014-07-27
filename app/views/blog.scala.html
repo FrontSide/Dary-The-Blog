@@ -1,22 +1,33 @@
 @(posts: List[Post], user: User)
 
-@templ(title = "The Dary Blog", user){    
+@templ(title = "The Dary Blog", user){ 
+    
+    <div class="blog-title label-primary">
+        <h1> @posts(0).user.blogname </h1>
+    </div>
+
     @for(p <- posts) {
 
         <div class="blog-content">
 
         <h2> @p.title </h2>
         <h5>
-        <span class="label label-bloghead">@p.isPublished</span>
-        <span class="label label-bloghead">@p.creDate</span>
+            @if(p.isPublished) {
+                <span class="fa fa-globe"></span>
+            } else {
+                <span class="fa fa-lock"></span>
+            }
+        <span class="label label-bloghead"> published on <b> @p.creDate </b> </span>
         </h5>
         <hr />
         <br />             
         @Html(p.content) 
         <hr /> 
-        <p class="blog-footer"> written by #MrMan </p>     
+        <p class="blog-footer"> written by @posts(0).user.blogname </p>  
+
         </div>
         
     }
-}{    
+}{
+    <script src="/assets/javascripts/blog_control.js"></script>  
 }

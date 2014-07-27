@@ -40,7 +40,7 @@ public class Post extends Model {
     public User user;
 
     @Formats.DateTime(pattern="dd/MM/yyy")
-    public Date creDate;
+    public Date creDate = new Date();
 
     /* Open to public Flag */
     public boolean isPublished;

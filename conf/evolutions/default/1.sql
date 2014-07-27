@@ -28,7 +28,6 @@ create table user_log (
   uuid                      bigint not null,
   user_id                   bigint,
   login_date                timestamp,
-  constraint uq_user_log_1 unique (user_id),
   constraint pk_user_log primary key (uuid))
 ;
 

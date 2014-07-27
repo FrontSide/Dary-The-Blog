@@ -4,6 +4,8 @@ import models.Post;
 import dao.UserDAO;
 
 import java.util.List;
+import java.util.Date;
+
 import play.Logger;
 
 import com.avaje.ebean.Ebean; 
@@ -27,9 +29,6 @@ public class PostDAO implements DAO<Post> {
       * if evolution is enabled. (see ebean.properties)
       */
     public void create(Post model) {
-
-        //TODO: Check typesafety
-
         logger.debug("Save Model");
         Ebean.save(model);
         logger.debug("Done");

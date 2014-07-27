@@ -49,15 +49,17 @@ public class UserController extends Controller {
         userLog.user = login.findUser();
         userLog.loginDate = new Date();
         // currently UNUSED 
-        userLog.generateUuid(request().remoteAddress());
+        userLog.generateUuid(request().remoteAddress());        
         new UserLogDAO().create(userLog);
+
+
 
         //Set Session
         session().clear();
         session("user", userLog.user.blogname);
 
         //Success flash
-        flash("success", "Hi. You successfully logged into your blog \"" + userLog.user.blogname + "\"");
+        flash("success", "Hi. You successfully logged in to your blog \"" + userLog.user.blogname + "\"");
 
         return redirect("/blog/"+userLog.user.blogname);
 

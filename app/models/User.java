@@ -2,6 +2,7 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
+
 import play.db.ebean.*;
 import play.data.format.*;
 import play.Logger;
@@ -38,7 +39,7 @@ public class User extends Model {
     public String email;
 
     @Formats.DateTime(pattern="dd/MM/yyy")
-    public Date registerDate;
+    public Date registerDate = new Date();
 
     final static Logger.ALogger logger = Logger.of(User.class);
 
