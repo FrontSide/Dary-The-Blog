@@ -17,6 +17,7 @@ Add the following libraries and third-party plugins in order to successfully run
 
 - [to-markdown] (https://github.com/domchristie/to-markdown)
   This converts HTML back to Markdown (used for editing).
+  Copy the **to-markdown.js** file into the **/public/vendors/markdown/addons** folder.
 
 - ~~[Polymer] (http://www.polymer-project.org)
   This is a Google UI-Element Library. 
