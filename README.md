@@ -1,7 +1,7 @@
 # Dary-The-Blog
 
 A Blogging Web-App written in Java using the Framework Play.
-Official Website : [www.dary.info] (www.dary.info)
+Official Website : [www.dary.info] (http://www.dary.info)
 
 ## Dependencies and Third-Party Software
 
@@ -33,5 +33,5 @@ Add the following libraries and third-party plugins in order to successfully run
 
 v0.1.0-BETA
 Right at the Moment Dary is hostet on Heroku.
-[www.dary.info] (www.dary.info)
+[www.dary.info] (http://www.dary.info)
 
