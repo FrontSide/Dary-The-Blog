@@ -14,6 +14,9 @@ GET     /logout                      controllers.Application.logout()
 # New entry Submit
 POST    /new/submit                  controllers.NewPost.submit()
 
+# Edit entry Submit
+POST    /edit/submit                 controllers.EditPost.submit() 
+
 # Picture Upload Submit
 POST    /new/picture                 controllers.NewPost.uploadPicture()
 

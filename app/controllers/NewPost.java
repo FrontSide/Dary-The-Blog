@@ -26,7 +26,7 @@ public class NewPost extends Controller {
         Form<Post> postForm = Form.form(Post.class);
         
         logger.debug("render newpost.html");
-        return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user"))));
+        return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user")), false));
     }
 
     /* ------ Upload Picture Submit ------ */
@@ -65,7 +65,7 @@ public class NewPost extends Controller {
 
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user"))));
+            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user")), false));
         }
 
         logger.debug("Form is valid. Create 'Post' Object!");
@@ -73,8 +73,7 @@ public class NewPost extends Controller {
         post.user = new UserDAO().getUserbyBlogname(session("user"));     
 
         logger.debug("init persistence in Database");
-        PostDAO edao = new PostDAO();
-        edao.create(post); 
+        new PostDAO().create(post); 
 
         //Success flash
         flash("success", "Nice! You just successfully wrote an article for your blog!");

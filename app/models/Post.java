@@ -45,7 +45,14 @@ public class Post extends Model {
     /* Open to public Flag */
     public boolean isPublished;
 
-    /* Blog this Post Belongs to */
+    /* Archived Flag (will not be displayed on the blog page if true, 
+       just for version control) */
+    public boolean isArchived;
+
+    /* Every newer version is assigned a rootPost i.e. 
+       the post that this one is made of 
+       only has a value if rootPost was edited */
+    public Post rootPost;
 
     /** Setter and Getter are automatically generated from play.
       * However, if you want to create your own getters/setters 

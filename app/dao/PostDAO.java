@@ -46,9 +46,21 @@ public class PostDAO implements DAO<Post> {
       return null;
     }
 
-    public List<Post> getPubPostsByBlogname(String blogname) {
+    public List<Post> getPostsByBlogname(String blogname) {
       logger.debug("Get Posts from \"" + blogname + "\"");
-      return Post.find.where().eq("isPublished", true).eq("user.blogname", blogname).findList();
+      return Post.find.where().eq("user.blogname", blogname).findList();
+    }
+
+    public void markPostByIdAsArchived(Long id) {
+      logger.debug("Mark Post with id \"" + id + "\" as archived!");
+      Post model = Post.find.where().eq("id", id).findUnique();
+      model.isArchived = true;
+      update(model);
+    }
+
+    public void update(Post model) {
+      logger.debug("Update Model");
+      Ebean.update(model);
     }
 
 }

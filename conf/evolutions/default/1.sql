@@ -10,6 +10,7 @@ create table post (
   user_id                   bigint,
   cre_date                  timestamp,
   is_published              boolean,
+  is_archived               boolean,
   constraint pk_post primary key (id))
 ;
 

@@ -1,4 +1,4 @@
-@(newPostForm: Form[Post], user: User)
+@(newPostForm: Form[Post], user: User, isEditing: Boolean)
 
 <!-- Form Helper -->
 @import helper._
@@ -6,7 +6,8 @@
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Write A New Story", user){
+
+@templ(title = if(isEditing) { "Edit Post" } else { "Write A New Story" }, user){
 
     @if(newPostForm.hasErrors) {
         <div class="alert alert-danger fade in">
@@ -15,12 +16,16 @@
         </div>
     }
 
-    @helper.form(action = routes.NewPost.submit, 'id -> "newpost_form") {    
+    @helper.form(action = if(isEditing) { routes.EditPost.submit } else { routes.NewPost.submit }, 'id -> "newpost_form") {    
        
         <fieldset>
             <legend>
                 <i class="fa fa-edit"> </i>
-                New Blog Post
+                @if(isEditing) {
+                    Edit Post
+                } else {
+                    New Blog Post
+                }
             </legend>
                         
             @inputText(
@@ -31,6 +36,13 @@
                 'class -> "form-control",
                 '_help -> "Your Posts title"
             )
+
+            @if(isEditing) {
+                <div class="alert alert-info fade in">
+                    You are <b> editing </b> an existing Post. 
+                    The old version will be archived but not shown in the blog anymore.
+                </div>
+            }
             
             <!-- The 'Symbol' class is needed because of the hyphen in the "data-provide" attribute -->
             <!-- Symbol("data-provide") -> "markdown", -->
@@ -47,7 +59,11 @@
             <!-- Hidden Field for isPublished parameter 
                  changed (if necessary) in submitcontrol.js 
                  when modal dialog is closed positively -->
-            <input type="hidden" id="newpost_hidden_publish" name="isPublished" value='false' >
+            <input type="hidden" id="newpost_hidden_publish" name="isPublished" value="false">
+
+            <!-- Hidden Field with id
+                 necessary for editing -->
+            <input type="hidden" id="newpost_hidden_id" name="id" value="@newPostForm("id").value">
                         
         </fieldset>
 
@@ -55,7 +71,7 @@
         <!-- Publish Button -->
         <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions" disabled>
             <span class="glyphicon glyphicon-bullhorn"> </span>
-            Publish Entry NOW             
+            Publish this Post NOW             
         </button>
 
         <!-- Save Only Button -->

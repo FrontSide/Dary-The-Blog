@@ -52,7 +52,7 @@ public class Application extends Controller {
 
     /* ------ Show Blog Posts ------ */
     public static Result show(String title) {        
-        List<Post> public_posts = (List<Post>) new PostDAO().getPubPostsByBlogname(title);
+        List<Post> public_posts = (List<Post>) new PostDAO().getPostsByBlogname(title);
             if (public_posts.size() == 0) {
                 return notFound(no_posts_found.render(new UserDAO().getUserbyBlogname(session("user"))));
             }            

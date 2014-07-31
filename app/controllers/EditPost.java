@@ -36,13 +36,43 @@ public class EditPost extends Controller {
         Form<Post> postForm = Form.form(Post.class).fill(post);
         
         logger.debug("render newpost.html");
-        return ok(newpost.render(postForm, loggedUser));
+        return ok(newpost.render(postForm, loggedUser, true));
     }
     
     /* ------ Submit ------ */
     public static Result submit() {
 
-        return ok();
+        logger.debug("receive data from form");         
+        Form<Post> postForm = Form.form(Post.class);
+        Form<Post> filledForm = postForm.bindFromRequest();
+
+        logger.debug("validate form");
+        if (filledForm.hasErrors()) {
+            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user")), true));
+        }
+
+        logger.debug("Form is valid. Update Post!");
+
+        /* Set OLD post as archived!
+           This does not create a new Entry yet */ 
+        Long oldId = filledForm.get().id;
+        new PostDAO().markPostByIdAsArchived(oldId);   
+
+        /* Bind Form and Create new Post with new ID */
+        Post post = filledForm.get();   
+        post.rootPost = new PostDAO().getById(oldId);
+        post.id = null; //Remove old ID so new one will be generated
+        post.user = new UserDAO().getUserbyBlogname(session("user"));
+
+        logger.debug("init persistence in Database");
+        new PostDAO().create(post); 
+
+        //Success flash
+        flash("success", "OK! You successfully edited an Article!");
+
+        logger.debug("render blog view");
+        return redirect("/blog/" + session("user"));
+
     }
 
 }
