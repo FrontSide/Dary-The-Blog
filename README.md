@@ -1,6 +1,7 @@
 # Dary-The-Blog
 
 A Blogging Web-App written in Java using the Framework Play.
+Official Website : [www.dary.info] (www.dary.info)
 
 ## Dependencies and Third-Party Software
 
@@ -12,7 +13,10 @@ Add the following libraries and third-party plugins in order to successfully run
   Copy the **markdown.min.js** file into the **/public/vendors/markdown/addons** folder.
 
   Dary uses the [bootstrap-markdown] (http://toopay.github.io/bootstrap-markdown/) editor, however,
-  it (and some of its dependencies) are included via CDNs.
+  it is (and some of its dependencies are) included via CDNs.
+
+- [to-markdown] (https://github.com/domchristie/to-markdown)
+  This converts HTML back to Markdown (used for editing).
 
 - ~~[Polymer] (http://www.polymer-project.org)
   This is a Google UI-Element Library. 
@@ -26,4 +30,7 @@ Add the following libraries and third-party plugins in order to successfully run
 
 ## Development
 
-v0.1.0a
+v0.1.0-BETA
+Right at the Moment Dary is hostet on Heroku.
+[www.dary.info] (www.dary.info)
+

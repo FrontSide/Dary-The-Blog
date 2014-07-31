@@ -53,13 +53,13 @@
 
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
-        <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
+        <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions" disabled>
             <span class="glyphicon glyphicon-bullhorn"> </span>
             Publish Entry NOW             
         </button>
 
         <!-- Save Only Button -->
-        <button id="newpost_save_btn" type="button" class="btn btn-primary actions">
+        <button id="newpost_save_btn" type="button" class="btn btn-primary actions" disabled>
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             Save Post And Go Back            
         </button>
@@ -121,7 +121,8 @@
 
 } {
      <!-- Markdown wysiwyg -->
-    <script src="/assets/vendors/markdown/addons/markdown.min.js"></script> 
+    <script src="/assets/vendors/markdown/addons/markdown.min.js"></script>
+    <script src="/assets/vendors/markdown/addons/to-markdown.js"></script> 
     <script src="/assets/javascripts/newpost_markdowncontrol.js"></script>   
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.2.1/js/bootstrap-markdown.min.js"></script>

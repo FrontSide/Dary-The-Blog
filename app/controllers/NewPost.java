@@ -22,7 +22,7 @@ public class NewPost extends Controller {
     /* ------ New Blog Post ------ */
     public static Result create() {
 
-        logger.debug("called create new post");         
+        logger.debug("called create new post"); 
         Form<Post> postForm = Form.form(Post.class);
         
         logger.debug("render newpost.html");

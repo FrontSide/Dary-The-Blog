@@ -1,6 +1,20 @@
 
 /* Markdown is converted to HTML on save */
 
+/* Activate Save and Publish Button only when Title is entered */
+$('#title').keyup(function () {
+
+    if ($('#title').val().trim() != "") {
+        $('#newpost_save_btn').removeAttr("disabled");
+        $('#newpost_pub_inst_btn').removeAttr("disabled");
+    } else {
+        $('#newpost_save_btn').attr("disabled","disabled");
+        $('#newpost_pub_inst_btn').attr("disabled","disabled");
+    }
+
+});
+
+
 /* Publish NOW Button - Opens Modal */
 $('#newpost_pub_inst_btn').click(function () {
 

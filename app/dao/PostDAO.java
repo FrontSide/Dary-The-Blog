@@ -35,11 +35,11 @@ public class PostDAO implements DAO<Post> {
     }
 
     public void deleteById(Long id) {
-
     }
 
     public Post getById(Long id) {
-        return null;
+      logger.debug("Get Posts by id :: \"" + id + "\"");
+      return Post.find.where().eq("id", id).findUnique();
     }
 
     public List<Post> getAll() {

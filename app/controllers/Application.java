@@ -16,6 +16,7 @@ public class Application extends Controller {
     final static Logger.ALogger logger = Logger.of(Application.class);
 
     /* ------ Show Home Page ------ */
+    /* TODO:: Rename to home() and create new login() method!! */
     public static Result login() {
         /* If user is logged in. Send user to own blog */
         if (session("user") != null) {
@@ -42,6 +43,12 @@ public class Application extends Controller {
     public static Result newPost() {
         return NewPost.create();
     }
+
+    @Security.Authenticated(Secured.class)
+    public static Result editPost(Long id) {
+        return EditPost.edit(id);
+    }
+
 
     /* ------ Show Blog Posts ------ */
     public static Result show(String title) {        

@@ -5,6 +5,14 @@
 /* On Load */
 $(document).ready(function() {
 
+    /* Check if incoming Post Content is existing if so
+       (it's most certainly HTML) convert it from HTML to Markdown
+       This is needed for editing an already saved Post since Posts are
+       converted to HTML the moment they're saved */
+    if($("#content").val().trim() != "") {
+      $("#content").val(toMarkdown($("#content").val()));
+    }
+
     $("#content").markdown({
         additionalButtons: [
             [{

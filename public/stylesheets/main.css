@@ -78,6 +78,28 @@ img {
     font-weight: bold;
 }
 
+.label-bloghead {
+    font-family: "sans-serif";
+    color: #555;
+    font-weight: normal;
+    margin-right: 5px;
+    text-align: center;
+}
+
+a > .label-danger {
+    color: #FFF;
+}
+
+a > .label-danger:hover {
+    font-weight: bold;
+}
+
+.blog-post-header > a:hover,
+.blog-post-header > a:active  {
+    color: #FFF;
+    text-decoration: none;
+}
+
 .blog-content {
     font-family: "serif";
     padding: 50px;
@@ -88,18 +110,13 @@ img {
     background-color: #FFF;
 }
 
-.blog-footer {
+.blog-post-footer {
     color: #AAA;
     font-size: 12px;
     text-align: right;
     font-family: "sans-serif";
 }
 
-.label-bloghead {
-    font-family: "sans-serif";
-    color: #555;
-    font-weight: normal;
-}
 
 .input #title {
     font-size: 30px;

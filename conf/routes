@@ -6,7 +6,9 @@
 GET     /                            controllers.Application.login()
 GET     /blog/:title                 controllers.Application.show(title : String)
 GET     /new                         controllers.Application.newPost()
+GET     /edit/:postid                controllers.Application.editPost(postid : Long)
 GET     /logout                      controllers.Application.logout()
+
 
 ### Form Submits
 # New entry Submit
