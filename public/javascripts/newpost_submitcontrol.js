@@ -94,14 +94,16 @@ function tryUploadPicture() {
 }
 
 /* Picture Upload Event Handlers */
-function beforeSendHandler() {  
+function beforeSendHandler() {
+  $('#newpost_picture_upload_prog_wrapper').removeAttr("hidden");
 }
 
 function completeHandler() {  
   $('#newpost_picture_browse_label').css("background-color", "#5cb85c");
   $('#newpost_picture_browse_label').css("color", "#fff");
   $('#newpost_picture_upload_msg').removeClass("alert-warning");
-  $('#newpost_picture_upload_msg').removeClass("alert-danger");
+  $('#newpost_picture_upload_msg').removeClass("alert-danger");  
+  $('#newpost_picture_upload_msg').removeClass("alert-info");
   $('#newpost_picture_upload_msg').addClass("alert-success");
   $('#newpost_picture_upload_msg').html("Your picture was uploaded successfully!");
 }
@@ -111,6 +113,7 @@ function errorHandler() {
   $('#newpost_picture_browse_label').css("color", "#fff");
   $('#newpost_picture_upload_msg').removeClass("alert-warning");
   $('#newpost_picture_upload_msg').removeClass("alert-success");
+  $('#newpost_picture_upload_msg').removeClass("alert-info");
   $('#newpost_picture_upload_msg').addClass("alert-danger");
   $('#newpost_picture_upload_msg').html("Mhhh. There seems to be a network problem!");
 }
@@ -124,5 +127,8 @@ function progressHandlingFunction(e){
 
 /* On Load */
 $(document).ready(function() {
-  // Empty
+  if ($('#title').val().trim() != "") {
+      $('#newpost_save_btn').removeAttr("disabled");
+      $('#newpost_pub_inst_btn').removeAttr("disabled");
+  }
 }); 

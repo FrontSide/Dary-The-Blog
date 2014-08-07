@@ -13,6 +13,10 @@ import javax.validation.*;
 import play.data.validation.Constraints.*;
 import play.data.validation.ValidationError;
 
+/* Apache Commons Codec Library for Hashing Password
+   Dependency Maintained in build.sbt */
+import org.apache.commons.codec.digest.*;
+
 /**
   * User Model
   * Stores a User's information and its blogname
@@ -22,6 +26,9 @@ import play.data.validation.ValidationError;
 @Table(name="blog_user")
 public class User extends Model {
 
+    final static Logger.ALogger logger = Logger.of(User.class);
+    /**/
+
     @Id    
     public Long id; 
 
@@ -30,6 +37,16 @@ public class User extends Model {
 
     @Required
     public String password;
+
+    /* Explicit Setter Method to Encrypt password
+       as SHA1 Hash
+    Play uses setter methods if they are existing automatically!
+    We still set the password with 
+    "user.pssword = xxx" to set the password and NOT the directly the Setter!
+    */ 
+    public void setPassword(String password) {
+        this.password = User.hashPassword(password);
+    }
 
     public String firstname;
     public String lastname;
@@ -41,7 +58,11 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate = new Date();
 
-    final static Logger.ALogger logger = Logger.of(User.class);
+    /* Password - Hash Method - usign Apache commons codec library */
+    public static String hashPassword(String clear) {        
+        logger.debug("Hash password!");
+        return DigestUtils.sha1Hex(clear);
+    }
 
     /* Validator for Registration */
     Map<String, List<ValidationError>> validationErrors = new HashMap<String, List<ValidationError>>();    

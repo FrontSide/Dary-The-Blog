@@ -105,9 +105,10 @@ public class UserController extends Controller {
         @Required public String name;
         @Required public String password;
 
-        /* Check if user with this credentials exists in DB and return it */
+        /* Check if user with this credentials exists in DB and return it 
+           Hashing before password! */ 
         public User findUser() {
-            return new UserDAO().getUserByLogin(this.name, this.password);
+            return new UserDAO().getUserByLogin(this.name, User.hashPassword(this.password));
         }
 
         public String validate() {

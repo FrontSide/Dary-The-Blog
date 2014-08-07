@@ -8,7 +8,7 @@
 
     @for(p <- posts) {
 
-        @if((!p.isArchived) && ((p.isPublished) || (user != null && posts(0).user.blogname == user.blogname))) {
+        @if((p.isPublished) || (user != null && posts(0).user.blogname == user.blogname)) {
         <!-- This is either a published post or you are watching your on blog -->
 
             <div class="blog-content">
@@ -17,9 +17,12 @@
                     @if(p.isPublished) {
                         <span class="fa fa-globe"></span>
                     } else {
-                        <span class="fa fa-lock"></span>
+                        <div class="label label-bloghead label-warning">
+                            <span class="fa fa-lock"></span>
+                            This Post has not been published
+                        </div>
                     }
-                <span class="label label-bloghead"> published on <b> @p.creDate </b> </span>
+                <span class="label label-bloghead"> created on <b> @p.creDate </b> </span>
                 @if(user != null && posts(0).user.blogname == user.blogname) {
                         <a href="/edit/@p.id">
                             <span class="label label-bloghead label-danger">Edit                       

@@ -48,6 +48,8 @@ public class NewPost extends Controller {
             String fileName = picture.getFilename();
             String contentType = picture.getContentType(); 
             File file = picture.getFile();
+
+            logger.debug("Path of uploaded Picture :: " + file.getAbsolutePath());
             return ok(Json.newObject().put("success", true));
         } else {
             logger.error("no data found in request");

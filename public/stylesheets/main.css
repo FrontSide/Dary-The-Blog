@@ -23,6 +23,11 @@ img {
     margin-left: 0px;
 }
 
+.navbar-nav > li > a.btn {
+    color: #FFF;
+    padding: 7px; 
+}
+
 .navbar-dary {
     border-left: none;
     border-right: none;

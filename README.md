@@ -29,9 +29,17 @@ Add the following libraries and third-party plugins in order to successfully run
 - [Play! Framework 2.2.1] (http://www.playframework.com)
   This is a super cool Web-App-Framework for Java and Scala.
 
+- [PostgreSQL 9.1](http://www.postgresql.org/)
+  Relational Database
+  *Maybe Transition to NoSQL in the near future*
+
 ## Development
 
 v0.1.0-BETA
-Right at the Moment Dary is hostet on Heroku.
+This version is hostet on Heroku and is not maintained 
 [www.dary.info] (http://www.dary.info)
+
+v0.1.1-BETA
+This is the public BETA that is consequently updated
+[Official BETA] (http://www.letsdoarnie.com)
 

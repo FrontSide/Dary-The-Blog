@@ -107,14 +107,22 @@
             </div>
             <div class="modal-body">
 
-                <div class="progress">
+                <div id="newpost_picture_upload_legal" class="panel panel-danger fade in">
+                    <div class="panel-heading"> Legal Information! </div>
+                    <div class="panel-body">
+                        Please note that <b>every</b> picture you upload will be accessible by <b> everyone </b> via a certain link even if the Blog-Post is not published yet. Therefore, make sure to upload pictures you are legally allowed to only!
+                    </div>
+                </div>
+
+                <div class="progress" id="newpost_picture_upload_prog_wrapper" hidden>
                     <div id="newpost_picture_upload_prog" 
-                         class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                         class="progress-bar progress-bar-success progress-bar-striped active" 
+                         role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
-                <div id="newpost_picture_upload_msg" class="alert fade in">
+                <div id="newpost_picture_upload_msg" class="alert alert-info fade in">
+                    Click on <b>Browse</b> to upload a new picture! 
                 </div>
-
                 <!--  -->
                 @form(action = routes.NewPost.uploadPicture, 'id -> "newpost_upload_picture_form", 'enctype -> "multipart/form-data") {    
                     <div class="input-group">
