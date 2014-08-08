@@ -2,14 +2,11 @@ package controllers;
 
 import models.*;
 import dao.*;
+import controllers.*;
 import views.html.*;
 
 import play.*;
 import play.mvc.*;
-import play.mvc.Http.MultipartFormData;
-import play.mvc.Http.MultipartFormData.*;
-
-import java.io.File;
 
 import play.Logger;
 import play.data.Form;
@@ -29,33 +26,8 @@ public class NewPost extends Controller {
         return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user")), false));
     }
 
-    /* ------ Upload Picture Submit ------ */
     public static Result uploadPicture() {
-
-        /* TODO
-           Save Picture (generate Filename)
-           Store Picture info in DB
-           Add Picture to Article when uploaded
-           Several checks (as appropriate)
-        */
-
-        logger.debug("upload picture");
-        
-        MultipartFormData body = request().body().asMultipartFormData();
-        FilePart picture = body.getFile("picture_raw");
-        if (picture != null) {
-            logger.debug("data found in request");
-            String fileName = picture.getFilename();
-            String contentType = picture.getContentType(); 
-            File file = picture.getFile();
-
-            logger.debug("Path of uploaded Picture :: " + file.getAbsolutePath());
-            return ok(Json.newObject().put("success", true));
-        } else {
-            logger.error("no data found in request");
-            return ok(Json.newObject().put("success", false));
-        } 
-
+        return PictureUpload.uploadPicture();
     }
 
     /* ------ Submit ------ */

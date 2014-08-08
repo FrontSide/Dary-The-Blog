@@ -24,12 +24,21 @@ Add the following libraries and third-party plugins in order to successfully run
   Install its core- and paper-elements into the **/public/vendors/polymer** folder 
   preferably by using Twitter's package manager **Bower*~~ 
 
+## Libraries
+
+The following libraries (additionally to those that are already used by the Framework or 
+any Third-Party Software) are included in the Project (mostly via Ivy Dependencies, check out build.sbt)
+
+- [Apache Commons Codec] (http://commons.apache.org/proper/commons-codec/)
+
+- [Apache Commons IO] (http://commons.apache.org/proper/commons-io/)
+
 ## Technologies
 
 - [Play! Framework 2.2.1] (http://www.playframework.com)
   This is a super cool Web-App-Framework for Java and Scala.
 
-- [PostgreSQL 9.1](http://www.postgresql.org/)
+- [PostgreSQL 9.1] (http://www.postgresql.org/)
   Relational Database
   *Maybe Transition to NoSQL in the near future*
 

@@ -9,7 +9,7 @@
 @templ(title = "Become An Author and Share Your Experiences", user){    
 
     <div class="row">
-        <div class="col-md-6 loginformbox"> 
+        <div class="col-md-6 loginformbox" id="loginformbox"> 
             <!-- Login Form --> 
             @if(loginForm.hasErrors){
             <div id="formalert-login" class="alert alert-danger fade in" >
@@ -60,7 +60,7 @@
 
         <div class="col-md-6 loginformbox">
             <!-- Logo .. or something -->
-            <img src="/assets/images/logo_big.png" />
+            <img id="biglogo" src="/assets/images/logo_big.png" />
         </div>
     </div>
 
@@ -75,7 +75,7 @@
 
     <!-- Sign Up Form -->
 
-        <div class="col-md-6 loginformbox">
+        <div class="col-md-6 loginformbox" id="signupformbox">
 
             @if(signupForm.hasErrors){
             <div id="formalert-signup" class="alert alert-danger fade in" >

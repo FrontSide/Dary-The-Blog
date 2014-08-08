@@ -14,8 +14,10 @@ footer {
     margin-bottom: 20px;
 }
 
+/* For IE */
 img {
-    max-width: 100%;
+    width: auto;
+    height: auto;
 }
 
 .btn {
@@ -26,6 +28,14 @@ img {
 .navbar-nav > li > a.btn {
     color: #FFF;
     padding: 7px; 
+}
+
+#navbar-logo {
+    width: 50%;
+}
+
+#biglogo {
+    width: 100%;
 }
 
 .navbar-dary {
@@ -106,7 +116,7 @@ a > .label-danger:hover {
 }
 
 .blog-content {
-    font-family: "serif";
+    font-family: "sans-serif";
     padding: 50px;
     border-bottom: 1px solid #DDD;
     box-shadow: 0px 5px 20px -10px #000;
