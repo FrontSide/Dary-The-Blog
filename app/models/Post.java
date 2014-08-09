@@ -3,13 +3,11 @@ package models;
 
 import java.util.Date;
 import javax.persistence.*;
-import play.db.ebean.*;
 
 import play.data.format.*;
-import play.data.Form;
-
-import javax.validation.*;
 import play.data.validation.Constraints.*;
+
+import play.db.ebean.*;
 
 /**
   * Post Model
@@ -19,7 +17,12 @@ import play.data.validation.Constraints.*;
 @Entity
 public class Post extends Model {
     
-    /* Task ID  Unique Identifier */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1403273957046905695L;
+
+	/* Task ID  Unique Identifier */
     @Id    
     public Long id; 
     /* 
@@ -70,10 +73,6 @@ public class Post extends Model {
       //None
       return null;
     }
-
-    /* The find helps executing SELECT statemebts via Ebean
-       See how it's used in the PostDAO */
-    public static Finder<Long,Post> find = 
-      new Finder<Long,Post>(Long.class, Post.class);
+   
 
 }

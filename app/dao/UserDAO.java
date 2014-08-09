@@ -5,14 +5,18 @@ import models.User;
 import java.util.List;
 import play.Logger;
 
+import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
 import com.avaje.ebean.Expr;
 
-import play.db.ebean.Model;
+/* TODO: User DAO Factory !! */
 
 public class UserDAO implements DAO<User> {
 
     final Logger.ALogger logger = Logger.of(this.getClass());
+    
+    public static Finder<Long,User> find = 
+      new Finder<Long,User>(Long.class, User.class);
      
     public void create(User model) {
         logger.debug("Save Model");
@@ -36,18 +40,18 @@ public class UserDAO implements DAO<User> {
       * Checks is User has entered a valid blogname or email address and
       * the korresponding valid password
       */
-    public User getUserByLogin(String loginname, String password) {      
-      return User.find.where().or(
+    public User getByLogin(String loginname, String password) {      
+      return UserDAO.find.where().or(
                   Expr.eq("blogname", loginname),
                   Expr.eq("email", loginname)).eq("password", password).findUnique();
     }
 
-    public User getUserbyBlogname(String blogname) {
-      return User.find.where().eq("blogname", blogname).findUnique();
+    public User getByBlogname(String blogname) {
+      return UserDAO.find.where().eq("blogname", blogname).findUnique();
     }
 
-    public User getUserbyEmail(String email) {
-      return User.find.where().eq("email", email).findUnique();
+    public User getByEmail(String email) {
+      return UserDAO.find.where().eq("email", email).findUnique();
     }
 
 }

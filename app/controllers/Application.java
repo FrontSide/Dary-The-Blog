@@ -1,8 +1,6 @@
 package controllers;
 
-import play.*;
 import play.mvc.*;
-import play.mvc.Http.*;
 import java.util.*;
 
 import models.*;
@@ -17,13 +15,15 @@ public class Application extends Controller {
 
     /* ------ Show Home Page ------ */
     /* TODO:: Rename to home() and create new login() method!! */
-    public static Result login() {
+    public static Result home() {
         /* If user is logged in. Send user to own blog */
         if (session("user") != null) {
-            return show(session("user"));
+            return showBlog(session("user"));
         }
+        
         /* Redirect to Logn/Signup Form */
         return UserController.signup();
+        
     }
 
     public static Result logout() {
@@ -49,14 +49,13 @@ public class Application extends Controller {
         return EditPost.edit(id);
     }
 
-
     /* ------ Show Blog Posts ------ */
-    public static Result show(String title) {        
-        List<Post> public_posts = (List<Post>) new PostDAO().getPostsByBlogname(title);
+    public static Result showBlog(String title) {        
+        List<Post> public_posts = (List<Post>) new PostDAO().getAllByBlogname(title);
             if (public_posts.size() == 0) {
-                return notFound(no_posts_found.render(new UserDAO().getUserbyBlogname(session("user"))));
+                return notFound(no_posts_found.render(new UserDAO().getByBlogname(session("user"))));
             }            
-        return ok(blog.render(public_posts, new UserDAO().getUserbyBlogname(session("user"))));
+        return ok(blog.render(public_posts, new UserDAO().getByBlogname(session("user"))));
     }
 
 }

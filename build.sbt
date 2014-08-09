@@ -1,3 +1,5 @@
+import com.typesafe.sbteclipse.core.EclipsePlugin
+
 name := """dary"""
 
 version := "1.0-SNAPSHOT"
@@ -5,6 +7,8 @@ version := "1.0-SNAPSHOT"
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 scalaVersion := "2.11.1"
+
+EclipsePlugin.EclipseKeys.preTasks := Seq()
 
 libraryDependencies ++= Seq(  
   javaEbean,

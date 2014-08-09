@@ -2,12 +2,9 @@ package models;
 
 import java.util.Date;
 import javax.persistence.*;
-import play.db.ebean.*;
 
+import play.db.ebean.Model;
 import play.data.format.*;
-import play.data.Form;
-
-import javax.validation.*;
 import play.data.validation.Constraints.*;
 
 /**
@@ -18,7 +15,12 @@ import play.data.validation.Constraints.*;
 @Entity
 public class UserLog extends Model {
     
-    /* User UUID as saved in Cookie */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1460235900980899245L;
+
+	/* User UUID as saved in Cookie */
     @Id    
     public Long uuid;
 
@@ -31,12 +33,7 @@ public class UserLog extends Model {
     @Required
     @Formats.DateTime(pattern="dd/MM/yyy HH:ii:ss")
     public Date loginDate;
-
-    /**/
-    public static Finder<Long,UserLog> find = 
-      new Finder<Long,UserLog>(Long.class, UserLog.class);
-
-
+    
     /* Uuid is generated out of IP-Address and User-ID */
     // currently UNUSED
     public UserLog generateUuid(String ipAddress)  {

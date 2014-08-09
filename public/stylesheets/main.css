@@ -125,6 +125,11 @@ a > .label-danger:hover {
     background-color: #FFF;
 }
 
+.blog-content > img,
+.blog-content > p > img {
+    max-width: 100%;
+}
+
 .blog-post-footer {
     color: #AAA;
     font-size: 12px;

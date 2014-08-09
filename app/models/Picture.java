@@ -1,10 +1,11 @@
 package models;
 
 import javax.persistence.*;
-import play.db.ebean.*;
 
 import javax.validation.*;
 import play.data.validation.Constraints.*;
+
+import play.db.ebean.*;
 
 /**
   * Picture Model
@@ -14,10 +15,15 @@ import play.data.validation.Constraints.*;
 @Entity
 public class Picture extends Model {
 
-    @Id    
-    public Long id; 
+       /**
+        * 
+        */
+        private static final long serialVersionUID = -2040159760548658856L;
 
-    @Required
-    public User user;
+        @Id    
+        public Long id; 
+
+        @Required
+        public User user;
 
 }

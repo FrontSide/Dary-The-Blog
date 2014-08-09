@@ -1,8 +1,8 @@
-package controller;
+package controllers;
 
-import play.*;
 import play.mvc.*;
 import models.Picture;
+import dao.*;
 
 import play.Logger;
 
@@ -37,32 +37,39 @@ public class PictureUpload extends Controller {
         FilePart uplPicture = body.getFile("picture_raw");
         if (uplPicture != null) {
             logger.debug("data found in request");
-            String fileName = uplPicture.getFilename();
             String contentType = uplPicture.getContentType(); 
-            File file = uplPicture.getFile();
-
-            logger.debug("Path of uploaded Picture :: " + file.getAbsolutePath());
-            
+                     
             logger.debug("Picture content-type :: " + contentType);
-
-            /* Store picture info in DB */
+            logger.debug("Check if image");
             
+            if (!(contentType.split("/")[0]).equals("image")) {
+                logger.error("uploaded File is not a picture");
+                return badRequest(Json.newObject().put("success", false));
+            }
+                                                        
+            /* Store picture info in DB */            
             Picture dbPicture = new Picture();
+            dbPicture.user = new UserDAO().getByBlogname(session("user"));
+            new PictureDAO().create(dbPicture);
 
-
+            /* Generate Filename */
+            String filename = dbPicture.id + ".picture";
+            logger.debug("Filename is going to be :: " + filename);
 
             /* Move File from /tmp to dary picture directory
                 we use the apache commons-io Library to move the File */
             try {
-                FileUtils.moveFile(file, new File("public/userdata", fileName));
+                FileUtils.moveFile(uplPicture.getFile(), 
+                                new File("public/userdata", filename));
                 logger.info("File has been saved!");
             } catch (IOException e) {
                 logger.error("There was an error at saving the file!");
-                return ok(Json.newObject().put("success", false));
+                return badRequest(Json.newObject().put("success", false));
             }
 
-
-            return ok(Json.newObject().put("success", true));
+            return ok(Json.newObject()
+                        .put("success", true)
+                        .put("pictureURL", "/assets/userdata/" + filename));
         }
 
         logger.error("no data found in request");

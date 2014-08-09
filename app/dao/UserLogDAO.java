@@ -1,22 +1,22 @@
 package dao;
 
-import models.User;
 import models.UserLog;
 
 import java.util.List;
 import java.lang.UnsupportedOperationException;
 
 import play.Logger;
-import play.mvc.Http;
-import play.mvc.Http.RequestHeader;
-import play.mvc.Http.RequestHeader.*;
 
+import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
-import com.avaje.ebean.Expr;
 
 public class UserLogDAO implements DAO<UserLog> {
 
     final Logger.ALogger logger = Logger.of(this.getClass());
+    
+    /**/
+    public static Finder<Long,UserLog> find = 
+      new Finder<Long,UserLog>(Long.class, UserLog.class);
      
     public void create(UserLog model) {
         Ebean.save(model);
@@ -33,11 +33,11 @@ public class UserLogDAO implements DAO<UserLog> {
 
     public List<UserLog> getByBlogname(String blogname) {
         logger.debug("get UserLog by blogname::" + blogname);
-        return UserLog.find.where().eq("user.blogname", blogname).findList();
+        return UserLogDAO.find.where().eq("user.blogname", blogname).findList();
     }
 
     public UserLog getById(Long id) {
-        return UserLog.find.where().eq("uuid", id).findUnique();
+        return UserLogDAO.find.where().eq("uuid", id).findUnique();
     }
 
     public List<UserLog> getAll() {

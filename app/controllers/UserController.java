@@ -4,10 +4,10 @@ import views.html.*;
 import dao.*;
 import models.User;
 import models.UserLog;
+import forms.Login;
 
 import java.util.Date;
 
-import play.*;
 import play.mvc.*;
 import play.Logger;
 import play.data.Form;
@@ -25,7 +25,8 @@ public class UserController extends Controller {
     public static Result signup() {
         logger.debug("called create new user"); 
         logger.debug("render register.html");
-        return ok(register.render(Form.form(Login.class), Form.form(User.class), null));
+        return ok(register.render(Form.form(Login.class), 
+        		Form.form(User.class), null));
     }
 
     /* ------ Check/Submit Login Form ------ */
@@ -38,7 +39,8 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(register.render(filledForm, Form.form(User.class), null));
+            return badRequest(register.render(filledForm, 
+            		Form.form(User.class), null));
         }
 
         Login login = filledForm.get();               
@@ -51,15 +53,14 @@ public class UserController extends Controller {
         // currently UNUSED 
         userLog.generateUuid(request().remoteAddress());        
         new UserLogDAO().create(userLog);
-
-
-
+        
         //Set Session
         session().clear();
         session("user", userLog.user.blogname);
 
         //Success flash
-        flash("success", "Hi. You successfully logged in to your blog \"" + userLog.user.blogname + "\"");
+        flash("success", "Hi. You successfully logged in to your blog \"" 
+        			+ userLog.user.blogname + "\"");
 
         return redirect("/blog/"+userLog.user.blogname);
 
@@ -75,48 +76,28 @@ public class UserController extends Controller {
         // Validate Form
         logger.debug("validate form");
         if (filledForm.hasErrors())
-            return badRequest(register.render(Form.form(Login.class), filledForm, null));
+            return badRequest(register.render(
+            		Form.form(Login.class), filledForm, null));
 
         User user = filledForm.get(); 
 
         logger.debug("init persistence in Database");
-        UserDAO edao = new UserDAO();
-        edao.create(user); 
+        new UserDAO().create(user); 
 
         //Success flash
-        flash("success", "Great! You successfully signed up to dary and now your own blog called \"" + user.blogname + "\"!");
+        flash("success", "Great! You successfully signed up to dary "
+        		+ "and now own a blog called \"" + user.blogname + "\"!");
 
         logger.debug("render view");
-        return Application.login();
+        return Application.home();
 
     }
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result checkBlognameAvailable(String blogname) {
-        if (new UserDAO().getUserbyBlogname(blogname) == null)
+        if (new UserDAO().getByBlogname(blogname) == null)
             return ok(Json.newObject().put("available", true));
         return ok(Json.newObject().put("available", false));        
     }
-
-    /* Login Form Class 
-       Not sure whether it belongs here but found it in the Play Doc
-       --> http://www.playframework.com/documentation/2.1.0/JavaGuide4 */
-    public static class Login {
-        @Required public String name;
-        @Required public String password;
-
-        /* Check if user with this credentials exists in DB and return it 
-           Hashing before password! */ 
-        public User findUser() {
-            return new UserDAO().getUserByLogin(this.name, User.hashPassword(this.password));
-        }
-
-        public String validate() {
-            logger.debug("Login class validator");
-            if (findUser() == null)
-                return "Wrong Blogname/Mail - Password combination";
-            return null;
-        }
-
-    }
+   
 }

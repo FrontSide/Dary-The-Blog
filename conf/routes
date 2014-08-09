@@ -3,8 +3,8 @@
 # ~~~~
 
 ### Navigation
-GET     /                            controllers.Application.login()
-GET     /blog/:title                 controllers.Application.show(title : String)
+GET     /                            controllers.Application.home()
+GET     /blog/:title                 controllers.Application.showBlog(title : String)
 GET     /new                         controllers.Application.newPost()
 GET     /edit/:postid                controllers.Application.editPost(postid : Long)
 GET     /logout                      controllers.Application.logout()

@@ -4,16 +4,10 @@ import models.*;
 import dao.*;
 import views.html.*;
 
-import play.*;
 import play.mvc.*;
-import play.mvc.Http.MultipartFormData;
-import play.mvc.Http.MultipartFormData.*;
-
-import java.io.File;
 
 import play.Logger;
 import play.data.Form;
-import play.libs.Json;
 
 public class EditPost extends Controller {
 
@@ -23,13 +17,16 @@ public class EditPost extends Controller {
     public static Result edit(Long id) {
 
         Post post = new PostDAO().getById(id);
-        User loggedUser = new UserDAO().getUserbyBlogname(session("user"));
+        User loggedUser = new UserDAO().getByBlogname(session("user"));
 
-        /* Check if the Post with the given ID actually belogs to the logged in User
-           This check should be outsourced to its own security class */
+        /* TODO: Refactoring */
+        /* Check if the Post with the given ID actually belogs 
+         * to the logged in User
+         *  This check should be outsourced to its own security class 
+         */
         if (!post.user.equals(loggedUser)) {
             logger.error("You are not authorized to edit this Post!");
-            return redirect(routes.Application.login()); 
+            return redirect(routes.Application.home()); 
         }
 
         logger.debug("called edit post"); 
@@ -48,7 +45,8 @@ public class EditPost extends Controller {
 
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user")), true));
+            return badRequest(newpost.render(filledForm, 
+            		new UserDAO().getByBlogname(session("user")), true));
         }
 
         logger.debug("Form is valid. Update Post!");
@@ -56,13 +54,13 @@ public class EditPost extends Controller {
         /* Set OLD post as archived!
            This does not create a new Entry yet */ 
         Long oldId = filledForm.get().id;
-        new PostDAO().markPostByIdAsArchived(oldId);   
+        new PostDAO().markByIdAsArchived(oldId);   
 
         /* Bind Form and Create new Post with new ID */
         Post post = filledForm.get();   
         post.rootPost = new PostDAO().getById(oldId);
         post.id = null; //Remove old ID so new one will be generated
-        post.user = new UserDAO().getUserbyBlogname(session("user"));
+        post.user = new UserDAO().getByBlogname(session("user"));
 
         logger.debug("init persistence in Database");
         new PostDAO().create(post); 

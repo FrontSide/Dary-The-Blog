@@ -2,15 +2,12 @@ package controllers;
 
 import models.*;
 import dao.*;
-import controllers.*;
 import views.html.*;
 
-import play.*;
 import play.mvc.*;
 
 import play.Logger;
 import play.data.Form;
-import play.libs.Json;
 
 public class NewPost extends Controller {
 
@@ -23,10 +20,11 @@ public class NewPost extends Controller {
         Form<Post> postForm = Form.form(Post.class);
         
         logger.debug("render newpost.html");
-        return ok(newpost.render(postForm, new UserDAO().getUserbyBlogname(session("user")), false));
+        return ok(newpost.render(postForm, new UserDAO().getByBlogname(session("user")), false));
     }
 
     public static Result uploadPicture() {
+        //return PictureUpload.uploadPicture();
         return PictureUpload.uploadPicture();
     }
 
@@ -39,12 +37,12 @@ public class NewPost extends Controller {
 
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(newpost.render(filledForm, new UserDAO().getUserbyBlogname(session("user")), false));
+            return badRequest(newpost.render(filledForm, new UserDAO().getByBlogname(session("user")), false));
         }
 
         logger.debug("Form is valid. Create 'Post' Object!");
         Post post = filledForm.get();   
-        post.user = new UserDAO().getUserbyBlogname(session("user"));     
+        post.user = new UserDAO().getByBlogname(session("user"));     
 
         logger.debug("init persistence in Database");
         new PostDAO().create(post); 

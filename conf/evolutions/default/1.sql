@@ -3,6 +3,11 @@
 
 # --- !Ups
 
+create table picture (
+  id                        bigint not null,
+  constraint pk_picture primary key (id))
+;
+
 create table post (
   id                        bigint not null,
   title                     varchar(255),
@@ -32,6 +37,8 @@ create table user_log (
   constraint pk_user_log primary key (uuid))
 ;
 
+create sequence picture_seq;
+
 create sequence post_seq;
 
 create sequence blog_user_seq;
@@ -47,11 +54,15 @@ create index ix_user_log_user_2 on user_log (user_id);
 
 # --- !Downs
 
+drop table if exists picture cascade;
+
 drop table if exists post cascade;
 
 drop table if exists blog_user cascade;
 
 drop table if exists user_log cascade;
+
+drop sequence if exists picture_seq;
 
 drop sequence if exists post_seq;
 

@@ -56,8 +56,12 @@ $('#newpost_picture_send').click(function() {
 
 function tryUploadPicture() {
 
+  $('#newpost_picture_upload_msg').removeClass("alert-success");
+  $('#newpost_picture_upload_msg').removeClass("alert-danger");  
+  $('#newpost_picture_upload_msg').removeClass("alert-info");      
   $('#newpost_picture_upload_msg').addClass("alert-warning");
-  $('#newpost_picture_upload_msg').html("Your picture is being uploaded! Please wait ...");
+  $('#newpost_picture_upload_msg').html("<span class='fa fa-cog fa-spin'></span>"  +
+        " Your picture is being uploaded! Please wait ...");
 
   console.log(" Picture Upload Form Data")
   console.log($('#newpost_upload_picture_form')[0])
@@ -76,7 +80,9 @@ function tryUploadPicture() {
         xhr: function() {
             var myXhr = $.ajaxSettings.xhr();
             if(myXhr.upload){
-                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                myXhr.upload.addEventListener('progress', 
+                        progressHandlingFunction, false); 
+                        // For handling the progress of the upload
             }
             return myXhr;
         },
@@ -86,7 +92,8 @@ function tryUploadPicture() {
         error: errorHandler,
         // Form data
         data: formData,
-        //Options to tell jQuery not to process data or worry about content-type.
+        //Options to tell jQuery not to process data 
+        //or worry about content-type.
         cache: false,
         contentType: false,
         processData: false
@@ -98,7 +105,8 @@ function beforeSendHandler() {
   $('#newpost_picture_upload_prog_wrapper').removeAttr("hidden");
 }
 
-function completeHandler() {  
+//Access Picture URL via "data" JSON response
+function completeHandler(data) {
   $('#newpost_picture_browse_label').css("background-color", "#5cb85c");
   $('#newpost_picture_browse_label').css("color", "#fff");
   $('#newpost_picture_upload_msg').removeClass("alert-warning");
@@ -106,6 +114,10 @@ function completeHandler() {
   $('#newpost_picture_upload_msg').removeClass("alert-info");
   $('#newpost_picture_upload_msg').addClass("alert-success");
   $('#newpost_picture_upload_msg').html("Your picture was uploaded successfully!");
+    
+  $('#content').val($('#content').val() + 
+                "![UNTITLED PICTURE](" + data['pictureURL'] + ")")
+  
 }
 
 function errorHandler() {
@@ -115,7 +127,10 @@ function errorHandler() {
   $('#newpost_picture_upload_msg').removeClass("alert-success");
   $('#newpost_picture_upload_msg').removeClass("alert-info");
   $('#newpost_picture_upload_msg').addClass("alert-danger");
-  $('#newpost_picture_upload_msg').html("Mhhh. There seems to be a network problem!");
+  $('#newpost_picture_upload_msg').html("There seems to be a problem!<br />" +
+                   "Please make sure your file is actually a <b> picture </b>!" + 
+                   "<br /> Otherwise, there might by a network problem!");
+  $('#newpost_picture_upload_prog').css({"width" : 0});
 }
 
 /* Picture Upload Progress Handler */

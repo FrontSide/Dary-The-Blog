@@ -1,15 +1,12 @@
 package dao;
 
 import models.Post;
-import dao.UserDAO;
-
 import java.util.List;
-import java.util.Date;
 
 import play.Logger;
 
+import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
-import play.db.ebean.Model;
 
 public class PostDAO implements DAO<Post> {
 
@@ -22,7 +19,11 @@ public class PostDAO implements DAO<Post> {
       * Logging level can be set in application.conf
       */ 
     final Logger.ALogger logger = Logger.of(this.getClass());
-     
+
+    /* The find helps executing SELECT statemebts via Ebean
+       See how it's used in the PostDAO */
+    public static Finder<Long,Post> find = 
+    new Finder<Long,Post>(Long.class, Post.class);     
 
     /** Ebean is play's default O/R Mapper  
       * it automatically creates DDL Files to create tables 
@@ -39,7 +40,7 @@ public class PostDAO implements DAO<Post> {
 
     public Post getById(Long id) {
       logger.debug("Get Posts by id :: \"" + id + "\"");
-      return Post.find.where().eq("id", id).findUnique();
+      return PostDAO.find.where().eq("id", id).findUnique();
     }
 
     public List<Post> getAll() {
@@ -47,14 +48,14 @@ public class PostDAO implements DAO<Post> {
     }
 
     /* Fetch all Posts from a Blog except the archived ones */
-    public List<Post> getPostsByBlogname(String blogname) {
+    public List<Post> getAllByBlogname(String blogname) {
       logger.debug("Get not-Archived Posts from \"" + blogname + "\"");
-      return Post.find.where().eq("user.blogname", blogname).eq("isArchived",false).findList();
+      return PostDAO.find.where().eq("user.blogname", blogname).eq("isArchived",false).findList();
     }
 
-    public void markPostByIdAsArchived(Long id) {
+    public void markByIdAsArchived(Long id) {
       logger.debug("Mark Post with id \"" + id + "\" as archived!");
-      Post model = Post.find.where().eq("id", id).findUnique();
+      Post model = PostDAO.find.where().eq("id", id).findUnique();
       model.isArchived = true;
       update(model);
     }

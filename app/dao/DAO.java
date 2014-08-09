@@ -1,6 +1,5 @@
 package dao;
 import java.util.List;
-import play.db.ebean.Model;
 
 public interface DAO<E> {
 

@@ -1,0 +1,121 @@
+@(title: String, user: User)(content: Html)(addjs: Html)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- CDN Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="/assets/stylesheets/mediaqueries.css">
+
+    <!-- FontAwsomwe -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   
+    <!-- View Port Meta Tag for Mobile First Rendering -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> The Dary Blog BETA | @title </title>
+
+</head>
+<body >
+ 
+    <div class="container">
+
+    <!-- Top avigation menu -->
+    <nav class="navbar navbar-default navbar-dary" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand no-top-padding" href="/">
+            @if(user == null) { 
+                <span class="label label-danger">
+            } else {
+                <span class="label label-primary">
+            }
+              <img id="navbar-logo" src="/assets/images/logo_min_small.png"/>
+              BETA </span>
+          </a>
+        </div> 
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav">
+                @if(user == null) { 
+                    <li><a href="#signupformbox">Sign Up</a></li>
+                } else {                    
+                    <li><a href="/blog/@user.blogname"> <i class="fa fa-home"></i> My Blog </a></li>
+                    <li><a href="/new"> <span class="fa fa-pencil"></span> <b>Write a new Article</b></a></li>  
+            </ul> <!-- close left nav-bar if logout button -->
+            <!-- BUG ON CHROME BROWSER -->
+            <ul class="nav navbar-nav navbar-right"> <!-- open right nav-bar if logout button -->
+                    <li><a href="/blog/@user.blogname"> Signed in as  @user.blogname </a></li>          
+                    <li>
+                        <a type="button" class="btn btn-danger navbar-btn" href="/logout"> 
+                            <i class="fa fa-power-off"></i> 
+                            Logout 
+                        </a>
+                    </li>
+                }
+            </ul> <!-- close either left or tight nav-bar -->            
+        </div>
+    </div>
+    </nav>
+
+    <div id="content-body-box" class="content-body">
+
+        <!-- Flash -->
+        @if(flash.contains("success")) {
+            <div class="alert alert-success" role="alert">
+                @flash.get("success")
+            </div>
+        }
+
+        @if(flash.contains("warning")) {
+            <div class="alert alert-warning" role="alert">
+                @flash.get("warning")
+            </div>
+        }
+
+        @if(flash.contains("error")) {
+            <div class="alert alert-error" role="alert">
+                @flash.get("error")
+            </div>
+        }
+
+        @if(flash.contains("info")) {
+            <div class="alert alert-info" role="alert">
+                @flash.get("info")
+            </div>
+        }
+
+        <p>@content</p> 
+
+    </div>
+    
+
+    <!-- jQuery (necessary for Bootstrap's and Markdown's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
+
+    <!-- CDN Bootstrap -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>    
+
+    <!-- Additional JavaScripts from other pages --> 
+    @addjs     
+
+    <script src="/assets/javascripts/stylecontrol.js"></script>    
+
+</body>
+<footer>
+    <span class="glyphicon glyphicon-copyright-mark"></span>
+    2014, David Rieger <br />
+    The developers behind Dary do not own any of the media and
+    texts presented on a user's blog page and do not hold any copyrights of this content. 
+    Every user is responsible for the content of his or her blog posts.
+    </footer>
+</html>
