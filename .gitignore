@@ -24,3 +24,7 @@ dist
 /default-drop.sql
 /public/vendors/*
 
+## USerdata
+
+/public/userdata/*
+
