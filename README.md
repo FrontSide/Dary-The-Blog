@@ -6,10 +6,10 @@ Official Website : [www.dary.info] (http://www.dary.info)
 ## Features
 
 - Picture Upload (directly into Article)
+- Featured Posts (Display as Buttons)
 
 Features in development
 
-- Featured Posts (Display as Buttons)
 - View Counter
 - Commenting
 - User Settings (Profile Picture)
