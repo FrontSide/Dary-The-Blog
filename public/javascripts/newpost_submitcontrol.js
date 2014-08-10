@@ -44,6 +44,22 @@ $('#newpost_save_btn').click(function () {
   $("#newpost_form").submit();
 });
 
+/* Feature Post Trigger */
+$('#newpost_feature_btn').click(function () {
+        if ($('#newpost_hidden_featured').val() == "false") {
+            $('#newpost_hidden_featured').val("true");
+            $('#newpost_feature_btn').html("<span class='fa fa-star'> </span>" + 
+                " Feature Post");
+            $('#newpost_feature_btn').addClass("btn-warning")
+        } else {
+            $('#newpost_hidden_featured').val("false");
+            $('#newpost_feature_btn').html("<span class='fa fa-star-o'> </span>" + 
+                " Feature Post");
+            $('#newpost_feature_btn').removeClass("btn-warning")        
+        }
+});
+
+
 /* Change text in input field -- Picture upload */
 $('#newpost_picture_file').change(function() {
   $('#newpost_picture_browse_label').html($('#newpost_picture_file').val())

@@ -51,7 +51,12 @@ public class Post extends Model {
     /* Archived Flag (will not be displayed on the blog page if true, 
        just for version control) */
     public boolean isArchived;
-
+    
+    /* Featured Flag
+     * These posts are represented as Buttons on the top of a blog page 
+     */
+    public boolean isFeatured;  
+ 
     /* Every newer version is assigned a rootPost i.e. 
        the post that this one is made of 
        only has a value if rootPost was edited */

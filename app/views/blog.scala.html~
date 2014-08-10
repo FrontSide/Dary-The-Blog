@@ -46,7 +46,7 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer"> written by 
-                    <a href="/blog/@posts(0).user.blogname"> @posts(0).user.blogname </a> 
+                    <a href=""> @posts(0).user.blogname </a> 
                 </p>
             </div>
 

@@ -44,6 +44,26 @@
                 </div>
             }
             
+            <!-- Feature Button -->
+            <button id="newpost_feature_btn" type="button" class="btn btn-default">
+                <span class="fa fa-star-o"> </span>
+                Feature Post            
+            </button>
+            
+            <!-- Hidden Field for isFeatured parameter 
+                 changed (if necessary) in submitcontrol.js 
+                 triggered by #newpost_feature_btn button -->
+            <input type="hidden" id="newpost_hidden_features" name="isFeatured" value="false">
+            
+            <!-- Button for Picture Upload -->
+            <button id="newpost_upl_btn" type="button" data-toggle="modal" 
+                        data-target="#newpost_upload_picture_modal" 
+                        class="btn btn-danger actions">
+                <span class="fa fa-arrow-circle-up"> </span>
+                Upload a Picture        
+                <i class="fa fa-picture-o"></i>     
+            </button>                  
+            
             <!-- The 'Symbol' class is needed because of the hyphen in the "data-provide" attribute -->
             <!-- Symbol("data-provide") -> "markdown", -->
             @textarea(
@@ -66,7 +86,7 @@
             <input type="hidden" id="newpost_hidden_id" name="id" value="@newPostForm("id").value">
                         
         </fieldset>
-
+        
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
         <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions" disabled>
@@ -107,16 +127,6 @@
             </div>
             <div class="modal-body">
 
-                <div id="newpost_picture_upload_legal" class="panel panel-danger panel-small fade in">
-                
-                    <div class="panel-heading"> <h5> Legal Information! </h5> </div>
-                    <div class="panel-body">
-                        <h5>
-                        Please note that <b>every</b> picture you upload will be accessible by <b> everyone </b> via a certain link even if the Blog-Post is not published yet. Therefore, make sure to upload pictures you are legally allowed to only!                    
-                        </h5>
-                    </div>
-                </div>
-
                 <div class="progress" id="newpost_picture_upload_prog_wrapper" hidden>
                     <div id="newpost_picture_upload_prog" 
                          class="progress-bar progress-bar-success progress-bar-striped active" 
@@ -126,6 +136,7 @@
                 <div id="newpost_picture_upload_msg" class="alert alert-info fade in">
                     Click on <b>Browse</b> to upload a new picture! 
                 </div>
+                                                
                 <!--  -->
                 @form(action = routes.NewPost.uploadPicture, 'id -> "newpost_upload_picture_form", 'enctype -> "multipart/form-data") {    
                     <div class="input-group">
@@ -136,7 +147,16 @@
                         </span>
                         <label id="newpost_picture_browse_label" class="form-control" />
                     </div>                    
-                }                
+                } 
+                                
+                <div id="newpost_picture_upload_legal" class="panel panel-danger panel-small fade in">
+                
+                    <div class="panel-heading"> Legal Information! </div>
+                    <div class="panel-body">
+                        Please note that <b>every</b> picture you upload will be accessible by <b> everyone </b> via a certain link even if the Blog-Post is not published yet. Therefore, make sure to upload pictures you are legally allowed to only!
+                    </div>
+                </div>
+                               
             </div>
             <div class="modal-footer">
                 <button id="newpost_picture_send" type="button" class="btn btn-primary">Upload!</button>

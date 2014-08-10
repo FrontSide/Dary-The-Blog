@@ -16,6 +16,7 @@ create table post (
   cre_date                  timestamp,
   is_published              boolean,
   is_archived               boolean,
+  is_featured               boolean,
   constraint pk_post primary key (id))
 ;
 
