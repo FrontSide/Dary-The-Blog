@@ -16,13 +16,17 @@ public class Application extends Controller {
     /* ------ Show Home Page ------ */
     /* TODO:: Rename to home() and create new login() method!! */
     public static Result home() {
-        /* If user is logged in. Send user to own blog */
-        if (session("user") != null) {
+        
+	/* For Heroku .. forward to cansee server */
+	return redirect("http://94.23.3.196");
+	
+	/* If user is logged in. Send user to own blog */
+        /*if (session("user") != null) {
             return showBlog(session("user"));
-        }
+        }*/
         
         /* Redirect to Logn/Signup Form */
-        return UserController.signup();
+        /*return UserController.signup();*/
         
     }
 
