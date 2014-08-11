@@ -9,4 +9,14 @@
     .blog-content {
         padding: 20px;
     }
+    
+    .blog-title {
+        width: 100%;
+    }
+    
+    .pic-profile-small {
+        max-height: none;
+        width: 100%;
+        border-left: none;
+    }
 }

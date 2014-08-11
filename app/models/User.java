@@ -62,6 +62,10 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate = new Date();
 
+    /* Unique Views the blog has had *
+    //TODO
+
+
     /* Password - Hash Method - usign Apache commons codec library */
     public static String hashPassword(String clear) {        
         logger.debug("Hash password!");

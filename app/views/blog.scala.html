@@ -1,20 +1,32 @@
 @(posts: List[Post], user: User)
 
 @templ(title = "The Dary Blog", user){ 
-    
-    <div class="blog-title label-primary">    
+   
+    <img src="/assets/userdata/1.picture" class="pic-profile-small" alt="@posts(0).user.blogname" />
+       
+    <div class="blog-title label-primary">             
         <h1> @posts(0).user.blogname </h1>
     </div>
+    
+    <div class="clear-both"></div>
+
+    <hr />
 
     <!-- Display buttons for featured Posts -->    
-    <ul class="nav nav-pills">
-            @for(p <- posts) {    
-              @if((p.isPublished) && (p.isFeatured)) { 
-                <li><a href="#p@p.id" class="btn"> @p.title </a></li>       
-              }    
+    <div class="btn-group">
+        @for(p <- posts) {    
+            @if((p.isPublished) && (p.isFeatured)) { 
+                <button type="button" 
+                    class="btn btn-default scrollToIdLink" 
+                    data-target="#p@p.id">
+                     @p.title 
+                </button>
             }
-    </ul>
-
+        }
+    </div>
+    
+    <hr />
+    
     @for(p <- posts) {
 
         @if((p.isPublished) || (user != null && posts(0).user.blogname == user.blogname)) {
@@ -31,7 +43,8 @@
                             This Post has not been published
                         </div>
                     }
-                <span class="label label-bloghead"> created on <b> @p.creDate </b> </span>
+                <!-- call special getter for Date -->
+                <span class="label label-bloghead"> created on <b> @p.getCreDate() </b> </span>
                 @if(user != null && posts(0).user.blogname == user.blogname) {
                         <a href="/edit/@p.id">
                             <span class="label label-bloghead label-danger">Edit                       
@@ -46,7 +59,10 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer"> written by 
-                    <a href="/blog/@posts(0).user.blogname"> @posts(0).user.blogname </a> 
+                    <a href="/blog/@posts(0).user.blogname"> @posts(0).user.blogname </a> |
+                    <span class="scrollToTopLink">
+                        <a> Back to the Top </a>
+                    </span>
                 </p>
             </div>
 

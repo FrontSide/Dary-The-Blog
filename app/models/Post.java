@@ -4,10 +4,13 @@ package models;
 import java.util.Date;
 import javax.persistence.*;
 
+import play.Logger;
 import play.data.format.*;
 import play.data.validation.Constraints.*;
 
 import play.db.ebean.*;
+
+import java.text.SimpleDateFormat;
 
 /**
   * Post Model
@@ -21,6 +24,9 @@ public class Post extends Model {
 	 * 
 	 */
 	private static final long serialVersionUID = -1403273957046905695L;
+	
+	final static Logger.ALogger logger = Logger.of(Post.class);
+	/**/
 
 	/* Task ID  Unique Identifier */
     @Id    
@@ -44,6 +50,15 @@ public class Post extends Model {
 
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date creDate = new Date();
+    
+    /* Getter for creDate to show readable Date on website
+       This is not an 'actual getter' but rather something like a 
+       proxy to convert the Date into a readable String */
+    public String getCreDate() {    
+        logger.debug("reformatting date...");
+        SimpleDateFormat df = new SimpleDateFormat("dd.MMMM.yyy HH:mm");
+        return df.format(this.creDate);
+    }
 
     /* Open to public Flag */
     public boolean isPublished;
@@ -61,7 +76,7 @@ public class Post extends Model {
        the post that this one is made of 
        only has a value if rootPost was edited */
     public Post rootPost;
-
+    
     /** Setter and Getter are automatically generated from play.
       * However, if you want to create your own getters/setters 
       * you can do so and play
