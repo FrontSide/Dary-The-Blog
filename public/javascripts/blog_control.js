@@ -7,10 +7,4 @@ $(document).ready(function() {
     $("#content-body-box").css("background", "none")
 });
 
-$(".scrollToTopLink").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, 2000);
-});
 
-$(".scrollToIdLink").click(function() {
-    $("html, body").animate({ scrollTop: $($(this).attr('data-target')).offset().top-10 }, 2000);
-});

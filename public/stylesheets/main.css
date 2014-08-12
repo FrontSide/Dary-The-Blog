@@ -149,7 +149,8 @@ a > .label-danger:hover {
     max-width: 100%;
 }
 
-.scrollToTopLink:hover {
+.scrollToTopLink:hover,
+.scrollToIdLink:hover {
     cursor: pointer;
 }
 

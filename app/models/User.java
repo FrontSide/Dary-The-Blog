@@ -41,6 +41,7 @@ public class User extends Model {
 
     @Required
     public String password;
+    private final static int MIN_PASSWORD_LENGTH = 6;
 
     /* Explicit Setter Method to Encrypt password
        as SHA1 Hash
@@ -49,7 +50,11 @@ public class User extends Model {
     "user.pssword = xxx" to set the password and NOT the directly the Setter!
     */ 
     public void setPassword(String password) {
-        this.password = User.hashPassword(password);
+        /* Need to check password lenght here additionally,
+            otherwise a too short or even empty password could be hashed 
+            --> hash would then be detected as long enough by the validator */
+        this.password = (password.length() < MIN_PASSWORD_LENGTH) ? 
+            this.password = password : User.hashPassword(password);
     }
 
     public String firstname;
@@ -73,30 +78,55 @@ public class User extends Model {
     }
 
     /* Validator for Registration */
-    Map<String, List<ValidationError>> validationErrors = new HashMap<String, List<ValidationError>>();    
+    private final Map<String, List<ValidationError>> validationErrors = 
+        new HashMap<String, List<ValidationError>>();
+        
+    private final List<ValidationError> passwordValidationErrors = 
+        new ArrayList<ValidationError>();
+        
+    private final List<ValidationError> blognameValidationErrors = 
+        new ArrayList<ValidationError>();
+        
+    private final List<ValidationError> emailValidationErrors = 
+        new ArrayList<ValidationError>();
+
     public Map<String, List<ValidationError>> validate() {
-        if (password.length() < 6) {
+        if (password.length() < MIN_PASSWORD_LENGTH) {            
             logger.error("Password not Long enough!");
-            List<ValidationError> passwordErrors = new ArrayList<ValidationError>();
-            passwordErrors.add(new ValidationError("password", "Your Password must be at least 6 characters long"));
-            validationErrors.put("password", passwordErrors);
+            
+            final String FIELD = "password";
+            final String MESSAGE = "Your Password must be at least " 
+                    + "6 characters long";
+            
+            passwordValidationErrors.add(new ValidationError(FIELD, MESSAGE));
+            validationErrors.put(FIELD, passwordValidationErrors);
         }
 
-        logger.error("Validate Blogname \"" + this.blogname + "\" for availability");
+        logger.debug("Validate Blogname \"" + this.blogname 
+                + "\" for availability");
+                
         if (new UserDAO().getByBlogname(this.blogname) != null) {
             logger.error("Blogname aleardy exists");
-            List<ValidationError> blogExistingErrors = new ArrayList<ValidationError>();
-            blogExistingErrors.add(new ValidationError("blogname", "Sorry, the blog \"" + this.blogname + "\" already exists!"));
-            validationErrors.put("blogname", blogExistingErrors);
-        }    
+            
+            final String FIELD = "blogname";
+            final String MESSAGE = "Sorry, the blog \"" + this.blogname 
+                    + "\" already exists!";
+            
+            blognameValidationErrors.add(new ValidationError(FIELD, MESSAGE));
+            validationErrors.put(FIELD, blognameValidationErrors);
+        }
 
         logger.error("Validate Email \"" + this.email + "\" for availability");
         if (new UserDAO().getByEmail(this.email) != null) {
             logger.error("Email aleardy exists");
-            List<ValidationError> emailExistingErrors = new ArrayList<ValidationError>();
-            emailExistingErrors.add(new ValidationError("email", "Sorry, a user with the email address \"" + this.email + "\" already exists!"));
-            validationErrors.put("email", emailExistingErrors);
-        }    
+            
+            final String FIELD = "email";
+            final String MESSAGE = "Sorry, a user with the email address \"" 
+                    + this.email + "\" already exists!";
+
+            emailValidationErrors.add(new ValidationError(FIELD, MESSAGE));
+            validationErrors.put(FIELD, emailValidationErrors);
+        }
 
         return (validationErrors.size() > 0) ? validationErrors : null;
     }
