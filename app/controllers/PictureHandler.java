@@ -9,29 +9,57 @@ import play.Logger;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.*;
 
+import com.typesafe.config.ConfigFactory;
+
 import java.io.File;
+import java.nio.file.Files;
 import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 import org.apache.commons.io.FileUtils;
 
 import play.libs.Json;
 
-public class PictureUpload extends Controller {
+public class PictureHandler extends Controller {
 
-    final static Logger.ALogger logger = Logger.of(PictureUpload.class);
+    final static Logger.ALogger logger = Logger.of(PictureHandler.class);
+
+    /* Path for uploaded Pictures to be stored on Filesystem 
+        and loaded on web respectively */
+    private static final String PICTURE_FS_PATH = 
+        ConfigFactory.load().getString("picturesfspath");
+    
+    /* ------ Load Picture from Filesystem ------*/
+    /* We need this method because we cannot access the Filesystem directly
+       from the views (External Assets are not allowed in production mode
+       for security reasons) This method is called in the view */
+    public static Result loadPicture(String filename) {    
+        logger.debug("loading image :: " + filename + "...");
+
+        /* Get File */
+        File imageFile = new File(PICTURE_FS_PATH, filename);
+        String contentType = "";
+    
+        try {        
+            /* Get File Content Type*/
+            contentType = Files.probeContentType(imageFile.toPath());
+            logger.debug("image has type :: " + contentType);            
+        } catch (IOException e) {
+            logger.error("Error at finding file's MIME type");
+            return badRequest();
+        }
+        
+        logger.debug("image successfully loaded");
+        return ok(imageFile).as(contentType);
+    }
+
 
     /* ------ Upload Picture Submit ------ */
     public static Result uploadPicture() {
-
-        /* TODO
-           Save Picture (generate Filename)
-           Store Picture info in DB
-           Add Picture to Article when uploaded
-           Several checks (as appropriate)
-           -- ContentType Check !
-        */
-
-        /*** NEEEDS REFACTORING ***///
-
+        
         logger.debug("uploading picture");        
         MultipartFormData body = request().body().asMultipartFormData();
         FilePart uplPicture = body.getFile("picture_raw");
@@ -60,16 +88,17 @@ public class PictureUpload extends Controller {
                 we use the apache commons-io Library to move the File */
             try {
                 FileUtils.moveFile(uplPicture.getFile(), 
-                                new File("public/userdata", filename));
+                                new File(PICTURE_FS_PATH, filename));
                 logger.info("File has been saved!");
             } catch (IOException e) {
+                e.printStackTrace();
                 logger.error("There was an error at saving the file!");
                 return badRequest(Json.newObject().put("success", false));
             }
 
             return ok(Json.newObject()
                         .put("success", true)
-                        .put("pictureURL", "/assets/userdata/" + filename));
+                        .put("pictureURL", "/p/" + filename));
         }
 
         logger.error("no data found in request");

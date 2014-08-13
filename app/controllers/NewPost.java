@@ -25,7 +25,7 @@ public class NewPost extends Controller {
 
     public static Result uploadPicture() {
         //return PictureUpload.uploadPicture();
-        return PictureUpload.uploadPicture();
+        return PictureHandler.uploadPicture();
     }
 
     /* ------ Submit ------ */
