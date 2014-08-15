@@ -12,5 +12,14 @@ $(document).ready(function() {
     if($("#content").val().trim() != "") {
       $("#content").val(toMarkdown($("#content").val()));
     }
+        
+    /* Also check for chars that are displayed 
+        as html code and convert to ASCII*/
+        
+    $("#content").val(
+        $("#content").val().trim().replace(/&#(\d+);/g, function (m, n) { 
+        return String.fromCharCode(n); 
+        })
+    )
     
 }); 

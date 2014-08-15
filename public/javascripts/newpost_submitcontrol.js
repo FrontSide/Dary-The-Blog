@@ -62,7 +62,16 @@ $('#newpost_feature_btn').click(function () {
 
 /* Change text in input field -- Picture upload */
 $('#newpost_picture_file').change(function() {
-  $('#newpost_picture_browse_label').html($('#newpost_picture_file').val())
+  $('#newpost_picture_browse_label').html("Upload " + $('#newpost_picture_file').val() + " ...")
+  
+  //If Title Input is empty put Filename in it
+  if ($('#newpost_picture_title').val() === '') {
+    $('#newpost_picture_title').val($('#newpost_picture_file').val())
+  }
+  
+  //Activate UPLOAD Button
+  $('#newpost_picture_send').removeAttr("disabled")
+  
 });
 
 /* Upload Picture Button */
@@ -84,7 +93,7 @@ function tryUploadPicture() {
 
   var formData = new FormData($('#newpost_upload_picture_form')[0]);
 
-  console.log(" As Form Data")
+  console.log(formData)
 
   /* Ajax Code taken (and modified) 
    * from http://stackoverflow.com/questions/166221/how-can-i-upload-files-asynchronously-with-jquery/8758614#8758614
@@ -123,8 +132,8 @@ function beforeSendHandler() {
 
 //Access Picture URL via "data" JSON response
 function completeHandler(data) {
-  $('#newpost_picture_browse_label').css("background-color", "#5cb85c");
-  $('#newpost_picture_browse_label').css("color", "#fff");
+  $('#newpost_picture_send').css("background-color", "#5cb85c");
+  $('#newpost_picture_send').css("color", "#fff");
   $('#newpost_picture_upload_msg').removeClass("alert-warning");
   $('#newpost_picture_upload_msg').removeClass("alert-danger");  
   $('#newpost_picture_upload_msg').removeClass("alert-info");
@@ -132,13 +141,14 @@ function completeHandler(data) {
   $('#newpost_picture_upload_msg').html("Your picture was uploaded successfully!");
     
   $('#content').val($('#content').val() + 
-                "![UNTITLED PICTURE](" + data['pictureURL'] + ")")
+                "!["+$('#newpost_picture_title').val()
+                +"](" + data['pictureURL'] + ")")
   
 }
 
 function errorHandler() {
-  $('#newpost_picture_browse_label').css("background-color", "#d9534f");
-  $('#newpost_picture_browse_label').css("color", "#fff");
+  $('#newpost_picture_send').css("background-color", "#d9534f");
+  $('#newpost_picture_send').css("color", "#fff");
   $('#newpost_picture_upload_msg').removeClass("alert-warning");
   $('#newpost_picture_upload_msg').removeClass("alert-success");
   $('#newpost_picture_upload_msg').removeClass("alert-info");
