@@ -2,16 +2,7 @@
 /* Register Button - Opens Modal for License */
 $('#register_btn').click(function () {
     console.log("register user...")
-
-    /* Check if repeated password matches */
-    if ($('#reg_pwd_repeat').val() != $('#reg_pwd').val()) {
-      $('#signup_pwd_nomatch').css("display", "block");
-      $('#reg_pwd_repeat').css("background-color", "#d9534f");
-      $('#reg_pwd').css("background-color", "#d9534f");
-    }
-    else
-      $('#register_terms_modal').modal('show')
-
+    $('#register_terms_modal').modal('show')
 });
 
 /* Terms of Conditions Accept - From Modal Dialog 

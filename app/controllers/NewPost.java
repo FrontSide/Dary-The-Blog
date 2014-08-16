@@ -20,12 +20,9 @@ public class NewPost extends Controller {
         Form<Post> postForm = Form.form(Post.class);
         
         logger.debug("render newpost.html");
-        return ok(newpost.render(postForm, new UserDAO().getByBlogname(session("user")), false));
-    }
-
-    public static Result uploadPicture() {
-        //return PictureUpload.uploadPicture();
-        return PictureHandler.uploadPicture();
+                
+        return ok(newpost.render(postForm, 
+                new UserDAO().getByBlogname(session("user")), false));
     }
 
     /* ------ Submit ------ */

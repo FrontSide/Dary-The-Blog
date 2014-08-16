@@ -67,6 +67,8 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate = new Date();
 
+    public Picture profilePicture;
+
     /* Unique Views the blog has had *
     //TODO
 

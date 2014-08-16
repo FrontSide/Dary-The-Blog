@@ -110,27 +110,13 @@
                 
                 @inputPassword(
                     signupForm("password"),
-                    '_label -> "Password",
+                    '_label -> "Password (min. 6 characters)",
                     '_label_class -> "label label-white",
                     '_help -> "Enter a Password here!",
                     'class -> "form-control",
                     'id -> "reg_pwd"
                 )
-
-                <div id="signup_pwd_nomatch" class="alert alert-danger fade in nodisplay" >
-                    <span class="glyphicon glyphicon-flash"></span> 
-                    The passwords do not match!          
-                </div>
-
-                @inputPassword(
-                    signupForm("password"),
-                    '_label -> "Repeat Password",
-                    '_label_class -> "label label-white",
-                    '_help -> "Repeat the Password here!",
-                    'class -> "form-control",
-                    'id -> "reg_pwd_repeat"
-                )
-                            
+                                           
             </fieldset>
 
             <button id="register_btn" type="button" data-toggle="modal" class="btn btn-danger actions">

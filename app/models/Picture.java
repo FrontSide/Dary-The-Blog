@@ -11,6 +11,9 @@ import play.db.ebean.*;
   * Picture Model
   * Stores the Attributes (not the Picture itself) of a Picture
   * related to a certain user 
+  *
+  * THIS MODEL IS CURRENTLY NOT REALLY USED FOR ANYTHING 
+  *
   */
 @Entity
 public class Picture extends Model {

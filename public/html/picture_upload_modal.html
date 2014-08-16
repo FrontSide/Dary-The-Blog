@@ -1,0 +1,94 @@
+<!-- Modal Form to upload Picture -->
+<div    id="upload_picture_modal" class="modal fade" tabindex="-1" 
+        role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Upload a <b>Picture</b> </h4>
+            </div>
+            
+            <div class="modal-body">
+                <div    class="progress" 
+                        id="picture_upload_prog_wrapper" hidden>
+                    <div id="picture_upload_prog" 
+                         class="progress-bar progress-bar-success 
+                                     progress-bar-striped active" 
+                         role="progressbar" aria-valuenow="60" 
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <div    id="picture_upload_msg" 
+                        class="alert alert-info fade in">
+                    Enter a Picture Title and 
+                    click on <b>Browse</b> to upload a new picture!<br />
+                    This Window closes automatically once the upload 
+                    has finished.
+                </div>
+                
+                <div class="input-group input-group-lg">
+                    <div class="input-group-addon"> Title </div>
+                    <input type="text" class="form-control"
+                        id="picture_title">
+                </div>
+                                                           
+                <form   action="/new/picture" id="upload_picture_form"
+                        enctype="multipart/form-data">
+                        
+                        <span class="btn btn-default 
+                                        btn-file btn-block btn-primary">
+                            Browse ...
+                            <input  name="picture_raw" 
+                                    type="file" id="picture_file">
+                        </span>
+                </form>
+                        
+                <hr />
+                
+                <button id="picture_send" 
+                type="button"
+                class="btn btn-success btn-lg btn-block"> 
+                    <label id="picture_browse_label">
+                        No file selected!
+                    </label>
+                </button>
+                        
+                
+                <hr />                    
+                <div    class="panel panel-danger" 
+                        id="picture_upload_legal">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a  data-toggle="collapse" 
+                                data-parent="#accordion" 
+                                href="#upload_info_panel_collapse">
+                                Additional and legal information ...
+                            </a>
+                        </h4>
+                    </div>
+                    <div    id="upload_info_panel_collapse" 
+                            class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Please note that <b>every</b> picture you 
+                            upload will be accessible by <b> everyone </b> 
+                            via a certain link even if the Blog-Post is not
+                            published yet. Therefore, make sure to upload 
+                            pictures you are legally allowed to only!
+                        </div> <!-- panel body -->
+                    </div> <!-- panel-collapse -->
+                </div><!-- panel -->
+                                               
+            </div> <!-- modal body -->
+            <div class="modal-footer">                    
+                <button type="button" 
+                        class="btn btn-danger" 
+                        data-dismiss="modal"> Cancel
+                </button>
+            </div> <!-- modal footer -->
+        </div> <!-- modal content -->
+    </div> <!-- modal dialog -->
+</div> <!-- modal -->
+
+<script src="/assets/javascripts/upload_control.js"></script>

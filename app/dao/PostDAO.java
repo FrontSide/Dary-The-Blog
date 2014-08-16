@@ -50,7 +50,7 @@ public class PostDAO implements DAO<Post> {
     /* Fetch all Posts from a Blog except the archived ones */
     public List<Post> getAllByBlogname(String blogname) {
       logger.debug("Get not-Archived Posts from \"" + blogname + "\"");
-      return PostDAO.find.where().eq("user.blogname", blogname).eq("isArchived",false).findList();
+      return PostDAO.find.where().eq("user.blogname", blogname).eq("isArchived",false).orderBy("creDate desc").findList();
     }
 
     public void markByIdAsArchived(Long id) {

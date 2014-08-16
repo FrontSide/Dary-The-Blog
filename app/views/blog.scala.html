@@ -1,18 +1,18 @@
-@(posts: List[Post], user: User)
+@(blogname: String, posts: List[Post], user: User)
 
 @templ(title = "The Dary Blog", user){ 
    
-    <img src="/assets/userdata/1.picture" class="pic-profile-small" alt="@posts(0).user.blogname" />
+    <img src="/assets/userdata/1.picture" class="pic-profile-small" alt="@blogname" />
        
     <div class="blog-title label-primary">             
-        <h1> @posts(0).user.blogname </h1>
+        <h1> @blogname </h1>
     </div>
     
     <div class="clear-both"></div>
 
     <hr />
-
-    <!-- Display buttons for featured Posts -->    
+    
+    <!-- Display buttons for featured Posts -->
     <div class="btn-group">
         @for(p <- posts) {    
             @if((p.isPublished) && (p.isFeatured)) { 
@@ -27,9 +27,26 @@
     
     <hr />
     
+    <!-- show "new post" button if this is user's blog -->    
+    @if(user != null && blogname == user.blogname) {
+        <a href="/new" class="btn btn-primary btn-lg btn-block"> 
+            <span class="fa fa-pencil"></span>
+            Write a new Article 
+        </a>
+        <hr />
+    }
+    
+    <!-- Show Message if no Entry exists -->
+    @if(posts.length == 0) {
+        <center class="gray">
+            <span class="fa fa-warning"></span>
+            No Articles Found
+        </center>
+    }
+    
     @for(p <- posts) {
 
-        @if((p.isPublished) || (user != null && posts(0).user.blogname == user.blogname)) {
+        @if((p.isPublished) || (user != null && blogname == user.blogname)) {
         <!-- This is either a published post or you are watching your on blog -->
 
             <div class="blog-content" id="p@p.id">
@@ -45,13 +62,13 @@
                     }
                 <!-- call special getter for Date -->
                 <span class="label label-bloghead"> created on <b> @p.getCreDate() </b> </span>
-                @if(user != null && posts(0).user.blogname == user.blogname) {
-                        <a href="/edit/@p.id">
-                            <span class="label label-bloghead label-danger">Edit                       
-                                <span class="fa fa-pencil"></span>
-                            </span>
-                        </a>
-                    }
+                @if(user != null && blogname == user.blogname) {
+                    <a href="/edit/@p.id">
+                        <span class="label label-bloghead label-danger">Edit
+                            <span class="fa fa-pencil"></span>
+                        </span>
+                    </a>
+                }
                 </h5>
 
                 <hr />
@@ -59,7 +76,7 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer"> written by 
-                    <a href="/blog/@posts(0).user.blogname"> @posts(0).user.blogname </a> |
+                    <a href="/blog/@posts(0).user.blogname"> @blogname </a> |
                     <span class="scrollToTopLink">
                         <a> Back to the Top </a>
                     </span>

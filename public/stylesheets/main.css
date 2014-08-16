@@ -24,6 +24,11 @@ img {
     clear:both;
 }
 
+.gray {
+    color: #999;
+    font-weight: bold;
+}
+
 .btn {
     margin: 5px;
     margin-left: 0px;
@@ -209,3 +214,9 @@ textarea {
     cursor: inherit;
     display: block;
 }
+
+/* Hide Upload Button until file selected */
+#picture_send {
+    display: none;
+}
+
