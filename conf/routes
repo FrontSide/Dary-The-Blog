@@ -18,7 +18,8 @@ POST    /new/submit                  controllers.NewPost.submit()
 POST    /edit/submit                 controllers.EditPost.submit() 
 
 # Picture Upload Submit
-POST    /new/picture                 controllers.PictureHandler.uploadPicture()
+POST    /new/picture                 controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = false)
+POST    /new/profilepicture          controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = true)
 
 # Login Submit
 POST    /login/submit                controllers.UserController.submitLogin()

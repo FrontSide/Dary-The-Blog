@@ -5,8 +5,10 @@
  *
  */
 
-/* Load Upload Modal for Picture Upload */
-$('#upload_modal_wrapper').load('/assets/html/picture_upload_modal.html');
+$(document).ready(function() {
+    /* Load Upload Modal for Picture Upload */
+    $('#upload_modal_wrapper').load('/assets/html/picture_upload_modal.html');
+});
 
 /* Activate Save and Publish Button only when Title is entered */
 $('#title').keyup(function () {

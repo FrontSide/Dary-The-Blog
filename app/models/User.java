@@ -67,6 +67,8 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date registerDate = new Date();
 
+    @OneToOne
+    @JoinColumn(name = "profile_picture_id")
     public Picture profilePicture;
 
     /* Unique Views the blog has had *

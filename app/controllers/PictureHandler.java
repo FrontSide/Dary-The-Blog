@@ -55,10 +55,19 @@ public class PictureHandler extends Controller {
         logger.debug("image successfully loaded");
         return ok(imageFile).as(contentType);
     }
-
+    
+    /* Get Path of blog-user's profile picture -- return default if null*/
+    public static String getProfilePicturePath(String blogname){        
+        try {
+            return new UserDAO().getByBlogname(blogname).profilePicture.id 
+                            + ".picture";
+        } catch (Exception e) {
+            return "1.picture";
+        }
+    }
 
     /* ------ Upload Picture Submit ------ */
-    public static Result uploadPicture() {
+    public static Result uploadPicture(boolean isProfilePicture) {
         
         logger.debug("uploading picture");        
         MultipartFormData body = request().body().asMultipartFormData();
@@ -79,6 +88,12 @@ public class PictureHandler extends Controller {
             Picture dbPicture = new Picture();
             dbPicture.user = new UserDAO().getByBlogname(session("user"));
             new PictureDAO().create(dbPicture);
+                        
+            /* If supposed to, assign picture to user as profile picture */
+            if (isProfilePicture) {
+                logger.debug("set as profile picture ... ");
+                new UserDAO().updateProfilePicture(dbPicture.user, dbPicture);
+            }
 
             /* Generate Filename */
             String filename = dbPicture.id + ".picture";

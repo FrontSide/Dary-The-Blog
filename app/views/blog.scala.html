@@ -2,14 +2,23 @@
 
 @templ(title = "The Dary Blog", user){ 
    
-    <img src="/assets/userdata/1.picture" class="pic-profile-small" alt="@blogname" />
-       
+   
+   <!-- Load Profile Picture (clickable for modal if this is user's blog) -->
+    <img    src="/p/@PictureHandler.getProfilePicturePath(blogname)"
+            class="pic-profile-small" alt="@blogname"
+            
+        @if(user != null && blogname == user.blogname) {
+            type="button" data-toggle="modal" 
+            data-target="#upload_picture_modal"
+        } />
+   
+        
     <div class="blog-title label-primary">             
         <h1> @blogname </h1>
     </div>
-    
+            
     <div class="clear-both"></div>
-
+    
     <hr />
     
     <!-- Display buttons for featured Posts -->
@@ -76,7 +85,7 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer"> written by 
-                    <a href="/blog/@posts(0).user.blogname"> @blogname </a> |
+                    <a href="/blog/@blogname"> @blogname </a> |
                     <span class="scrollToTopLink">
                         <a> Back to the Top </a>
                     </span>
@@ -86,6 +95,10 @@
         } <!-- Endif isPublished or own blog -->
         
     } <!-- End For Loop -->
+    
+    <!-- Upload Modal is being loaded into this div -->
+    <div id="upload_modal_wrapper"></div>
+    
 }{
     <script src="/assets/javascripts/blog_control.js"></script>  
 }

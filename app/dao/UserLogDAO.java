@@ -44,5 +44,7 @@ public class UserLogDAO implements DAO<UserLog> {
         logger.error("getAll() is not available on UserLogDAO");
         throw new UnsupportedOperationException("Method cannot be called on this object!");
     }
+    
+    public void update(UserLog model){}
 
 }

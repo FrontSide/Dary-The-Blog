@@ -35,4 +35,6 @@ public class PictureDAO implements DAO<Picture> {
         return null;
     }
     
+    public void update(Picture model) {}
+    
 }

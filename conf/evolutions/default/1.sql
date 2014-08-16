@@ -5,6 +5,7 @@
 
 create table picture (
   id                        bigint not null,
+  user_id                   bigint,
   constraint pk_picture primary key (id))
 ;
 
@@ -28,6 +29,7 @@ create table blog_user (
   lastname                  varchar(255),
   email                     varchar(255),
   register_date             timestamp,
+  profile_picture_id        bigint,
   constraint pk_blog_user primary key (id))
 ;
 
@@ -46,10 +48,14 @@ create sequence blog_user_seq;
 
 create sequence user_log_seq;
 
-alter table post add constraint fk_post_user_1 foreign key (user_id) references blog_user (id);
-create index ix_post_user_1 on post (user_id);
-alter table user_log add constraint fk_user_log_user_2 foreign key (user_id) references blog_user (id);
-create index ix_user_log_user_2 on user_log (user_id);
+alter table picture add constraint fk_picture_user_1 foreign key (user_id) references blog_user (id);
+create index ix_picture_user_1 on picture (user_id);
+alter table post add constraint fk_post_user_2 foreign key (user_id) references blog_user (id);
+create index ix_post_user_2 on post (user_id);
+alter table blog_user add constraint fk_blog_user_profilePicture_3 foreign key (profile_picture_id) references picture (id);
+create index ix_blog_user_profilePicture_3 on blog_user (profile_picture_id);
+alter table user_log add constraint fk_user_log_user_4 foreign key (user_id) references blog_user (id);
+create index ix_user_log_user_4 on user_log (user_id);
 
 
 

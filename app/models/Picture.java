@@ -27,6 +27,8 @@ public class Picture extends Model {
         public Long id; 
 
         @Required
+        @OneToOne
+        @JoinColumn(name = "user_id")
         public User user;
 
 }

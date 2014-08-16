@@ -4,12 +4,39 @@
  * user's Profile Pictures
  */
  
- 
-/* Load modal into div */
+ /*
+  * Some settings-variables for the upload
+  * different depending on whether it is a profile picture or not
+  */
+var UPLOAD_POST_URL; //url to send form to
+var IS_PROFILE_PICTURE; //boolean 
+
+/* Initialitzing function */
+function initPostPictureUpload() {
+    console.log("initialize picture upload [article picture]")
+    UPLOAD_POST_URL = "/new/picture"
+    IS_PROFILE_PICTURE = false;
+}
+
+function initProfilePictureUpload() {
+    console.log("initialize picture upload [profile picture]")
+    UPLOAD_POST_URL = "/new/profilepicture"
+    IS_PROFILE_PICTURE = true;
+    $('#picture_title_wrapper').css("display", "none")
+}
+
+/* Check URL path and initialize upload modal */
 $(document).ready(function() {
-    $('#picture_upload_legal').css("background-color", "#00FF00")
+    var currentLocation = window.location;
+    if (currentLocation.pathname === "/new") {
+        initPostPictureUpload()
+    } else {
+        initProfilePictureUpload()
+    }
 });
- 
+
+/* ****************************** */
+
  /* Change text in input field -- Picture upload */
 $('#picture_file').change(function() {
 
@@ -20,6 +47,7 @@ $('#picture_file').change(function() {
   $('#picture_browse_label').html("Upload <br />" + $('#picture_file').val())
   
   //If Title Input is empty put Filename in it
+  //not used for profile picture
   if ($('#picture_title').val() === '') {
     $('#picture_title').val($('#picture_file').val())
   }
@@ -54,7 +82,7 @@ function tryUploadPicture() {
    * from http://stackoverflow.com/questions/166221/how-can-i-upload-files-asynchronously-with-jquery/8758614#8758614
    */
   $.ajax({
-        url: "/new/picture",
+        url: UPLOAD_POST_URL,
         type: 'POST',
         //Custom HTTP Request
         xhr: function() {
@@ -99,14 +127,15 @@ function completeHandler(data) {
     
   /* Add the Picture to the end of the current Post if it is existing
      does nothing for Profile Picture */
-  $('#content').val($('#content').val() + 
-                "!["+$('#picture_title').val()
-                +"](" + data['pictureURL'] + ")")
+  if (!IS_PROFILE_PICTURE) {
+      $('#content').val($('#content').val() + 
+                    "!["+$('#picture_title').val()
+                    +"](" + data['pictureURL'] + ")")
+  }
   /* --- */
 
   /* Close Modal */
-  $('#upload_picture_modal').modal('hide')
-  
+  $('#upload_picture_modal').modal('hide')  
   
 }
 

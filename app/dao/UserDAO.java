@@ -1,6 +1,7 @@
 package dao;
 
 import models.User;
+import models.Picture;
 
 import java.util.List;
 import play.Logger;
@@ -47,11 +48,24 @@ public class UserDAO implements DAO<User> {
     }
 
     public User getByBlogname(String blogname) {
-      return UserDAO.find.where().eq("blogname", blogname).findUnique();
+        logger.debug("get user by blogname :: " + blogname);
+        return UserDAO.find.where().eq("blogname", blogname).findUnique();
     }
 
     public User getByEmail(String email) {
       return UserDAO.find.where().eq("email", email).findUnique();
+    }
+    
+    /* Update user's profile Picture */
+    public void updateProfilePicture(User user, Picture picture) {
+        logger.debug("update profile picture");
+        user.profilePicture = picture;
+        update(user);
+    }
+    
+    public void update(User model) {
+      logger.debug("Update Model");
+      Ebean.update(model);
     }
 
 }
