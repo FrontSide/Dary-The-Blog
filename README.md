@@ -7,6 +7,7 @@ Official Website : [www.dary.info] (http://www.dary.info)
 
 - Picture Upload (directly into Article)
 - Featured Posts (Display as Buttons)
+- Profile Picture Upload
 
 Features in development
 
@@ -56,11 +57,7 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 
 ## Development
 
-v0.1.0-BETA
-This version is hostet on Heroku and is not maintained 
-[www.dary.info] (http://www.dary.info)
-
-v0.1.1-BETA
+v0.2.0-BETA
 This is the public BETA that is consequently updated
-[Official BETA] (http://www.letsdoarnie.com)
+[www.dary.info] (http://www.dary.info)
 
