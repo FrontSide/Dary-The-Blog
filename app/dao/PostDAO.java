@@ -52,7 +52,7 @@ public class PostDAO implements DAO<Post> {
       logger.debug("Get not-Archived Posts from \"" + blogname + "\"");
       return PostDAO.find.where().eq("user.blogname", blogname).eq("isArchived",false).orderBy("creDate desc").findList();
     }
-
+    
     public void markByIdAsArchived(Long id) {
       logger.debug("Mark Post with id \"" + id + "\" as archived!");
       Post model = PostDAO.find.where().eq("id", id).findUnique();

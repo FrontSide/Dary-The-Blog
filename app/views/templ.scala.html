@@ -16,7 +16,7 @@
     <!-- View Port Meta Tag for Mobile First Rendering -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> The Dary Blog BETA | @title </title>
+    <title> Dary The Blog BETA | @title </title>
 
 </head>
 <body >
@@ -28,13 +28,16 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+          <button   type="button" class="navbar-toggle" 
+                    data-toggle="collapse" 
+                    data-target="#main-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand no-top-padding" href="/">
+          <a    class="navbar-brand no-top-padding no-right-padding" href="/"
+                id="navbar-logo-link" >
             @if(user == null) { 
                 <span class="label label-danger">
             } else {
@@ -47,8 +50,13 @@
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
                 @if(user == null) { 
-                    <li><a data-target="#signupformbox" class="scrollToIdLink"><i class="fa fa-share"></i>
-                    Sign Up</a></li>
+                    <li><a  data-target="#signupformbox" 
+                            href="/#signupformbox" 
+                            class="scrollToIdLink">
+                            <i class="fa fa-share"></i>
+                            Sign Up
+                        </a>
+                    </li>
                 } else {                    
                     <li><a href="/blog/@user.blogname"> <i class="fa fa-home"></i> My Blog </a></li>
                     <li><a href="/new"> <span class="fa fa-pencil"></span> <b>Write a new Article</b></a></li>  

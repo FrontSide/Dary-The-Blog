@@ -51,12 +51,14 @@ public class Application extends Controller {
     }
 
     /* ------ Show Blog Posts ------ */
-    public static Result showBlog(String title) {        
-        List<Post> public_posts = (List<Post>) new PostDAO().getAllByBlogname(title);
-            if ((public_posts.size() == 0) && (!title.equals(session("user")))) {
+    public static Result showBlog(String title) {
+        List<Post> publicPosts = (List<Post>) new PostDAO().getAllByBlogname(title);
+        List<Long> featuredPostsId = Post.getFeaturedPosts(publicPosts);
+            if ((publicPosts.size() == 0) && (!title.equals(session("user")))) {
                 return notFound(no_posts_found.render(new UserDAO().getByBlogname(session("user"))));
             }            
-        return ok(blog.render(title, public_posts, new UserDAO().getByBlogname(session("user"))));
+        return ok(blog.render(title, publicPosts, featuredPostsId, 
+                new UserDAO().getByBlogname(session("user"))));
     }
 
 }

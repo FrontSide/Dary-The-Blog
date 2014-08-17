@@ -39,6 +39,10 @@ img {
     padding: 7px; 
 }
 
+#navbar-logo-link {
+    max-width: 190px;
+}
+
 #navbar-logo {
     width: 50%;
 }
@@ -83,6 +87,14 @@ img {
 
 .no-top-padding {
     padding-top: 0px;
+}
+
+.no-left-padding {
+    padding-left: 0px;
+}
+
+.no-right-padding {
+    padding-right: 0px;
 }
 
 .content-body {  
@@ -134,6 +146,19 @@ a > .label-danger {
 }
 
 a > .label-danger:hover {
+    font-weight: bold;
+}
+
+.label-warning {
+    color: #FFF;
+} 
+
+#blog-navbar-collapse-btn-block {
+    display:none;
+}
+
+#blog-navbar-collapse > ul > li {
+    text-align:center;
     font-weight: bold;
 }
 

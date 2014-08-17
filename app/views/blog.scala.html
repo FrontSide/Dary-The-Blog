@@ -1,11 +1,11 @@
-@(blogname: String, posts: List[Post], user: User)
+@(blogname: String, posts: List[Post], featured: List[Long], user: User)
 
 @templ(title = "The Dary Blog", user){ 
    
    
    <!-- Load Profile Picture (clickable for modal if this is user's blog) -->
     <img    src="/p/@PictureHandler.getProfilePicturePath(blogname)"
-            class="pic-profile-small" alt="@blogname"
+            class="pic-profile-small hidden-xs" alt="@blogname"
             
         @if(user != null && blogname == user.blogname) {
             type="button" data-toggle="modal" 
@@ -13,29 +13,74 @@
         } />
    
         
-    <div class="blog-title label-primary">             
+    <div class="blog-title label-primary hidden-xs">             
         <h1> @blogname </h1>
     </div>
-            
-    <div class="clear-both"></div>
+                    
+    <div class="clear-both"></div>    
+    <hr class="hidden-xs" />
     
-    <hr />
-    
-    <!-- Display buttons for featured Posts -->
-    <div class="btn-group">
-        @for(p <- posts) {    
-            @if((p.isPublished) && (p.isFeatured)) { 
-                <button type="button" 
-                    class="btn btn-default scrollToIdLink" 
-                    data-target="#p@p.id">
-                     @p.title 
-                </button>
-            }
-        }
+    <button id="blog-navbar-collapse-btn-block" 
+            type="button" class="navbar-toggle label-warning btn-warning btn-block" 
+            data-toggle="collapse" 
+            data-target="#blog-navbar-collapse">         
+        <i class="fa fa-star"></i>
+        Featured Articles
+    </button>
+        
+    <!-- Featured Posts NavBar -->
+    <nav class="navbar navbar-default navbar-dary" role="navigation">
+    <div class="container-fluid">
+        
+        <div class="navbar-brand hidden-xs">
+            <span class="fa fa-star"></star>
+        </div>
+        
+        <a class="navbar-brand no-top-padding no-left-padding">
+            <img    src="/p/@PictureHandler.getProfilePicturePath(blogname)"
+                    class="pic-profile-innav visible-xs" alt="@blogname"
+                
+            @if(user != null && blogname == user.blogname) {
+                type="button" data-toggle="modal" 
+                data-target="#upload_picture_modal"
+            } />
+        </a>
+                
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+                    
+            <a class="navbar-brand visible-xs" href="/blog/@blogname">
+                @blogname
+            </a>
+        
+            <button id="blog-navbar-collapse-btn" 
+                    type="button" class="navbar-toggle label-warning" 
+                    data-toggle="collapse" 
+                    data-target="#blog-navbar-collapse">
+                <i class="fa fa-star"></i>
+            </button>
+          
+        </div> 
+        
+        <div class="collapse navbar-collapse" id="blog-navbar-collapse">
+            <ul class="nav navbar-nav">            
+                    @for(f <- featured) {
+                        <li>
+                            <a  type="button" 
+                                class="scrollToIdLink" 
+                                data-target="#p@f">
+                                <!-- get post title out of posts list
+                                        by id with Scala Lambda expression 
+                                        oh-jeah !! -->
+                                @posts.find(p => p.id == f).get.title
+                            </a>
+                        </li>                        
+                    }
+            </ul> <!-- navbar list elements -->
+        </div>
     </div>
-    
-    <hr />
-    
+    </nav>
+            
     <!-- show "new post" button if this is user's blog -->    
     @if(user != null && blogname == user.blogname) {
         <a href="/new" class="btn btn-primary btn-lg btn-block"> 

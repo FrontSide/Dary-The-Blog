@@ -62,7 +62,7 @@ public class PictureHandler extends Controller {
             return new UserDAO().getByBlogname(blogname).profilePicture.id 
                             + ".picture";
         } catch (Exception e) {
-            return "1.picture";
+            return "no.picture";
         }
     }
 

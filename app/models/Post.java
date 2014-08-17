@@ -2,6 +2,8 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.*;
 
 import play.Logger;
@@ -92,6 +94,15 @@ public class Post extends Model {
     public String validate() {
       //None
       return null;
+    }
+    
+    /* Get All featured Posts out of a lsit of posts */
+    public static List<Long> getFeaturedPosts(List<Post> posts) {
+        List<Long> featuredPostsId = new ArrayList<Long>();
+        for (Post p : posts) {
+            if (p.isFeatured && p.isPublished) featuredPostsId.add(p.id);
+        }
+        return featuredPostsId;
     }
    
 
