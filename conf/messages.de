@@ -21,6 +21,8 @@ EDIT=Editieren
 CREATED_ON=Erstellt am
 WRITTEN_BY=Geschrieben von
 BACK_TO_THE_TOP=Zurück zum Anfang
+COMMENT_WRITTEN_BY=geschrieben von {0} am {1}
+COMMENTS=Comments=Kommentare
 
 BECOME_AN_AUTHOR=Werde ein Autor
 FORM_CONTAINS_ERRORS=Deine Angaben enthalten Fehler

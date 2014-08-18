@@ -195,6 +195,27 @@ a > .label-danger:hover {
     font-family: "sans-serif";
 }
 
+#comments_collapse_btn {
+    float:left;
+}
+
+#newcomment_form > textarea {
+    resize: none;
+}
+
+.comments_header {
+    border-left: 2px solid #428BCA;
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+#comments_collapse_body {
+    border-left: none;
+    border-right: none;
+    box-shadow: -2px 0px 2px -1px #aaa;
+    margin-bottom: 10px;
+    padding: 5px;
+}
 
 .input #title {
     font-size: 30px;

@@ -11,8 +11,10 @@ NO_ARTICLES_FOUND=No articles found
 POST_HAS_NOT_BEEN_PUBLISHED=This article has not been published
 EDIT=Edit
 CREATED_ON=Created on
-WRITTEN_BY=Written by
+WRITTEN_BY=written by
 BACK_TO_THE_TOP=Back to the top
+COMMENT_WRITTEN_BY=written by {0} on {1}
+COMMENTS=Comments
 
 BECOME_AN_AUTHOR=Become an author now
 FORM_CONTAINS_ERRORS=Your form contains Errors

@@ -12,4 +12,23 @@ $(document).ready(function() {
         
 });
 
+$('#newcomment_form > textarea').keypress(function (e) {
+  /* if enter in textfield */
+  if (e.which == 13) {
+      
+    var post_id = $(this).attr("data-target")
+    console.log("add comment - post id :: " + post_id)
+    
+    $.post("/new/comment", 
+        { 
+            post: post_id, 
+            content: $(this).val() 
+        });  
+    
+    $(this).val("")
+    return false;
+  }
+});
+
+
 

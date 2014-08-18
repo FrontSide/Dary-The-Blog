@@ -58,10 +58,10 @@ public class Post extends Model {
        proxy to convert the Date into a readable String */
     public String getCreDate() {    
         logger.debug("reformatting date...");
-        SimpleDateFormat df = new SimpleDateFormat("dd.MMMM.yyy HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("dd. MMMM yyy HH:mm");
         return df.format(this.creDate);
     }
-
+        
     /* Open to public Flag */
     public boolean isPublished;
 
