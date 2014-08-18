@@ -18,7 +18,7 @@ Features in development
 - User Settings
 - Article Version Control *not before v1.2*
 
-## Dependencies and Third-Party Software
+## Not included Dependencies and Third-Party Software
 
 Some vendors are not included in the git repository.
 Add the following libraries and third-party plugins in order to successfully run the App.
@@ -47,6 +47,8 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 - [Apache Commons Codec] (http://commons.apache.org/proper/commons-codec/)
 
 - [Apache Commons IO] (http://commons.apache.org/proper/commons-io/)
+
+- [JsMessage] https://github.com/julienrf/play-jsmessages
 
 ## Technologies
 
