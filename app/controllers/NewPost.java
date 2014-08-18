@@ -5,6 +5,7 @@ import dao.*;
 import views.html.*;
 
 import play.mvc.*;
+import play.i18n.Messages;
 
 import play.Logger;
 import play.data.Form;
@@ -44,8 +45,8 @@ public class NewPost extends Controller {
         logger.debug("init persistence in Database");
         new PostDAO().create(post); 
 
-        //Success flash
-        flash("success", "Nice! You just successfully wrote an article for your blog!");
+        //Success flash        
+        flash("success", Messages.get("FLASH_NEW_ARTICLE_SUCCESS"));
 
         logger.debug("render blog view");
         return redirect("/blog/" + session("user"));

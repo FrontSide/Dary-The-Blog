@@ -40,5 +40,5 @@ function checkBlocknameAvailable() {
 
 /* On Load */
 $(document).ready(function() {
-  // Empty
+  // Empty  
 }); 

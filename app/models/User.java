@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import play.data.format.*;
 import play.Logger;
+import play.i18n.Messages;
 
 import dao.UserDAO;
 
@@ -98,9 +99,8 @@ public class User extends Model {
         if (password.length() < MIN_PASSWORD_LENGTH) {            
             logger.error("Password not Long enough!");
             
-            final String FIELD = "password";
-            final String MESSAGE = "Your Password must be at least " 
-                    + "6 characters long";
+            final String FIELD = "password";            
+            final String MESSAGE = Messages.get("VALID_SIGNUP_PASSWORD_FAIL");
             
             passwordValidationErrors.add(new ValidationError(FIELD, MESSAGE));
             validationErrors.put(FIELD, passwordValidationErrors);
@@ -113,8 +113,8 @@ public class User extends Model {
             logger.error("Blogname aleardy exists");
             
             final String FIELD = "blogname";
-            final String MESSAGE = "Sorry, the blog \"" + this.blogname 
-                    + "\" already exists!";
+            final String MESSAGE = this.blogname + " " 
+                        + Messages.get("VALID_SIGNUP_BLOGNAME_FAIL");
             
             blognameValidationErrors.add(new ValidationError(FIELD, MESSAGE));
             validationErrors.put(FIELD, blognameValidationErrors);
@@ -125,8 +125,8 @@ public class User extends Model {
             logger.error("Email aleardy exists");
             
             final String FIELD = "email";
-            final String MESSAGE = "Sorry, a user with the email address \"" 
-                    + this.email + "\" already exists!";
+            final String MESSAGE = this.email + " " 
+                            + Messages.get("VALID_SIGNUP_EMAIL_FAIL");
 
             emailValidationErrors.add(new ValidationError(FIELD, MESSAGE));
             validationErrors.put(FIELD, emailValidationErrors);

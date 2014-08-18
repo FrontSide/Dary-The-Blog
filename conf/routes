@@ -9,6 +9,8 @@ GET     /new                         controllers.Application.newPost()
 GET     /edit/:postid                controllers.Application.editPost(postid : Long)
 GET     /logout                      controllers.Application.logout()
 
+## JS i18n 
+GET     /messages.js                 controllers.JsMessageGetter.jsMessages()
 
 ### Form Submits
 # New entry Submit

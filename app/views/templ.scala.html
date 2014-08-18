@@ -1,5 +1,7 @@
 @(title: String, user: User)(content: Html)(addjs: Html)
 
+@import play.i18n._
+
 <!DOCTYPE html>
 
 <html>
@@ -16,7 +18,7 @@
     <!-- View Port Meta Tag for Mobile First Rendering -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> Dary The Blog BETA | @title </title>
+    <title> @Messages.get("DARY_THE_BLOG") | @title </title>
 
 </head>
 <body >
@@ -54,20 +56,20 @@
                             href="/#signupformbox" 
                             class="scrollToIdLink">
                             <i class="fa fa-share"></i>
-                            Sign Up
+                            @Messages.get("SIGN_UP")
                         </a>
                     </li>
                 } else {                    
-                    <li><a href="/blog/@user.blogname"> <i class="fa fa-home"></i> My Blog </a></li>
-                    <li><a href="/new"> <span class="fa fa-pencil"></span> <b>Write a new Article</b></a></li>  
+                    <li><a href="/blog/@user.blogname"> <i class="fa fa-home"></i> @Messages.get("MY_BLOG") </a></li>
+                    <li><a href="/new"> <span class="fa fa-pencil"></span> <b>@Messages.get("WRITE_AN_ARTICLE")</b></a></li>  
             </ul> <!-- close left nav-bar if logout button -->
             <!-- BUG ON CHROME BROWSER -->
             <ul class="nav navbar-nav navbar-right"> <!-- open right nav-bar if logout button -->
-                    <li><a href="/blog/@user.blogname"> Signed in as  @user.blogname </a></li>          
+                    <li><a href="/blog/@user.blogname"> @Messages.get("SIGNED_IN_AS")  @user.blogname </a></li>          
                     <li>
                         <a type="button" class="btn btn-danger navbar-btn" href="/logout"> 
                             <i class="fa fa-power-off"></i> 
-                            Logout 
+                            @Messages.get("LOGOUT") 
                         </a>
                     </li>
                 }
@@ -115,16 +117,16 @@
     <!-- CDN Bootstrap -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>    
 
+    <!-- JS Messages - i18n for JS -->
+    <script type="text/javascript" src="@routes.JsMessageGetter.jsMessages()"></script>
+    
     <!-- Additional JavaScripts from other pages --> 
     @addjs     
     <script src="/assets/javascripts/stylecontrol.js"></script>    
 
 </body>
-<footer>    
-    The developers behind Dary do not own any of the media and
-    texts presented on a user's blog page 
-    and do not hold any copyrights of this content. 
-    Every user is responsible for the content of his or her blog posts.
+<footer>
+    @Messages.get("LEGAL_CONTENT_FOOTER_TEXT")
     <hr />
     <span class="glyphicon glyphicon-copyright-mark"></span>
     2014, David Rieger

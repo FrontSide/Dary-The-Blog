@@ -2,17 +2,17 @@
 
 <!-- Form Helper -->
 @import helper._
+@import play.i18n._
 
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-
-@templ(title = if(isEditing) { "Edit Post" } else { "Write A New Story" }, user){
+@templ(title = if(isEditing) { Messages.get("EDIT_POST") } else { Messages.get("WRITE_NEW_ARTICLE") }, user){
 
     @if(newPostForm.hasErrors) {
         <div class="alert alert-danger fade in">
             <span class="glyphicon glyphicon-flash"></span> 
-            Your form contains errors!
+            @Messages.get("FORM_CONTAINS_ERRORS")
         </div>
     }
 
@@ -22,32 +22,31 @@
             <legend>
                 <i class="fa fa-edit"> </i>
                 @if(isEditing) {
-                    Edit Post
+                    @Messages.get("EDIT_POST")
                 } else {
-                    New Blog Post
+                    @Messages.get("WRITE_NEW_ARTICLE")
                 }
             </legend>
                         
             @inputText(
                 newPostForm("title"),
-                '_label -> "Title", 
+                '_label -> Messages.get("TITLE"), 
                 '_label_class -> "input-group-addon",
                 '_label_fa_icon -> "fa-header fa-5",
                 'class -> "form-control",
-                '_help -> "Your Posts title"
+                '_help -> Messages.get("YOUR_POST_TITLE")
             )
 
             @if(isEditing) {
                 <div class="alert alert-info fade in">
-                    You are <b> editing </b> an existing Post. 
-                    The old version will be archived but not shown in the blog anymore.
+                    @Messages.get("EDITING_INFO")                    
                 </div>
             }
             
             <!-- Feature Button -->
             <button id="newpost_feature_btn" type="button" class="btn btn-default">
                 <span class="fa fa-star-o"> </span>
-                Feature Post            
+                @Messages.get("FEATURE_THIS_POST")
             </button>
             
             <!-- Hidden Field for isFeatured parameter 
@@ -60,7 +59,7 @@
                         data-target="#upload_picture_modal" 
                         class="btn btn-danger actions">
                 <span class="fa fa-arrow-circle-up"> </span>
-                Upload a Picture        
+                @Messages.get("UPLOAD_PICTURE")
                 <i class="fa fa-picture-o"></i>     
             </button>                  
             
@@ -70,7 +69,7 @@
                 newPostForm("content"),
                 '_label -> "",
                 'rows -> 10,
-                '_help -> "Enter your Post here!",
+                '_help -> Messages.get("WRITE_ARTICLE_HERE"),
                 'class -> "form-control textarea",
                 Symbol("data-provide") -> "markdown",
                 Symbol("data-iconlibrary") -> "fa"
@@ -91,13 +90,13 @@
         <!-- Publish Button -->
         <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions" disabled>
             <span class="glyphicon glyphicon-bullhorn"> </span>
-            Publish this Post NOW             
+            @Messages.get("PUBLISH_POST_NOW")
         </button>
 
         <!-- Save Only Button -->
         <button id="newpost_save_btn" type="button" class="btn btn-primary actions" disabled>
             <span class="glyphicon glyphicon-floppy-disk"> </span>
-            Save Post And Go Back            
+            @Messages.get("SAVE_POST")
         </button>
 
         <!-- Modal to warn user about instant publishing -->
@@ -106,11 +105,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Are You Completely Sure You Want To <b>Publish</b> This <b>Post Right Now ?</b></h4>
+                    <h4 class="modal-title">
+                    @Messages.get("PUBLISH_QUESTION_HEADER")
+                    </h4>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">No. Go Back!</button>
-                    <button id="newpost_pub_inst_send" type="button" class="btn btn-primary">Yes, Absolutely</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        @Messages.get("PUBLISH_QUESTION_NO")
+                    </button>
+                    <button id="newpost_pub_inst_send" type="button" class="btn btn-primary">
+                        @Messages.get("PUBLISH_QUESTION_YES")
+                    </button>
                 </div>
             </div>
           </div>

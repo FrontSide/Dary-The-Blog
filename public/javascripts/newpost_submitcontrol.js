@@ -57,13 +57,13 @@ $('#newpost_save_btn').click(function () {
 $('#newpost_feature_btn').click(function () {
         if ($('#newpost_hidden_featured').val() == "false") {
             $('#newpost_hidden_featured').val("true");
-            $('#newpost_feature_btn').html("<span class='fa fa-star'> </span>" + 
-                " Feature Post");
+            $('#newpost_feature_btn').html("<span class='fa fa-star'> </span> " + 
+                Messages('JS_FEATURED_ARTICLE'));
             $('#newpost_feature_btn').addClass("btn-warning")
         } else {
             $('#newpost_hidden_featured').val("false");
-            $('#newpost_feature_btn').html("<span class='fa fa-star-o'> </span>" + 
-                " Feature Post");
+            $('#newpost_feature_btn').html("<span class='fa fa-star-o'> </span> " + 
+                Messages('FEATURE_THIS_POST'));
             $('#newpost_feature_btn').removeClass("btn-warning")        
         }
 });

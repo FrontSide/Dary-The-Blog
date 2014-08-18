@@ -1,0 +1,85 @@
+
+## Override Play default messages ##
+# --- Errors
+error.invalid=Ungültiger Wert
+error.invalid.java.util.Date=Ungültiges Datum
+error.required=Dieses Feld muss ausgefüllt sein
+error.email=Ungültige Email Adresse
+
+DARY_THE_BLOG=Dary the Blog
+SIGN_UP=Registrieren
+MY_BLOG=Mein Blog
+SIGNED_IN_AS=Angemeldet als
+LOGOUT=Ausloggen
+WRITE_AN_ARTICLE=Neuen Artikel verfassen
+LEGAL_CONTENT_FOOTER_TEXT=Die Entwickler hinter Dary besitzen keine der Medien und Texte die in den Artikeln der User erscheinen und halten keine Urheberrechte für den Inhalt. Jeder User und jede Userin ist verantwortlich für den Inhalt auf seinem oder ihrem Blog.
+
+FEATURED_ARTICLES=Hervorgehobene Artikel
+NO_ARTICLES_FOUND=Keine Artikel gefunden
+POST_HAS_NOT_BEEN_PUBLISHED=Dieser Artikel wurde noch nicht veröffentlicht
+EDIT=Editieren
+CREATED_ON=Erstellt am
+WRITTEN_BY=Geschrieben von
+BACK_TO_THE_TOP=Zurück zum Anfang
+
+BECOME_AN_AUTHOR=Werde ein Autor
+FORM_CONTAINS_ERRORS=Deine Angaben enthalten Fehler
+BLOGTITLE_OR_EMAIL=Blog-Titel oder Email-Adresse
+YOUR_BLOGS_TITLE=Titel deines Blog''s
+PASSWORD=Passwort
+YOUR_PASSWORD=Dein persönliches Passwort
+LOGIN=In deinen Blog einloggen
+DARY_WELCOMETEXT_1=Dary ist eine Blogging Platform für jeden.
+DARY_WELCOMETEXT_2=Werde ein Autor und teile deine Erlebnisse mit der Welt.
+BECOME_AN_AUTHOR_IN_SECONDS=Werde ein Autor in 10 Sekunden
+BLOG_TITLE=Blog-Titel
+EMAIL_ADDRESS=Email Adresse
+YOUR_EMAIL_ADDRESS=Deine email Adresse
+PASSWORD_MIN_CHAR=Passwort (min. 6 Zeichen)
+START_BLOG=Erstelle jetzt meinen eigenen Blog
+LEGAL_INFO_PENCIL_1= Dieses Bild (Bleistift) ist veröffentlicht unter der
+LEGAL_INFO_PENCIL_2=Lizenz und wurde erstellt von
+LEGAL_CONDITIONS_HEADER=Bitte lies genau durch die Bedingungen
+LEGAL_CONDITIONS_1=Dary ist ein private, nicht-kommerzielles Projekt. Wir machen tägliche Backups von allen deinen Daten, dennoch können wir nicht garantieren, dass sie für immer gespeichert und/oder immer zugänglich sind.
+LEGAL_CONDITIONS_2= Wir garantieren allerdings, dass keine deiner Daten an jemanden der nicht im Entwicklungsteam ist weitergegeben wird.
+LEGAL_CONDITIONS_3= Wir werden alles in userer Macht stehende tun um dein User-Erlebnis so angenehm wie möglich zu gestalten.
+CANCEL=Abbrechen
+LEGAL_CONDITIONS_ACCEPT=Ich verstehe und akzeptiere die Bedingungen!
+
+EDIT_POST=Bestehenden Artikel editieren
+WRITE_NEW_ARTICLE=Neuen Artikel verfassen
+TITLE=Titel
+YOUR_POST_TITLE=Titel deines Artikels
+EDITING_INFO=Du editierst einen bestehenden Artikel. Die alte Version wird archiviert, aber nicht mehr im Blog aufgefüht.
+FEATURE_THIS_POST=Diesen Artikel hervorheben
+UPLOAD_PICTURE=Bild hochladen
+WRITE_ARTICLE_HERE=Verfasse hier deinen Artikel
+PUBLISH_POST_NOW=Artikel jetzt veröffentlichen
+SAVE_POST=Speichern
+PUBLISH_QUESTION_HEADER=Bist du absolut sicher, dass du diesen Artikel jetzt veröffentlichen möchtest?
+PUBLISH_QUESTION_YES=Ja, absolut!
+PUBLISH_QUESTION_NO=Nein. Zurück um Editor.
+
+FLASH_LOGOUT_SUCCESS=Du bist jetzt abgemeldet von Dary. Bis dann!
+FLASH_EDIT_SUCCESS=Du hast erfolgreich einen Artikle editiert!
+FLASH_NEW_ARTICLE_SUCCESS=Dein neuer Artikel wurde erfolgreich erstellt!
+FLASH_LOGIN_SUCCESS=Hallo. Wilkommen auf deinem Blog
+FLASH_SIGNUP_SUCCESS=Super! Du hast dich erfolgreich registiert und bist jetzt autor des Blog's 
+
+VALID_LOGIN_FAIL=Falsche Blog-Titel/Email und Passwort Kombination
+VALID_SIGNUP_PASSWORD_FAIL=Das Passwort muss mindestens 6 Zeichen lang sein
+VALID_SIGNUP_BLOGNAME_FAIL=existiert bereits. Tut uns Leid!
+VALID_SIGNUP_EMAIL_FAIL=ist bereits registeriert. Es kann jeweils nur ein Blog pro Email Adresse existieren
+
+JS_FEATURED_ARTICLE=Hervorgehobener Artikel
+JS_UPLOAD_PROBLEM=Es scheint ein Problem zu geben! Stell sicher, dass die Datei tatsächlich ein Bild ist. Prüfe ansonsten auch deine Internetverbindung!
+JS_UPLOAD_TRYAGAIN=Nochmal versuchen...
+JS_UPLOAD_SUCCESS=Dein Bild wurde erfolgreich hochgeladen!
+JS_UPLOAD_PROGRESS=Bein Bild wird gerade hochgeladen. Bitte warten...
+JS_UPLOAD_TITLE=Ein neues Bild hochladen
+JS_UPLOAD_MESSAGE=Gib dem Bild einen Namen und klicke auf <b>Durchsuchen...</b> um ein neues Bild hochzuladen! Dieses Fenster schließt automatisch nach erfolgreichem Upload!
+JS_UPLOAD_BROWSE=Durchsuchen...
+JS_UPLOAD_NOFILES=Keine Bilder ausgewählt
+JS_UPLOAD_ADDINFO_TITLE=Zusätzliche und gesetzliche Infos...
+JS_UPLOAD_ADDINFO_BODY=Bitte beachte, dass jedes Bild, das du hochlädst, für jeden zugänglich ist, der den direkten Link zum Bild kennt, selbst wenn du den Artikel, in dem es sich befindet nicht veröffentlicht hast. Stell daher sicher, dass du nur Bilder für die du auch die Urheberrechte besitzt (sprich die, die du selbst gemacht hast) hochlädst!
+

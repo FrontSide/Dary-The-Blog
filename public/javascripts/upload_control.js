@@ -25,6 +25,18 @@ function initProfilePictureUpload() {
     $('#picture_title_wrapper').css("display", "none")
 }
 
+/* Injects the i18n Strings into the plain picture_upload_modal.html */
+function injectStrings() {
+    $('#upl_pic_title').html(Messages('JS_UPLOAD_TITLE'))
+    $('#picture_upload_msg').html(Messages('JS_UPLOAD_MESSAGE'))
+    $('#upl_pic_title_label').html(Messages('TITLE'))
+    $('#upl_pic_browse_label').html(Messages('JS_UPLOAD_BROWSE'))
+    $('#picture_browse_label').html(Messages('JS_UPLOAD_NOFILES'))
+    $('#upl_pic_addinfo_title').html(Messages('JS_UPLOAD_ADDINFO_TITLE'))
+    $('#upl_pic_addinfo_body').html(Messages('JS_UPLOAD_ADDINFO_BODY'))
+    $('#upl_pic_cancel_btn').html(Messages('CANCEL'))
+}
+
 /* Check URL path and initialize upload modal */
 $(document).ready(function() {
     var currentLocation = window.location;
@@ -33,6 +45,7 @@ $(document).ready(function() {
     } else {
         initProfilePictureUpload()
     }
+    injectStrings();
 });
 
 /* ****************************** */
@@ -68,8 +81,9 @@ function tryUploadPicture() {
   $('#picture_upload_msg').removeClass("alert-danger");  
   $('#picture_upload_msg').removeClass("alert-info");      
   $('#picture_upload_msg').addClass("alert-warning");
-  $('#picture_upload_msg').html("<span class='fa fa-cog fa-spin'></span>"  +
-        " Your picture is being uploaded! Please wait ...");
+  
+  $('#picture_upload_msg').html("<span class='fa fa-cog fa-spin'></span> " +
+        Messages('JS_UPLOAD_PROGRESS'));
 
   console.log(" Picture Upload Form Data")
   console.log($('#upload_picture_form')[0])
@@ -122,7 +136,7 @@ function completeHandler(data) {
   $('#picture_upload_msg').removeClass("alert-danger");  
   $('#picture_upload_msg').removeClass("alert-info");
   $('#picture_upload_msg').addClass("alert-success");
-  $('#picture_upload_msg').html("Your picture was uploaded successfully!");
+  $('#picture_upload_msg').html(Messages('JS_UPLOAD_SUCCESS'));
     
     
   /* Add the Picture to the end of the current Post if it is existing
@@ -145,12 +159,10 @@ function errorHandler() {
   $('#picture_upload_msg').removeClass("alert-warning");
   $('#picture_upload_msg').removeClass("alert-success");
   $('#picture_upload_msg').removeClass("alert-info");
-  $('#picture_upload_msg').addClass("alert-danger");
-  $('#picture_upload_msg').html("There seems to be a problem!<br />" +
-                   "Please make sure your file is actually a <b> picture </b>!" + 
-                   "<br /> Otherwise, there might by a network problem!");
+  $('#picture_upload_msg').addClass("alert-danger");  
+  $('#picture_upload_msg').html(Messages('JS_UPLOAD_PROBLEM'));
   $('#picture_upload_prog').css({"width" : 0});
-  $('#picture_browse_label').html("Try again ...")
+  $('#picture_browse_label').html(Messages('JS_UPLOAD_TRYAGAIN'))
 }
 
 /* Picture Upload Progress Handler */

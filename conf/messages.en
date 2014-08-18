@@ -1,0 +1,78 @@
+DARY_THE_BLOG=Dary the Blog
+SIGN_UP=Sign Up
+MY_BLOG=My Blog
+SIGNED_IN_AS=Signed in as
+LOGOUT=Logout
+WRITE_AN_ARTICLE=Write a new article
+LEGAL_CONTENT_FOOTER_TEXT=The developers behind Dary do not own any of the media and texts presented on a user's blog page and do not hold any copyrights of this content. Every user is responsible for the content of his or her blog posts.
+
+FEATURED_ARTICLES=Featured articles
+NO_ARTICLES_FOUND=No articles found
+POST_HAS_NOT_BEEN_PUBLISHED=This article has not been published
+EDIT=Edit
+CREATED_ON=Created on
+WRITTEN_BY=Written by
+BACK_TO_THE_TOP=Back to the top
+
+BECOME_AN_AUTHOR=Become an author now
+FORM_CONTAINS_ERRORS=Your form contains Errors
+BLOGTITLE_OR_EMAIL=Blog-Title or Email address
+YOUR_BLOGS_TITLE=Your blog''s title
+PASSWORD=Password
+YOUR_PASSWORD=Your personal password
+LOGIN=Login to your account
+DARY_WELCOMETEXT_1=Dary is a blogging and sharing platform for everybody.
+DARY_WELCOMETEXT_2=Become an author and share your experiences with the world.
+BECOME_AN_AUTHOR_IN_SECONDS=Become an author in 10 seconds
+BLOG_TITLE=Blog-Title
+EMAIL_ADDRESS=Email Address
+YOUR_EMAIL_ADDRESS=Your email address
+PASSWORD_MIN_CHAR=Password (min. 6 characters)
+START_BLOG=Start my own Blog now
+LEGAL_INFO_PENCIL_1=This image (the pencil) is published under the 
+LEGAL_INFO_PENCIL_2=license and was created by
+LEGAL_CONDITIONS_HEADER=Please read through the conditions carefully
+LEGAL_CONDITIONS_1=Dary is a private, non-commercial project. We make daily backups of all your data, yet we can not guarantee that it will be stored forever and/or that you will always be able to access the website and your data.
+LEGAL_CONDITIONS_2= We do guarentee however that none of your data is undisclosed to anyone who is not a member of the dary development team.
+LEGAL_CONDITIONS_3= We will try everything in our power to make your user-experience as convenient and secure as possible.
+CANCEL=Cancel
+LEGAL_CONDITIONS_ACCEPT=I understand and accept the conditions!
+
+EDIT_POST=Edit existing article
+WRITE_NEW_ARTICLE=Write new article
+TITLE=Title
+YOUR_POST_TITLE=Your article''s title
+EDITING_INFO=You are editing an existing article. The old version will be archived but not shown in the blog anymore.
+FEATURE_THIS_POST=Feature this article
+UPLOAD_PICTURE=Upload Picture
+WRITE_ARTICLE_HERE=Write your article here
+PUBLISH_POST_NOW=Publish Article Now
+SAVE_POST=Save
+PUBLISH_QUESTION_HEADER=Are You Completely Sure You Want To publish this article right now?
+PUBLISH_QUESTION_YES=Yes, absolutely!
+PUBLISH_QUESTION_NO=No. Back to the editor.
+
+FLASH_LOGOUT_SUCCESS=You are now logged out from dary. See you soon!
+FLASH_EDIT_SUCCESS=You successfully edited an Article!
+FLASH_NEW_ARTICLE_SUCCESS=Great! You just successfully wrote an article for your blog!
+FLASH_LOGIN_SUCCESS=Hi. Welcome to your blog
+FLASH_SIGNUP_SUCCESS=Great! You successfully signed up to dary and now own a blog called
+
+VALID_LOGIN_FAIL=Wrong Blog-Title/Email and Password combination
+VALID_SIGNUP_PASSWORD_FAIL=Your Password must be at least 6 characters long
+VALID_SIGNUP_BLOGNAME_FAIL=already exists. Sorry!
+VALID_SIGNUP_EMAIL_FAIL=is already registered. Only one blog per email address is possible!
+
+JS_FEATURED_ARTICLE=Featured article
+JS_UPLOAD_PROBLEM=There seems to be a problem! Please make sure your file is actually a picture! Otherwise, there might by a network problem!
+JS_UPLOAD_TRYAGAIN=Try again...
+JS_UPLOAD_SUCCESS=Your picture was uploaded successfully!
+JS_UPLOAD_PROGRESS=Your picture is being uploaded! Please wait ...
+JS_UPLOAD_TITLE=Upload a new picture
+JS_UPLOAD_MESSAGE=Enter a Picture Title and click on <b>Browse</b> to upload a new picture! This Window closes automatically once the upload has finished.
+JS_UPLOAD_BROWSE=Browse...
+JS_UPLOAD_NOFILES=No files selected
+JS_UPLOAD_ADDINFO_TITLE=Additional and legal information ...
+JS_UPLOAD_ADDINFO_BODY=Please note that every picture you upload will be accessible by everyone via a certain link even if the Blog-Post is not published yet. Therefore, make sure to upload pictures you are legally allowed to only!
+
+

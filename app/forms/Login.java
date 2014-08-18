@@ -5,6 +5,7 @@ import play.data.validation.Constraints.Required;
 import dao.UserDAO;
 
 import play.Logger;
+import play.i18n.Messages;
 
 /* 	Login Form Class 
 	Not sure whether it belongs here but found it in the Play Doc
@@ -26,7 +27,7 @@ public class Login {
     public String validate() {
         logger.debug("Login class validator");
         if (findUser() == null)
-            return "Wrong Blogname/Mail - Password combination";
+            return Messages.get("VALID_LOGIN_FAIL");
         return null;
     }
 	

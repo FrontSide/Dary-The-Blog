@@ -1,6 +1,8 @@
 @(blogname: String, posts: List[Post], featured: List[Long], user: User)
 
-@templ(title = "The Dary Blog", user){ 
+@import play.i18n._
+
+@templ(title = blogname, user){ 
    
    
    <!-- Load Profile Picture (clickable for modal if this is user's blog) -->
@@ -25,7 +27,7 @@
             data-toggle="collapse" 
             data-target="#blog-navbar-collapse">         
         <i class="fa fa-star"></i>
-        Featured Articles
+        @Messages.get("FEATURED_ARTICLES")
     </button>
         
     <!-- Featured Posts NavBar -->
@@ -85,7 +87,7 @@
     @if(user != null && blogname == user.blogname) {
         <a href="/new" class="btn btn-primary btn-lg btn-block"> 
             <span class="fa fa-pencil"></span>
-            Write a new Article 
+            @Messages.get("WRITE_AN_ARTICLE") 
         </a>
         <hr />
     }
@@ -94,7 +96,7 @@
     @if(posts.length == 0) {
         <center class="gray">
             <span class="fa fa-warning"></span>
-            No Articles Found
+            @Messages.get("NO_ARTICLES_FOUND")
         </center>
     }
     
@@ -111,14 +113,18 @@
                     } else {
                         <div class="label label-bloghead label-warning">
                             <span class="fa fa-lock"></span>
-                            This Post has not been published
+                            @Messages.get("POST_HAS_NOT_BEEN_PUBLISHED")
                         </div>
                     }
                 <!-- call special getter for Date -->
-                <span class="label label-bloghead"> created on <b> @p.getCreDate() </b> </span>
+                <span class="label label-bloghead"> 
+                    @Messages.get("CREATED_ON") 
+                    <b> @p.getCreDate() </b> 
+                </span>
                 @if(user != null && blogname == user.blogname) {
                     <a href="/edit/@p.id">
-                        <span class="label label-bloghead label-danger">Edit
+                        <span class="label label-bloghead label-danger">
+                            @Messages.get("EDIT")
                             <span class="fa fa-pencil"></span>
                         </span>
                     </a>
@@ -129,10 +135,10 @@
                 <br />             
                 @Html(p.content) 
                 <hr /> 
-                <p class="blog-post-footer"> written by 
+                <p class="blog-post-footer"> @Messages.get("WRITTEN_BY") 
                     <a href="/blog/@blogname"> @blogname </a> |
                     <span class="scrollToTopLink">
-                        <a> Back to the Top </a>
+                        <a> @Messages.get("BACK_TO_THE_TOP") </a>
                     </span>
                 </p>
             </div>

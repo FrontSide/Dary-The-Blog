@@ -5,6 +5,7 @@ import dao.*;
 import views.html.*;
 
 import play.mvc.*;
+import play.i18n.Messages;
 
 import play.Logger;
 import play.data.Form;
@@ -65,8 +66,8 @@ public class EditPost extends Controller {
         logger.debug("init persistence in Database");
         new PostDAO().create(post); 
 
-        //Success flash
-        flash("success", "OK! You successfully edited an Article!");
+        //Success flash        
+        flash("success", Messages.get("FLASH_EDIT_SUCCESS"));
 
         logger.debug("render blog view");
         return redirect("/blog/" + session("user"));

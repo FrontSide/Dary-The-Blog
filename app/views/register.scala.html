@@ -3,11 +3,12 @@
 
 <!-- Form Helper -->
 @import helper._
+@import play.i18n._
 
 <!-- Use self-made field constructor -->
 @implicitField = @{ FieldConstructor(custom_field_constructor.f) }
 
-@templ(title = "Become An Author and Share Your Experiences", user){    
+@templ(title = Messages.get("BECOME_AN_AUTHOR"), user){    
 
     <div class="row">
         <div class="col-md-6 loginformbox" id="loginformbox"> 
@@ -15,7 +16,7 @@
             @if(loginForm.hasErrors){
             <div id="formalert-login" class="alert alert-danger fade in" >
                 <span class="glyphicon glyphicon-flash"></span> 
-                Your form contains errors!
+                @Messages.get("FORM_CONTAINS_ERRORS")
             </div>
             }    
             
@@ -34,17 +35,17 @@
                           
                 @inputText(
                     loginForm("name"),
-                    '_label -> "Blog-Title or E-Mail Address", 
+                    '_label -> Messages.get("BLOGTITLE_OR_EMAIL"), 
                     '_label_class -> "label label-white",
                     'class -> "form-control",
-                    '_help -> "Your Blog's Title"
+                    '_help -> Messages.get("YOUR_BLOGS_TITLE")
                 )
                 
                 @inputPassword(
                     loginForm("password"),
-                    '_label -> "Password",
+                    '_label -> Messages.get("PASSWORD"),
                     '_label_class -> "label label-white",
-                    '_help -> "Enter a Password here!",
+                    '_help -> Messages.get("YOUR_PASSWORD"),
                     'class -> "form-control"
                 )
                             
@@ -52,7 +53,7 @@
 
             <button id="login_btn" type="submit" data-toggle="modal" class="btn btn-danger actions">
                 <i class="fa fa-arrow-circle-right"></i>
-                Login to your Account      
+                @Messages.get("LOGIN")
             </button>
 
             }
@@ -68,9 +69,10 @@
     <div class="row">
         
         <div class="col-md-6 loginformbox min-txt">
-            <h2>   
-                Dary is a blogging and sharing platform for everybody.<br />
-                <b>Become an author and share your experiences with the world.</b>
+            <h2>
+                @Messages.get("DARY_WELCOMETEXT_1")
+                <br />
+                <b> @Messages.get("DARY_WELCOMETEXT_2")</b>
             </h2>        
         </div>
 
@@ -81,7 +83,7 @@
             @if(signupForm.hasErrors){
             <div id="formalert-signup" class="alert alert-danger fade in" >
                 <span class="glyphicon glyphicon-flash"></span> 
-                Your form contains errors!            
+                @Messages.get("FORM_CONTAINS_ERRORS")
             </div>
             }
             
@@ -89,30 +91,30 @@
 
             <fieldset>
 
-                <legend>Become An Author in 10 Seconds</legend>
+                <legend>@Messages.get("BECOME_AN_AUTHOR_IN_SECONDS")</legend>
                             
                 @inputText(
                     signupForm("blogname"),
-                    '_label -> "Blog-Title", 
+                    '_label -> Messages.get("BLOG_TITLE"), 
                     '_label_class -> "label label-white",
                     'class -> "form-control",
-                    '_help -> "Your Blog's Title",
+                    '_help -> Messages.get("YOUR_BLOGS_TITLE"),
                     'id -> "reg_blogname"
                 )
 
                 @inputText(
                     signupForm("email"),
-                    '_label -> "E-mail Address", 
+                    '_label -> Messages.get("EMAIL_ADDRESS"), 
                     '_label_class -> "label label-white",
                     'class -> "form-control",
-                    '_help -> "Your E-mail Address"
+                    '_help -> Messages.get("YOUR_EMAIL_ADDRESS")
                 )
                 
                 @inputPassword(
                     signupForm("password"),
-                    '_label -> "Password (min. 6 characters)",
+                    '_label -> Messages.get("PASSWORD_MIN_CHAR"),
                     '_label_class -> "label label-white",
-                    '_help -> "Enter a Password here!",
+                    '_help -> Messages.get("YOUR_PASSWORD"),
                     'class -> "form-control",
                     'id -> "reg_pwd"
                 )
@@ -121,7 +123,7 @@
 
             <button id="register_btn" type="button" data-toggle="modal" class="btn btn-danger actions">
                 <i class="fa fa-share"></i>
-                Sign Up and Become An Author      
+                 @Messages.get("START_BLOG")
             </button>
 
             }
@@ -130,10 +132,12 @@
     </div>
 
     <p class="min-txt">
-        *This image (the pencil) is published under the 
+        *@Messages.get("LEGAL_INFO_PENCIL_1")
+        
         <a href="http://en.wikipedia.org/wiki/en:Creative_Commons"> Creative Commons </a> 
         <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en"> Attribution-Share Alike 3.0 Unported </a>
-        license and was created by <a href="http://commons.wikimedia.org/wiki/User:Takkk"> Takkk </a>.
+        @Messages.get("LEGAL_INFO_PENCIL_2") 
+        <a href="http://commons.wikimedia.org/wiki/User:Takkk"> Takkk </a>.
     </p>
 
     <!-- Terms of conditions in Modal -->
@@ -143,14 +147,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Please read through this <b>Conditions</b> carefully!</h4>
+                <h4 class="modal-title" id="myModalLabel">
+                    @Messages.get("LEGAL_CONDITIONS_HEADER")
+                </h4>
             </div>
             <div class="modal-body">
-                Dary is a private, non-commercial project. We make daily backups of all your data, yet we can not guarantee that it will be stored forever and/or that you will always be able to access the website and your data. <br /> We do guarentee however that <b> none </b> of your data is undisclosed to anyone who is not a member of the dary development team. <br /><br /> We will try everything in our power to make your user-experience as convenient and secure as possible.
+                @Messages.get("LEGAL_CONDITIONS_1")<br />
+                @Messages.get("LEGAL_CONDITIONS_2")<br /><br />
+                @Messages.get("LEGAL_CONDITIONS_3")                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button id="register_terms_accept_send" type="button" class="btn btn-primary">I understand and accept this conditions</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    @Messages.get("CANCEL")
+                </button>
+                <button id="register_terms_accept_send" type="button" class="btn btn-primary">
+                    @Messages.get("LEGAL_CONDITIONS_ACCEPT")
+                </button>
             </div>
         </div>
       </div>

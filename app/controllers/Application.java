@@ -1,6 +1,7 @@
 package controllers;
 
 import play.mvc.*;
+import play.i18n.Messages;
 import java.util.*;
 
 import models.*;
@@ -34,8 +35,8 @@ public class Application extends Controller {
         /* Destroy User session and Return to Login-Page */
         session().clear();
 
-        //Success flash
-        flash("info", "You are now logged out from dary. See you soon!");
+        //Success flash        
+        flash("info", Messages.get("FLASH_LOGOUT_SUCCESS"));
 
         return UserController.signup();
     }
@@ -56,7 +57,7 @@ public class Application extends Controller {
         List<Long> featuredPostsId = Post.getFeaturedPosts(publicPosts);
             if ((publicPosts.size() == 0) && (!title.equals(session("user")))) {
                 return notFound(no_posts_found.render(new UserDAO().getByBlogname(session("user"))));
-            }            
+            }                
         return ok(blog.render(title, publicPosts, featuredPostsId, 
                 new UserDAO().getByBlogname(session("user"))));
     }

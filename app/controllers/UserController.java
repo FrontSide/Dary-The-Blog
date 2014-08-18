@@ -9,6 +9,7 @@ import forms.Login;
 import java.util.Date;
 
 import play.mvc.*;
+import play.i18n.Messages;
 import play.Logger;
 import play.data.Form;
 import play.data.validation.Constraints.*;
@@ -58,8 +59,8 @@ public class UserController extends Controller {
         session().clear();
         session("user", userLog.user.blogname);
 
-        //Success flash
-        flash("success", "Hi. You successfully logged in to your blog \"" 
+        //Success flash        
+        flash("success", Messages.get("FLASH_LOGIN_SUCCESS") + " \"" 
         			+ userLog.user.blogname + "\"");
 
         return redirect("/blog/"+userLog.user.blogname);
@@ -84,9 +85,9 @@ public class UserController extends Controller {
         logger.debug("init persistence in Database");
         new UserDAO().create(user); 
 
-        //Success flash
-        flash("success", "Great! You successfully signed up to dary "
-        		+ "and now own a blog called \"" + user.blogname + "\"!");
+        //Success flash       
+        flash("success",  Messages.get("FLASH_SIGNUP_SUCCESS") 
+                                + " \"" + user.blogname + "\"!");
 
         logger.debug("render view");
         return Application.home();
