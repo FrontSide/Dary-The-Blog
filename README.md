@@ -48,7 +48,7 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 
 - [Apache Commons IO] (http://commons.apache.org/proper/commons-io/)
 
-- [JsMessage] https://github.com/julienrf/play-jsmessages
+- [JsMessage] (https://github.com/julienrf/play-jsmessages)
 
 ## Technologies
 
