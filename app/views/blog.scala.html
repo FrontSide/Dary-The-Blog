@@ -123,7 +123,7 @@
                 </span>
                 @if(user != null && blogname == user.blogname) {
                     <a href="/edit/@p.id">
-                        <span class="label label-bloghead label-danger">
+                        <span class="label label-bloghead label-danger float-right">
                             @Messages.get("EDIT")
                             <span class="fa fa-pencil"></span>
                         </span>
@@ -136,29 +136,42 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer">
-                    <a  class="btn btn-primary" data-toggle="collapse" 
+                    @if(user != null) {
+                    <a  class="btn btn-primary btn-long" data-toggle="collapse" 
                         data-parent="#accordion" href="#comments@p.id"
                         id="comments_collapse_btn">
-                        @Messages.get("COMMENTS") (@comments.count(x => x.post == p))
+                        <span class="badge pull-right"> 
+                            @comments.count(x => x.post == p)
+                        </span>
+                        @Messages.get("COMMENTS")                            
                     </a>
-                    @Messages.get("WRITTEN_BY") 
-                    <a href="/blog/@blogname"> @blogname </a> |
-                    <span class="scrollToTopLink">
-                        <a> @Messages.get("BACK_TO_THE_TOP") </a>
-                    </span>
+                    } else {
+                    <div id="footer-alert" class="alert alert-info" role="alert">
+                       @Messages.get("COMMENTS_LOGIN_INFO")
+                    </div>
+                    }
+                    <div id="footer-info" class="blog-post-footer">
+                        @Messages.get("WRITTEN_BY") 
+                        <a href="/blog/@blogname"> @blogname </a> |
+                        <span class="scrollToTopLink">
+                            <a> @Messages.get("BACK_TO_THE_TOP") </a>
+                        </span>
+                    </div>
                 </p>
                 
                 <br />
-                <!-- Comments -->
+                <!-- Comments only for logged in users -->
+                @if(user != null) {
+                <br />
                 <div id="comments@p.id" class="panel-collapse collapse">                
                     <!-- new comment -->
                     <form action="@routes.Comment.submit" id="newcomment_form">                        
                         <h4> <small>
-                            Write a comment and hit <b>Enter</b> to save it...
+                            @Messages.get("COMMENT_WRITE_AND_HIT")
                         </small> </h4>
                         <textarea   rows="2" cols="50" 
                                     data-target="@p.id"
-                                    placeholder="Comment ..."></textarea>
+                                    placeholder="@Messages.get("COMMENT")..."></textarea>
                     </form>
                     
                     <hr />
@@ -166,18 +179,33 @@
                     <!-- list of comment -->
                     <!-- ".equals()" not needed in scala 
                             (automatically ruted to from "==") -->
+                    <div id="cwrap@p.id">
                     @for(c <- comments.filter(x => x.post == p)) {
-                        <label class="comments_header">                             
-                            @Messages.get("COMMENT_WRITTEN_BY", c.user.blogname, c.getCreDate)
-                        </label>
-                        <div    class="panel-body comment-box" 
-                                id="comments_collapse_body">
-                            <h5>@c.content</h5>
-                        </div> <!-- panel body -->
+                        <div    id="comwrap@c.id" 
+                                class="comment-container loaded">
+                            <label class="comment-header full-length">
+                                @Messages.get("COMMENT_WRITTEN_BY", c.user.blogname, c.getCreDate)
+                                @if(user != null && (blogname == user.blogname || c.user.blogname == user.blogname)) {
+                                    <a  data-target="@c.id"
+                                        data-user="@c.user.blogname"
+                                        class="blog-del-com-btn float-right">
+                                        <span class="label label-bloghead label-danger">
+                                            @Messages.get("DELETE")
+                                            <b><span class="fa fa-times"></span></b>
+                                        </span>
+                                    </a>
+                                }
+                            </label>
+                            <div id="combox@p.id" class="comment-box loaded">
+                                <h5>@c.content</h5>
+                            </div> <!-- panel body -->
+                        </div><!-- comment container -->
                     }
+                    </div>
                     
                 </div> <!-- panel-collapse -->
                 
+                }
             </div>
 
         } <!-- Endif isPublished or own blog -->
@@ -186,6 +214,30 @@
     
     <!-- Upload Modal is being loaded into this div -->
     <div id="upload_modal_wrapper"></div>
+    
+    <!-- Modal to warn user about deleting a comment -->
+    <div id="blog_del_comm_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 id="blog_del_comm_quest_user" class="modal-title">
+                    <!-- String injected by JS -->
+                </h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    @Messages.get("COMMENT_DELETE_QUESTION_NO")
+                </button>
+                
+                <button id="blog_del_comm_send" 
+                        type="button" class="btn btn-primary">
+                    @Messages.get("COMMENT_DELETE_QUESTION_YES")
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
     
 }{
     <script src="/assets/javascripts/blog_control.js"></script>  

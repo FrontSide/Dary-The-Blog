@@ -18,11 +18,15 @@ FEATURED_ARTICLES=Hervorgehobene Artikel
 NO_ARTICLES_FOUND=Keine Artikel gefunden
 POST_HAS_NOT_BEEN_PUBLISHED=Dieser Artikel wurde noch nicht veröffentlicht
 EDIT=Editieren
+DELETE=Löschen
 CREATED_ON=Erstellt am
 WRITTEN_BY=Geschrieben von
 BACK_TO_THE_TOP=Zurück zum Anfang
 COMMENT_WRITTEN_BY=geschrieben von {0} am {1}
-COMMENTS=Comments=Kommentare
+COMMENTS=Kommentare
+COMMENT=Kommentar
+COMMENT_WRITE_AND_HIT=Schreib ein Kommentar und speichere es mit Enter
+COMMENTS_LOGIN_INFO=Medle dich an um Kommentare zu lesen und zu verfassen!
 
 BECOME_AN_AUTHOR=Werde ein Autor
 FORM_CONTAINS_ERRORS=Deine Angaben enthalten Fehler

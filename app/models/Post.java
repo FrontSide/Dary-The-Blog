@@ -46,6 +46,7 @@ public class Post extends Model {
     @Lob
     public String content; 
 
+    /* User who has written post */
     @OneToOne
     @JoinColumn(name = "user_id")
     public User user;

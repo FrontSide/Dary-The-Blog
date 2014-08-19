@@ -55,15 +55,16 @@ public class Application extends Controller {
     public static Result showBlog(String title) {
     
         /* TODO: UserDAO Factory */
-        User user = new UserDAO().getByBlogname(session("user"));
+        User loggedUser = new UserDAO().getByBlogname(session("user"));
+        User blogOwner = new UserDAO().getByBlogname(title);
     
         List<Post> publicPosts = (List<Post>) new PostDAO().getAllByBlogname(title);
         List<Long> featuredPostsId = Post.getFeaturedPosts(publicPosts);
             if ((publicPosts.size() == 0) && (!title.equals(session("user")))) {
-                return notFound(no_posts_found.render(user));
+                return notFound(no_posts_found.render(loggedUser));
             }                
         return ok(blog.render(title, publicPosts, featuredPostsId, 
-                new CommentDAO().getAllFromUser(user), user));
+                new CommentDAO().getAllFromUser(blogOwner), loggedUser));
     }
 
 }

@@ -33,6 +33,11 @@
         padding-top: 2px;
         padding-bottom: 2px;
     }
+    
+    .comment-container {
+        width:100%;
+        float: none;
+    }
         
 }
 

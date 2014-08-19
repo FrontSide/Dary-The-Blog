@@ -23,7 +23,7 @@ public class EditPost extends Controller {
         /* TODO: Refactoring */
         /* Check if the Post with the given ID actually belogs 
          * to the logged in User
-         *  This check should be outsourced to its own security class 
+         * !!! This check should be outsourced to its own security class !!!
          */
         if (!post.user.equals(loggedUser)) {
             logger.error("You are not authorized to edit this Post!");

@@ -48,6 +48,9 @@ public class Comment extends Model {
     @Required
     @JoinColumn(name = "user_id")
     public User user;
+    
+    /* Is deleted Flag */
+    public boolean isDeleted = false;
 
     @Formats.DateTime(pattern="dd/MM/yyy")
     public Date creDate = new Date();

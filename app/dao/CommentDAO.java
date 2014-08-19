@@ -22,10 +22,11 @@ public class CommentDAO implements DAO<Comment> {
     }
 
     public void deleteById(Long id) {
+        return;
     }
 
     public Comment getById(Long id) {
-      return null;
+      return CommentDAO.find.where().eq("id", id).findUnique();
     }
 
     public List<Comment> getAll() {
@@ -37,7 +38,14 @@ public class CommentDAO implements DAO<Comment> {
       logger.debug("Get Comments from blog \"" + model.blogname + "\"");
       return CommentDAO.find.where()
                         .eq("post.user", model)
+                        .eq("isDeleted", false)
                         .orderBy("creDate desc").findList();
+    }
+    
+    public void markAsDeleted(Comment model) {
+        logger.debug("Mark Comment " + model.id + " as deleted!");
+        model.isDeleted = true;
+        this.update(model);
     }
 
     public void update(Comment model) {

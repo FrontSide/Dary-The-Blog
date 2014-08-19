@@ -34,6 +34,14 @@ img {
     margin-left: 0px;
 }
 
+.btn.btn-long {
+    width: 150px;
+}
+
+.btn-long > .badge {
+    margin-top: 2px;
+}
+
 .navbar-nav > li > a.btn {
     color: #FFF;
     padding: 7px; 
@@ -83,6 +91,14 @@ img {
 
 .min-txt a:hover {
     text-decoration: none;
+}
+
+.full-length {
+    width: 100%
+}
+
+.float-right {
+    float:right;
 }
 
 .no-top-padding {
@@ -195,6 +211,15 @@ a > .label-danger:hover {
     font-family: "sans-serif";
 }
 
+#footer-alert {
+    width: 50%;
+    float: left;
+}
+
+#footer-info {
+    float: right;
+}
+
 #comments_collapse_btn {
     float:left;
 }
@@ -203,18 +228,35 @@ a > .label-danger:hover {
     resize: none;
 }
 
-.comments_header {
+.comment-container {
+    width:45%;
+    float: left;
+    margin-right: 5%;
+}
+
+.comment-header {
     border-left: 2px solid #428BCA;
     font-size: 10px;
     padding-left: 5px;
 }
 
-#comments_collapse_body {
+.comment-header > a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.comment-box {
     border-left: none;
     border-right: none;
     box-shadow: -2px 0px 2px -1px #aaa;
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 5px;    
+    background-color: #428bca; /* primary */
+    transition: background-color 1s ease 0s;
+}
+
+.comment-box.loaded {
+    background-color: #FFF;
 }
 
 .input #title {

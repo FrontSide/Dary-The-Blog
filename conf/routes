@@ -22,6 +22,9 @@ POST    /edit/submit                 controllers.EditPost.submit()
 # New Comment Submit
 POST    /new/comment                 controllers.Comment.submit()
 
+# Delete Comment Submit
+POST    /comment/delete              controllers.Comment.remove()
+
 # Picture Upload Submit
 POST    /new/picture                 controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = false)
 POST    /new/profilepicture          controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = true)
