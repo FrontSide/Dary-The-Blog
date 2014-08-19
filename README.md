@@ -10,11 +10,11 @@ Currently available in English and German.
 - Picture Upload (directly into Article)
 - Featured Posts (Display as Buttons)
 - Profile Picture Upload
+- Commenting
 
 Features in development
 
 - View Counter
-- Commenting
 - User Settings
 - Article Version Control *not before v1.2*
 
@@ -61,7 +61,7 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 
 ## Development
 
-v0.2.1-BETA
+v0.2.3-BETA
 This is the public BETA that is consequently updated
 [www.dary.info] (http://www.dary.info)
 
