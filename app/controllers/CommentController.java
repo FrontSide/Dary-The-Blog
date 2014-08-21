@@ -11,9 +11,9 @@ import play.i18n.Messages;
 import play.Logger;
 import play.data.Form;
 
-public class Comment extends Controller {
+public class CommentController extends Controller {
 
-    final static Logger.ALogger logger = Logger.of(Comment.class);
+    final static Logger.ALogger logger = Logger.of(CommentController.class);
    
     /* ------ Submit ------ */
     @Security.Authenticated(Secured.class)
@@ -27,7 +27,7 @@ public class Comment extends Controller {
         String content = postValues.get("content")[0];
         Long postId = Long.parseLong(postValues.get("post")[0]);
 
-        models.Comment comment = new models.Comment();
+        Comment comment = new Comment();
         comment.content = content;
         comment.user = new UserDAO().getByBlogname(session("user"));
         comment.post = new PostDAO().getById(postId);
@@ -49,7 +49,7 @@ public class Comment extends Controller {
         
         /* Get Comment woth ID -- check existence */
         CommentDAO dao = new CommentDAO();
-        models.Comment c = null;
+        Comment c = null;
         try {
             c = dao.getById(commentId); 
         } catch (NullPointerException e) {
@@ -76,7 +76,8 @@ public class Comment extends Controller {
         logger.error("User " + loggedUser.blogname 
                             + "is NOT allowed to delete comment with id :: " 
                             + c.id);
-        return forbidden();
+                            
+        return Application.noAllow();
         
     }
 

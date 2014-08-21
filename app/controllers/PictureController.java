@@ -23,9 +23,9 @@ import org.apache.commons.io.FileUtils;
 
 import play.libs.Json;
 
-public class PictureHandler extends Controller {
+public class PictureController extends Controller {
 
-    final static Logger.ALogger logger = Logger.of(PictureHandler.class);
+    final static Logger.ALogger logger = Logger.of(PictureController.class);
 
     /* Path for uploaded Pictures to be stored on Filesystem 
         and loaded on web respectively */

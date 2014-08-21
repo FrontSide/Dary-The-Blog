@@ -14,20 +14,23 @@ GET     /messages.js                 controllers.JsMessageGetter.jsMessages()
 
 ### Form Submits
 # New entry Submit
-POST    /new/submit                  controllers.NewPost.submit()
+POST    /new/submit                  controllers.PostController.create()
 
 # Edit entry Submit
-POST    /edit/submit                 controllers.EditPost.submit() 
+POST    /edit/submit                 controllers.PostController.update() 
+
+# Delete entry Submit
+POST    /delete/submit               controllers.PostController.delete()
 
 # New Comment Submit
-POST    /new/comment                 controllers.Comment.submit()
+POST    /comment/new                 controllers.CommentController.submit()
 
 # Delete Comment Submit
-POST    /comment/delete              controllers.Comment.remove()
+POST    /comment/delete              controllers.CommentController.remove()
 
 # Picture Upload Submit
-POST    /new/picture                 controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = false)
-POST    /new/profilepicture          controllers.PictureHandler.uploadPicture(isProfilePicture:Boolean = true)
+POST    /new/picture                 controllers.PictureController.uploadPicture(isProfilePicture:Boolean = false)
+POST    /new/profilepicture          controllers.PictureController.uploadPicture(isProfilePicture:Boolean = true)
 
 # Login Submit
 POST    /login/submit                controllers.UserController.submitLogin()
@@ -43,6 +46,6 @@ POST    /avail/:title                controllers.UserController.checkBlognameAva
 GET     /assets/*file                controllers.Assets.at(path="/public", file)
 
 # Load Picture from Filesystem
-GET     /p/:filename                       controllers.PictureHandler.loadPicture(filename : String)
+GET     /p/:filename                 controllers.PictureController.loadPicture(filename : String)
 
 

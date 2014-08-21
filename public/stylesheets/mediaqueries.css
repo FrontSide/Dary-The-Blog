@@ -1,4 +1,15 @@
 /* Breakpoint value taken from Bootstrap's website */
+
+@media (max-width: 1200px) {
+       
+    #footer-alert {
+        width: 100%;
+        float: none;
+        clear:both;
+    }
+
+}
+
 @media (max-width: 768px) {
     .content-body {  
        border-left: none;
@@ -38,7 +49,7 @@
         width:100%;
         float: none;
     }
-        
+         
 }
 
 @media (max-width: 450px) {
@@ -49,6 +60,10 @@
     #blog-navbar-collapse-btn-block {
         display:block;
         float:none;
+    }
+    
+    .btn.btn-long {
+        width: 100%;
     }
 }
 

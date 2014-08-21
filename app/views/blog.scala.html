@@ -6,7 +6,7 @@
    
    
    <!-- Load Profile Picture (clickable for modal if this is user's blog) -->
-    <img    src="/p/@PictureHandler.getProfilePicturePath(blogname)"
+    <img    src="/p/@PictureController.getProfilePicturePath(blogname)"
             class="pic-profile-small hidden-xs" alt="@blogname"
             
         @if(user != null && blogname == user.blogname) {
@@ -39,7 +39,7 @@
         </div>
         
         <a class="navbar-brand no-top-padding no-left-padding">
-            <img    src="/p/@PictureHandler.getProfilePicturePath(blogname)"
+            <img    src="/p/@PictureController.getProfilePicturePath(blogname)"
                     class="pic-profile-innav visible-xs" alt="@blogname"
                 
             @if(user != null && blogname == user.blogname) {
@@ -136,6 +136,15 @@
                 @Html(p.content) 
                 <hr /> 
                 <p class="blog-post-footer">
+                
+                    <div id="footer-info" class="blog-post-footer">
+                        @Messages.get("WRITTEN_BY") 
+                        <a href="/blog/@blogname"> @blogname </a> |
+                        <span class="scrollToTopLink">
+                            <a> @Messages.get("BACK_TO_THE_TOP") </a>
+                        </span>
+                    </div>
+                
                     @if(user != null) {
                     <a  class="btn btn-primary btn-long" data-toggle="collapse" 
                         data-parent="#accordion" href="#comments@p.id"
@@ -145,30 +154,28 @@
                         </span>
                         @Messages.get("COMMENTS")                            
                     </a>
+                                        
                     } else {
                     <div id="footer-alert" class="alert alert-info" role="alert">
                        @Messages.get("COMMENTS_LOGIN_INFO")
                     </div>
                     }
-                    <div id="footer-info" class="blog-post-footer">
-                        @Messages.get("WRITTEN_BY") 
-                        <a href="/blog/@blogname"> @blogname </a> |
-                        <span class="scrollToTopLink">
-                            <a> @Messages.get("BACK_TO_THE_TOP") </a>
-                        </span>
-                    </div>
+                    
                 </p>
                 
-                <br />
                 <!-- Comments only for logged in users -->
                 @if(user != null) {
                 <br />
                 <div id="comments@p.id" class="panel-collapse collapse">                
                     <!-- new comment -->
-                    <form action="@routes.Comment.submit" id="newcomment_form">                        
-                        <h4> <small>
+                    <br />
+                    <hr />
+                    <form action="@routes.CommentController.submit" id="newcomment_form">
+                        <h4> 
+                            <small>
                             @Messages.get("COMMENT_WRITE_AND_HIT")
-                        </small> </h4>
+                            </small> 
+                        </h4>
                         <textarea   rows="2" cols="50" 
                                     data-target="@p.id"
                                     placeholder="@Messages.get("COMMENT")..."></textarea>

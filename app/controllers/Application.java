@@ -66,5 +66,10 @@ public class Application extends Controller {
         return ok(blog.render(title, publicPosts, featuredPostsId, 
                 new CommentDAO().getAllFromUser(blogOwner), loggedUser));
     }
+    
+    /* 403 forbidden redirect */
+    public static Result noAllow() {
+        return forbidden(e403.render());
+    }
 
 }

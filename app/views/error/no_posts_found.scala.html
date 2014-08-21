@@ -1,10 +1,13 @@
 @import play.mvc.Http._
+@import play.i18n._
 
 @(user: User)
 
-@templ(title = "Sorry. Page Not Found. 404", user){
-    <h2> Mhhh. Nothing seems to be here. </h2>
-    <h3><b> There are either no public posts or this blog doesn't exist! </b></h3>
+@templ(title = play.i18n.Messages.get("BLOG_NO_EXIST"), user){
+    <center class="gray">
+        <span class="fa fa-warning"></span>
+        @play.i18n.Messages.get("BLOG_NO_EXIST")
+    </center>
 }{
     
 }

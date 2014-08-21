@@ -14,6 +14,10 @@ LOGOUT=Ausloggen
 WRITE_AN_ARTICLE=Neuen Artikel verfassen
 LEGAL_CONTENT_FOOTER_TEXT=Die Entwickler hinter Dary besitzen keine der Medien und Texte die in den Artikeln der User erscheinen und halten keine Urheberrechte für den Inhalt. Jeder User und jede Userin ist verantwortlich für den Inhalt auf seinem oder ihrem Blog.
 
+BLOG_NO_EXIST=Dieser Blog existiert nicht!
+ERROR_404=Die Seite wurde nicht gefunden!
+ERROR_403=Diese Aktion ist nich erlaubt! Der Vorfall wird gemeldet!
+
 FEATURED_ARTICLES=Hervorgehobene Artikel
 NO_ARTICLES_FOUND=Keine Artikel gefunden
 POST_HAS_NOT_BEEN_PUBLISHED=Dieser Artikel wurde noch nicht veröffentlicht
@@ -57,6 +61,7 @@ WRITE_NEW_ARTICLE=Neuen Artikel verfassen
 TITLE=Titel
 YOUR_POST_TITLE=Titel deines Artikels
 EDITING_INFO=Du editierst einen bestehenden Artikel. Die alte Version wird archiviert, aber nicht mehr im Blog aufgefüht.
+DELETING_INFO=Um versehentliches Löschen vorzubeugen, müssen zuerst alle obrigen Eingabefelder leer sein. Erst wenn sich kein Text mehr in den Eingabefeldern befindet wird diese Schaltfläche aktiviert!
 FEATURE_THIS_POST=Diesen Artikel hervorheben
 UPLOAD_PICTURE=Bild hochladen
 WRITE_ARTICLE_HERE=Verfasse hier deinen Artikel
@@ -65,6 +70,7 @@ SAVE_POST=Speichern
 PUBLISH_QUESTION_HEADER=Bist du absolut sicher, dass du diesen Artikel jetzt veröffentlichen möchtest?
 PUBLISH_QUESTION_YES=Ja, absolut!
 PUBLISH_QUESTION_NO=Nein. Zurück um Editor.
+DELETE_POST=Artikel löschen
 
 FLASH_LOGOUT_SUCCESS=Du bist jetzt abgemeldet von Dary. Bis dann!
 FLASH_EDIT_SUCCESS=Du hast erfolgreich einen Artikle editiert!

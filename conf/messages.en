@@ -6,6 +6,10 @@ LOGOUT=Logout
 WRITE_AN_ARTICLE=Write a new article
 LEGAL_CONTENT_FOOTER_TEXT=The developers behind Dary do not own any of the media and texts presented on a user's blog page and do not hold any copyrights of this content. Every user is responsible for the content of his or her blog posts.
 
+BLOG_NO_EXIST=This Blog does not exist!
+ERROR_404=This page couldn't be found!
+ERROR_403=You are not allowed to do this! This incident will be reportet!
+
 FEATURED_ARTICLES=Featured articles
 NO_ARTICLES_FOUND=No articles found
 POST_HAS_NOT_BEEN_PUBLISHED=This article has not been published
@@ -52,6 +56,8 @@ WRITE_NEW_ARTICLE=Write new article
 TITLE=Title
 YOUR_POST_TITLE=Your article''s title
 EDITING_INFO=You are editing an existing article. The old version will be archived but not shown in the blog anymore.
+DELETING_INFO=To prevent accidental deletion of an article, it is necessary to first remove all content from the input fields above. Only after there is no more text in the fields this button will be enabled!
+DELETE_QUESTION_HEADER=Do you really want to irrevocalby delete this article?
 FEATURE_THIS_POST=Feature this article
 UPLOAD_PICTURE=Upload Picture
 WRITE_ARTICLE_HERE=Write your article here
@@ -60,6 +66,7 @@ SAVE_POST=Save
 PUBLISH_QUESTION_HEADER=Are You Completely Sure You Want To publish this article right now?
 PUBLISH_QUESTION_YES=Yes, absolutely!
 PUBLISH_QUESTION_NO=No. Back to the editor.
+DELETE_POST=Delete article
 
 FLASH_LOGOUT_SUCCESS=You are now logged out from dary. See you soon!
 FLASH_EDIT_SUCCESS=You successfully edited an Article!

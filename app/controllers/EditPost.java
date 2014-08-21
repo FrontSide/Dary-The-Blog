@@ -3,6 +3,7 @@ package controllers;
 import models.*;
 import dao.*;
 import views.html.*;
+import views.html.error.*;
 
 import play.mvc.*;
 import play.i18n.Messages;
@@ -18,6 +19,11 @@ public class EditPost extends Controller {
     public static Result edit(Long id) {
 
         Post post = new PostDAO().getById(id);
+        
+        /* chek if this post has already been deleted/archived 
+            or ID doesn't exist'*/
+        if (post == null || post.isArchived) return notFound(e404.render());
+        
         User loggedUser = new UserDAO().getByBlogname(session("user"));
 
         /* TODO: Refactoring */
@@ -26,8 +32,9 @@ public class EditPost extends Controller {
          * !!! This check should be outsourced to its own security class !!!
          */
         if (!post.user.equals(loggedUser)) {
-            logger.error("You are not authorized to edit this Post!");
-            return redirect(routes.Application.home()); 
+            logger.error("User " + loggedUser.blogname 
+                            + " is not authorized to edit this Post!");
+            return Application.noAllow();
         }
 
         logger.debug("called edit post"); 
@@ -60,6 +67,7 @@ public class EditPost extends Controller {
         /* Bind Form and Create new Post with new ID */
         Post post = filledForm.get();   
         post.rootPost = new PostDAO().getById(oldId);
+        
         post.id = null; //Remove old ID so new one will be generated
         post.user = new UserDAO().getByBlogname(session("user"));
 

@@ -66,7 +66,42 @@ $('#newpost_feature_btn').click(function () {
                 Messages('FEATURE_THIS_POST'));
             $('#newpost_feature_btn').removeClass("btn-warning")        
         }
+        
 });
+
+/* Delete Article */
+$('#newpost_delete_btn_wrapper').mouseenter(function() {
+    if($('#newpost_delete_btn').prop("disabled")) {
+        $('#newpost_delete_info').css('display', 'block')
+    }    
+});
+
+$('#newpost_delete_btn_wrapper').mouseout(function() {
+    $('#newpost_delete_info').css('display', 'none')
+});
+
+$("#content").keyup(function(){
+    changeDeleteButtonEnabled()
+});
+
+$("#title").keyup(function(){
+   changeDeleteButtonEnabled()
+}); 
+
+function changeDeleteButtonEnabled() {
+     if ($("#content").val().trim() === '' && $('#title').val().trim() === '') {
+        $('#newpost_delete_btn').removeAttr("disabled")
+    } else {
+        $('#newpost_delete_btn').attr("disabled", "disabled")
+    }
+}
+
+$('#newpost_delete_btn').click(function(){
+    $('#newpost_delete_modal').modal('show')
+});
+
+
+/**/
 
 /* On Load */
 $(document).ready(function() {

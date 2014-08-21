@@ -16,7 +16,7 @@
         </div>
     }
 
-    @helper.form(action = if(isEditing) { routes.EditPost.submit } else { routes.NewPost.submit }, 'id -> "newpost_form") {    
+    @helper.form(action = if(isEditing) { routes.PostController.update } else { routes.PostController.create }, 'id -> "newpost_form") {    
        
         <fieldset>
             <legend>
@@ -88,7 +88,7 @@
         
         <!-- Buttons/Submit are handled in submitcontrol.js -->
         <!-- Publish Button -->
-        <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-danger actions" disabled>
+        <button id="newpost_pub_inst_btn" type="button" data-toggle="modal" class="btn btn-success actions" disabled>
             <span class="glyphicon glyphicon-bullhorn"> </span>
             @Messages.get("PUBLISH_POST_NOW")
         </button>
@@ -98,6 +98,27 @@
             <span class="glyphicon glyphicon-floppy-disk"> </span>
             @Messages.get("SAVE_POST")
         </button>
+        
+        @if(isEditing) {
+            <!-- Delete Article Button -->
+            <div id="newpost_delete_btn_wrapper" class="float-right">            
+                                            
+                <button id="newpost_delete_btn" type="button"
+                            class="btn btn-danger actions" 
+                            disabled>
+                    <span class="fa fa-trash-o"> </span>
+                    @Messages.get("DELETE_POST")
+                </button>
+            
+            </div>
+            
+            <div    id="newpost_delete_info" 
+                    class="alert alert-danger fade in nodisplay">
+                @Messages.get("DELETING_INFO")                    
+            </div>
+            
+        }
+        
 
         <!-- Modal to warn user about instant publishing -->
         <div id="newpost_pub_inst_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -122,6 +143,39 @@
         </div>     
 
     } <!-- End of NewPost Form -->
+    
+    
+    <!-- Modal to warn user about deleting post -->
+    <div id="newpost_delete_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                @Messages.get("DELETE_QUESTION_HEADER")
+                </h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    @Messages.get("PUBLISH_QUESTION_NO")
+                </button>
+                
+                <form   id="newpost_delete_form" method="post"
+                            action="@routes.PostController.delete" >
+                    <!-- Hidden Field with id of post to delete -->
+                    <input  type="hidden" id="newpost_delete_hidden_id" 
+                            name="id" value="@newPostForm("id").value"> 
+                                
+                    <button id="newpost_delete_send" type="submit" 
+                            class="btn btn-danger">
+                        @Messages.get("PUBLISH_QUESTION_YES")
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div> 
     
     <!-- Upload Modal is being loaded into this div -->
     <div id="upload_modal_wrapper"></div>

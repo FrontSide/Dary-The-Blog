@@ -54,10 +54,13 @@ public class PostDAO implements DAO<Post> {
     }
     
     public void markByIdAsArchived(Long id) {
-      logger.debug("Mark Post with id \"" + id + "\" as archived!");
-      Post model = PostDAO.find.where().eq("id", id).findUnique();
-      model.isArchived = true;
-      update(model);
+        logger.debug("Mark Post with id \"" + id + "\" as archived!");
+        markAsArchived(PostDAO.find.where().eq("id", id).findUnique());
+    }
+    
+    public void markAsArchived(Post model) {
+        model.isArchived = true;
+        update(model);
     }
 
     public void update(Post model) {
