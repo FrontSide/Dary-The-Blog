@@ -12,6 +12,20 @@ $(".scrollToTopLink").click(function() {
 });
 
 $(".scrollToIdLink").click(function() {
-    $("html, body").animate({ scrollTop: $($(this).attr('data-target')).offset().top-10 }, 1000);
+
+    var targetID = $(this).attr('data-target')
+    console.log("scroll to :: " + targetID)
+            
+    /* For a visual color-transition effect 
+        remove the loaded class (if existing) and load it again */
+     $(targetID).removeClass('loaded');
+
+    $("html, body").animate({ scrollTop: $(targetID).offset().top-10 }, 1000);
+    
+    /* Initialize color transition by removing 'loading' css class */        
+    setTimeout(function(){
+      $(targetID).addClass('loaded');
+    }, 500);
+    
 });
 

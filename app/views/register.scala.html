@@ -11,7 +11,7 @@
 @templ(title = Messages.get("BECOME_AN_AUTHOR"), user){    
 
     <div class="row">
-        <div class="col-md-6 loginformbox" id="loginformbox"> 
+        <div class="col-md-6 loginformbox loaded" id="loginformbox"> 
             <!-- Login Form --> 
             @if(loginForm.hasErrors){
             <div id="formalert-login" class="alert alert-danger fade in" >
@@ -60,7 +60,7 @@
 
         </div>
 
-        <div class="col-md-6 loginformbox">
+        <div class="col-md-6 loginformbox loaded">
             <!-- Logo .. or something -->
             <img id="biglogo" src="/assets/images/logo_big.png" />
         </div>
@@ -68,7 +68,7 @@
 
     <div class="row">
         
-        <div class="col-md-6 loginformbox min-txt">
+        <div class="col-md-6 loginformbox loaded min-txt">
             <h2>
                 @Messages.get("DARY_WELCOMETEXT_1")
                 <br />
@@ -78,7 +78,7 @@
 
     <!-- Sign Up Form -->
 
-        <div class="col-md-6 loginformbox" id="signupformbox">
+        <div class="col-md-6 loginformbox loaded" id="signupformbox">
 
             @if(signupForm.hasErrors){
             <div id="formalert-signup" class="alert alert-danger fade in" >

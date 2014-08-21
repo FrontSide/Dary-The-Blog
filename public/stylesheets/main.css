@@ -68,6 +68,11 @@ img {
 
 .loginformbox {
     padding: 30px;
+    background-color: #428bca; /* primary */
+    transition: background-color 1s ease 0s;
+}
+
+.loginformbox.loaded {
     background-color: #FFF;
 }
 

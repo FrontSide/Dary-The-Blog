@@ -51,12 +51,20 @@
         </div> 
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
-                @if(user == null) { 
+                @if(user == null) {
+                    <li><a  data-target="#loginformbox" 
+                            href="/#loginformbox" 
+                            class="scrollToIdLink">
+                            <i class="fa fa-arrow-circle-right"></i>
+                            @Messages.get("LOGIN")
+                        </a>
+                    </li>
                     <li><a  data-target="#signupformbox" 
                             href="/#signupformbox" 
                             class="scrollToIdLink">
                             <i class="fa fa-share"></i>
-                            @Messages.get("SIGN_UP")
+                            <b>@Messages.get("START_BLOG")</b>
+                            </b>
                         </a>
                     </li>
                 } else {                    
