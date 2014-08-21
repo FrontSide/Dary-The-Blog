@@ -63,8 +63,7 @@ public class Application extends Controller {
             if ((publicPosts.size() == 0) && (!title.equals(session("user")))) {
                 return notFound(no_posts_found.render(loggedUser));
             }                
-        return ok(blog.render(title, publicPosts, featuredPostsId, 
-                new CommentDAO().getAllFromUser(blogOwner), loggedUser));
+        return ok(blog.render(title, publicPosts, featuredPostsId, loggedUser));
     }
     
     /* 403 forbidden redirect */

@@ -1,0 +1,26 @@
+@import play.mvc.Http._
+@import play.i18n._
+
+@()
+
+@templ(title = "Impressum", null){
+   
+    <div class="gray">
+    
+        David Rieger
+    
+        <span class="fa fa-envelope"></span>
+        @play.i18n.Messages.get("MAIL") 
+        david.rieger.at&#46;gmail.com
+        
+        <img src="/assets/images/austria_flag_small.png" />
+        Austria
+        
+    </div>
+    
+       
+}{
+    
+}
+
+

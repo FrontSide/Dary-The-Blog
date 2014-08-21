@@ -1,12 +1,13 @@
 body {
     padding-top: 20px;
+        
     background-color: #f8f8f8;
 
-    background: -webkit-linear-gradient(left, #f8f8ff , #fff); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #f8f8ff , #fff); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #f8f8ff , #fff); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #f8f8ff , #fff); /* Standard syntax (must be last) */
-
+    background: -webkit-linear-gradient(left, #f7f7ff , #fff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #f7f7ff , #fff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #f7f7ff , #fff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #f7f7ff , #fff); /* Standard syntax (must be last) */
+    
 }
 
 footer {

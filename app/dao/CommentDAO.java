@@ -2,6 +2,7 @@ package dao;
 
 import models.Comment;
 import models.User;
+import models.Post;
 import java.util.List;
 
 import play.Logger;
@@ -35,7 +36,7 @@ public class CommentDAO implements DAO<Comment> {
 
     /* Fetch all Comments from a U */
     public List<Comment> getAllFromUser(User model) {
-      logger.debug("Get Comments from blog \"" + model.blogname + "\"");
+      logger.debug("Get Comments from user " + model.blogname);
       return CommentDAO.find.where()
                         .eq("post.user", model)
                         .eq("isDeleted", false)

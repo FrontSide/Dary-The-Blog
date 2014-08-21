@@ -78,7 +78,19 @@ public class Post extends Model {
     /* Every newer version is assigned a rootPost i.e. 
        the post that this one is made of 
        only has a value if rootPost was edited */
+    @OneToOne
+    @JoinColumn(name = "root_post_id")
     public Post rootPost;
+    
+    /* Checks if a comment belongs to this Post or to its root post 
+        RECURSIVE untill no rootPost encountered
+        invoced in blog.scala.html */
+    public boolean belongsToComment(Comment c) {
+        if (c.post.equals(this)) return true;
+        if (rootPost == null)  return false;
+        if (rootPost.belongsToComment(c)) return true;
+        return false;
+    }
     
     /** Setter and Getter are automatically generated from play.
       * However, if you want to create your own getters/setters 

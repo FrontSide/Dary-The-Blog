@@ -55,7 +55,7 @@ $('#newcomment_form > textarea').keypress(function (e) {
     
     var comment_content = $(this).val()
     
-    $.post("/new/comment", 
+    $.post("/comment/new", 
         { 
             post: post_id, 
             content: comment_content

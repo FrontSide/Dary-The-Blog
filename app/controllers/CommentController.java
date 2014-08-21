@@ -5,6 +5,8 @@ import dao.*;
 import views.html.*;
 
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 import play.mvc.*;
 import play.i18n.Messages;
@@ -15,8 +17,18 @@ public class CommentController extends Controller {
 
     final static Logger.ALogger logger = Logger.of(CommentController.class);
    
+    /* Require all Comments from a blog-post */
+    public static List<Comment> require(Post post, String blogname) {
+        
+        List<Comment> comments = new ArrayList<Comment>();
+        for (Comment c : new CommentDAO().getAllFromUser(
+                                new UserDAO().getByBlogname(blogname))) {
+            if (post.belongsToComment(c)) comments.add(c); 
+        }    
+        return comments;
+    }
+   
     /* ------ Submit ------ */
-    @Security.Authenticated(Secured.class)
     public static Result submit() {
 
         logger.debug("new comment submitted");
@@ -29,7 +41,14 @@ public class CommentController extends Controller {
 
         Comment comment = new Comment();
         comment.content = content;
-        comment.user = new UserDAO().getByBlogname(session("user"));
+        
+        //check if commenter is a logged in user otherwise user is null        
+        try {
+            comment.user = new UserDAO().getByBlogname(session("user"));
+        } catch (NullPointerException e) {
+            logger.error("Not logged user adds comment");
+        }
+        
         comment.post = new PostDAO().getById(postId);
 
         logger.debug("init persistence in Database");

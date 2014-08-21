@@ -81,7 +81,7 @@ public class User extends Model {
         logger.debug("Hash password!");
         return DigestUtils.sha1Hex(clear);
     }
-
+    
     /* Validator for Registration */
     private final Map<String, List<ValidationError>> validationErrors = 
         new HashMap<String, List<ValidationError>>();
