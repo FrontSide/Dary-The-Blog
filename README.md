@@ -1,7 +1,7 @@
 # Dary-The-Blog
 
 A Blogging Web-App written in Java using the Framework Play.
-Official Website : [www.dary.info] (http://www.dary.info)
+Official Website: [www.dary.info] (http://www.dary.info)
 
 Currently available in English and German.
 
