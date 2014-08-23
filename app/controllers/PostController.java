@@ -5,6 +5,8 @@ import dao.*;
 import views.html.*;
 
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 import play.mvc.*;
 import play.i18n.Messages;
@@ -15,6 +17,13 @@ public class PostController extends Controller {
 
     final static Logger.ALogger logger = Logger.of(PostController.class);
     
+    /* Filter featured posts from list of posts */
+    public static List<Post> filterFeatured(List<Post> posts) {
+        List<Post> featured = new ArrayList<Post>();
+        for (Post p : posts) if (p.isFeatured && p.isPublished) featured.add(p);
+        return featured;
+    }        
+        
     /* Create a new Post */
     public static Result create() {
         return NewPost.submit();

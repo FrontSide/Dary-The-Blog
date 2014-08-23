@@ -19,13 +19,13 @@ public class EditPost extends Controller {
     public static Result edit(Long id) {
 
         Post post = new PostDAO().getById(id);
+        User loggedUser = new UserDAO().getByBlogname(session("user"));
         
         /* chek if this post has already been deleted/archived 
             or ID doesn't exist'*/
-        if (post == null || post.isArchived) return notFound(e404.render());
-        
-        User loggedUser = new UserDAO().getByBlogname(session("user"));
-
+        if (post == null || post.isArchived) return notFound(
+                                                    e404.render(loggedUser));
+               
         /* TODO: Refactoring */
         /* Check if the Post with the given ID actually belogs 
          * to the logged in User

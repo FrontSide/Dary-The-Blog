@@ -13,6 +13,7 @@ SIGNED_IN_AS=Angemeldet als
 LOGOUT=Ausloggen
 WRITE_AN_ARTICLE=Neuen Artikel verfassen
 LEGAL_CONTENT_FOOTER_TEXT=Die Entwickler hinter Dary besitzen keine der Medien und Texte die in den Artikeln der User erscheinen und halten keine Urheberrechte für den Inhalt. Jeder User und jede Userin ist verantwortlich für den Inhalt auf seinem oder ihrem Blog.
+ABOUT=Impressum
 
 BLOG_NO_EXIST=Dieser Blog existiert nicht!
 ERROR_404=Die Seite wurde nicht gefunden!

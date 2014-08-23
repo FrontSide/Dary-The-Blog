@@ -4,10 +4,11 @@ MY_BLOG=My Blog
 SIGNED_IN_AS=Signed in as
 LOGOUT=Logout
 WRITE_AN_ARTICLE=Write a new article
-LEGAL_CONTENT_FOOTER_TEXT=The developers behind Dary do not own any of the media and texts presented on a user's blog page and do not hold any copyrights of this content. Every user is responsible for the content of his or her blog posts.
+LEGAL_CONTENT_FOOTER_TEXT=The developers behind Dary do not own any of the media and texts presented on a user''s blog page and do not hold any copyrights of this content. Every user is responsible for the content of his or her blog posts.
+ABOUT=About
 
 BLOG_NO_EXIST=This Blog does not exist!
-ERROR_404=This page couldn't be found!
+ERROR_404=This page couldn''t be found!
 ERROR_403=You are not allowed to do this! This incident will be reportet!
 
 FEATURED_ARTICLES=Featured articles
@@ -21,7 +22,7 @@ BACK_TO_THE_TOP=Back to the top
 COMMENT_WRITTEN_BY=written by {0} on {1}
 COMMENTS=Comments
 COMMENT=Comment
-COMMENT_WRITE_AND_HIT=Write comment and hit Enter to save it...
+COMMENT_WRITE_AND_HIT=Write a comment and hit Enter to save it...
 COMMENTS_LOGIN_INFO=Login to read and write comments!
 COMMENT_DELETE_QUESTION_HEADER=Are you sure you want to delete this comment by {0} forever?
 COMMENT_DELETE_QUESTION_NO=No. Back to the blog.

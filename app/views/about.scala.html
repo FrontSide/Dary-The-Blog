@@ -1,0 +1,27 @@
+@(user : User)
+
+@import play.i18n._
+
+@templ(title = Messages.get("ABOUT"), user){
+   
+    <div class="about-container gray">
+    
+        <span class="fa fa-user about-icon"></span> 
+        <span class="gray"> David Rieger </span>
+    
+        <br />
+        <span class="fa fa-envelope about-icon"></span> 
+        <span class="gray">david.rieger.at&#64;gmail.com</span>
+        
+        <br />
+        <img class="about-flag" src="/assets/images/austria_flag_small.png" />
+        <span class="gray">Austria</span>
+        
+    </div>
+    
+       
+}{
+    
+}
+
+

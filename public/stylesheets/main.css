@@ -1,13 +1,28 @@
 body {
     padding-top: 20px;
-        
     background-color: #f8f8f8;
+}
 
-    background: -webkit-linear-gradient(left, #f7f7ff , #fff); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #f7f7ff , #fff); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #f7f7ff , #fff); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #f7f7ff , #fff); /* Standard syntax (must be last) */
-    
+body > .background-image-container,
+body > .background-gradient-container {
+    min-height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+body > .background-image-container {
+    /*background-image: url();
+    background-size: 100%;*/
+}
+
+body > .background-gradient-container {
+    background: -webkit-linear-gradient(left, rgba(240, 240, 255, 1) , rgba(255, 255, 255, 1)); 
+    background: -o-linear-gradient(right, rgba(240, 240, 255, 1) , rgba(255, 255, 255, 1));
+    background: -moz-linear-gradient(right, rgba(240, 240, 255, 1) , rgba(255, 255, 255, 1)); 
+    background: linear-gradient(to right, rgba(240, 240, 255, 1) , rgba(255, 255, 255, 1));
 }
 
 footer {
@@ -64,7 +79,11 @@ img {
     border-left: none;
     border-right: none;
     background-color: #fff; 
-    box-shadow: -2px 0px 2px -1px #aaa;
+    box-shadow: -2px 0px 10px -10px #aaa;
+}
+
+#navbar-blog {
+    margin-bottom: 10px;
 }
 
 .loginformbox {
@@ -136,6 +155,7 @@ img {
     font-weight: bold;
     width: 75%;
     float: right;
+    margin-bottom: 10px;
 }
 
 .pic-profile-small {
@@ -174,6 +194,14 @@ a > .label-danger:hover {
 .label-warning {
     color: #FFF;
 } 
+
+.navbar-brand > .fa-star {
+    color: #f0ad4e;
+}
+
+.navbar-nav > li > a.text-featured:hover {
+    color: #f0ad4e;
+}
 
 #blog-navbar-collapse-btn-block {
     display:none;
@@ -316,5 +344,17 @@ textarea {
 /* Hide Upload Button until file selected */
 #picture_send {
     display: none;
+}
+
+.about-container {
+    font-size: 15px;
+}
+
+img.about-flag,
+.about-icon {
+    width: 15px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px;
 }
 

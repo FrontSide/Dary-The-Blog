@@ -53,22 +53,27 @@ public class Application extends Controller {
 
     /* ------ Show Blog Posts ------ */
     public static Result showBlog(String title) {
-    
-        /* TODO: UserDAO Factory */
+            
+        /* TODO: UserDAO Factory */        
         User loggedUser = new UserDAO().getByBlogname(session("user"));
-        User blogOwner = new UserDAO().getByBlogname(title);
     
-        List<Post> publicPosts = (List<Post>) new PostDAO().getAllByBlogname(title);
-        List<Long> featuredPostsId = Post.getFeaturedPosts(publicPosts);
-            if ((publicPosts.size() == 0) && (!title.equals(session("user")))) {
-                return notFound(no_posts_found.render(loggedUser));
-            }                
-        return ok(blog.render(title, publicPosts, featuredPostsId, loggedUser));
+        User blogOwner = new UserDAO().getByBlogname(title);        
+        if (blogOwner == null) return notFound(e404.render(loggedUser));
+        
+        List<Post> posts = (List<Post>) new PostDAO().getAllByBlogname(title);
+            
+        return ok(blog.render(title, posts, loggedUser));
+    }
+    
+    public static Result showAbout() {
+        return ok(about.render(
+                        new UserDAO().getByBlogname(session("user"))));
     }
     
     /* 403 forbidden redirect */
     public static Result noAllow() {
-        return forbidden(e403.render());
+        return forbidden(e403.render(
+                        new UserDAO().getByBlogname(session("user"))));
     }
 
 }

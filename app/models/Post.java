@@ -109,14 +109,4 @@ public class Post extends Model {
       return null;
     }
     
-    /* Get All featured Posts out of a lsit of posts */
-    public static List<Long> getFeaturedPosts(List<Post> posts) {
-        List<Long> featuredPostsId = new ArrayList<Long>();
-        for (Post p : posts) {
-            if (p.isFeatured && p.isPublished) featuredPostsId.add(p.id);
-        }
-        return featuredPostsId;
-    }
-   
-
 }

@@ -19,7 +19,7 @@ public class Global extends GlobalSettings {
     /* Not Found 404 */
     @Override
     public Promise<Result> onHandlerNotFound(RequestHeader req) {
-        return Promise.<Result>pure(notFound(e404.render()));
+        return Promise.<Result>pure(notFound(e404.render(null)));
     }
     
 }

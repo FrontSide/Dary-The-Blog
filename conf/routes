@@ -8,6 +8,7 @@ GET     /blog/:title                 controllers.Application.showBlog(title : St
 GET     /new                         controllers.Application.newPost()
 GET     /edit/:postid                controllers.Application.editPost(postid : Long)
 GET     /logout                      controllers.Application.logout()
+GET     /about                       controllers.Application.showAbout()
 
 ## JS i18n 
 GET     /messages.js                 controllers.JsMessageGetter.jsMessages()
