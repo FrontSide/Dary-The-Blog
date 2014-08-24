@@ -1,0 +1,30 @@
+language: scala
+
+scala:
+- 2.11.1
+- 2.9.2
+- 2.9.1
+
+jdk:
+- openjdk7
+- oraclejdk7
+ 
+services:
+- mongodb
+- memcache
+ 
+env:
+- PLAY_VERSION=2.3.0
+ 
+before_script:
+- wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
+- unzip -q play-${PLAY_VERSION}.zip
+
+script:
+-  sbt test
+ 
+notifications:
+email: false
+
+addons:
+  postgresql: "9.1"

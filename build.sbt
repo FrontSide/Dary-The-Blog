@@ -2,7 +2,7 @@ import com.typesafe.sbteclipse.core.EclipsePlugin
 
 name := """dary"""
 
-version := "0.2.4-BETA-SNAPSHOT"
+version := "0.2.5-BETA-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 

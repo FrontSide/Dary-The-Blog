@@ -52,7 +52,7 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 
 ## Technologies
 
-- [Play! Framework 2.2.1] (http://www.playframework.com)
+- [Play! Framework 2.3.0] (http://www.playframework.com)
   This is a super cool Web-App-Framework for Java and Scala.
 
 - [PostgreSQL 9.1] (http://www.postgresql.org/)
@@ -61,7 +61,7 @@ any Third-Party Software) are included in the Project (mostly via Ivy Dependenci
 
 ## Development
 
-v0.2.4-BETA
+v0.2.5-BETA
 This is the public BETA that is consequently updated
 [www.dary.info] (http://www.dary.info)
 
