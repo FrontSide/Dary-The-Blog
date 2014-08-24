@@ -26,7 +26,3 @@ email: false
 addons:
   postgresql: "9.1"
 
-test:
-  adapter: postgresql
-  database: travis_ci_test
-  username: postgres
