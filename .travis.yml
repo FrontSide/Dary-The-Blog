@@ -19,6 +19,7 @@ env:
 before_script:
 - wget http://downloads.typesafe.com/typesafe-activator/1.2.10/typesafe-activator-1.2.10-minimal.zip
 - unzip -q typesafe-activator-1.2.10-minimal.zip
+- psql -c 'create database travis_ci_test;' -U postgres
 
 script:
 -  sbt test
