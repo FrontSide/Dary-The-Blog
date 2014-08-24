@@ -17,8 +17,8 @@ before_script:
 - unzip -q typesafe-activator-1.2.10-minimal.zip
 - psql -c 'create database travis_ci_test;' -U postgres
 
-script:
--  sbt test
+script: 
+  sbt -Dconfig.file=conf/travis.conf test
  
 notifications:
 email: false
