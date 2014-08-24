@@ -17,8 +17,8 @@ env:
 - PLAY_VERSION=2.3.0
  
 before_script:
-- wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
-- unzip -q play-${PLAY_VERSION}.zip
+- wget http://downloads.typesafe.com/typesafe-activator/1.2.10/typesafe-activator-1.2.10-minimal.zip
+- unzip -q typesafe-activator-1.2.10-minimal.zip
 
 script:
 -  sbt test
