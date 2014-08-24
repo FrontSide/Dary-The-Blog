@@ -9,10 +9,6 @@ jdk:
 - openjdk7
 - oraclejdk7
  
-services:
-- mongodb
-- memcache
- 
 env:
 - PLAY_VERSION=2.3.0
  
@@ -29,3 +25,8 @@ email: false
 
 addons:
   postgresql: "9.1"
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
