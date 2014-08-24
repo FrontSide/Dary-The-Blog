@@ -11,6 +11,9 @@ jdk:
  
 env:
 - PLAY_VERSION=2.3.0
+
+before_script:
+- cp conf/travis.conf conf/application.conf
  
 script: 
   sbt -Dconfig.file=conf/travis.conf test
