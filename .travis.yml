@@ -12,12 +12,6 @@ jdk:
 env:
 - PLAY_VERSION=2.3.0
  
-before_script:
-- wget http://downloads.typesafe.com/typesafe-activator/1.2.10/typesafe-activator-1.2.10-minimal.zip
-- unzip -q typesafe-activator-1.2.10-minimal.zip
-
 script: 
-  activator-1.2.10-minimal/activator -Dconfig.file=conf/travis.conf test
+  sbt -Dconfig.file=conf/travis.conf test
  
-notifications:
-email: false
