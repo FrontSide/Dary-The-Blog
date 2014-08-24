@@ -14,7 +14,10 @@ env:
 
 before_script:
 - cp conf/travis.conf conf/application.conf
- 
+- psql -c 'create database travis_ci_test;' -U postgres 
+
 script: 
   sbt -Dconfig.file=conf/travis.conf test
- 
+
+addons:
+  postgresql: "9.3" 
