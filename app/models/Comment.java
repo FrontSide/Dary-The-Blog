@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
   * related to a certain user 
   */
 @Entity
+@Table(name="article_comment")
 public class Comment extends Model {
     
     /**

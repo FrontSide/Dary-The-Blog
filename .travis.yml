@@ -17,7 +17,7 @@ before_script:
 - unzip -q typesafe-activator-1.2.10-minimal.zip
 
 script: 
-  sbt -Dconfig.file=conf/travis.conf test
+  sbt test
  
 notifications:
 email: false

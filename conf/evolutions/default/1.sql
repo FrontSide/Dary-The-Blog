@@ -3,6 +3,16 @@
 
 # --- !Ups
 
+create table article_comment (
+  id                        bigint not null,
+  post_id                   bigint,
+  content                   clob,
+  user_id                   bigint,
+  is_deleted                boolean,
+  cre_date                  timestamp,
+  constraint pk_article_comment primary key (id))
+;
+
 create table picture (
   id                        bigint not null,
   user_id                   bigint,
@@ -12,12 +22,13 @@ create table picture (
 create table post (
   id                        bigint not null,
   title                     varchar(255),
-  content                   text,
+  content                   clob,
   user_id                   bigint,
   cre_date                  timestamp,
   is_published              boolean,
   is_archived               boolean,
   is_featured               boolean,
+  root_post_id              bigint,
   constraint pk_post primary key (id))
 ;
 
@@ -40,6 +51,8 @@ create table user_log (
   constraint pk_user_log primary key (uuid))
 ;
 
+create sequence article_comment_seq;
+
 create sequence picture_seq;
 
 create sequence post_seq;
@@ -48,26 +61,40 @@ create sequence blog_user_seq;
 
 create sequence user_log_seq;
 
-alter table picture add constraint fk_picture_user_1 foreign key (user_id) references blog_user (id);
-create index ix_picture_user_1 on picture (user_id);
-alter table post add constraint fk_post_user_2 foreign key (user_id) references blog_user (id);
-create index ix_post_user_2 on post (user_id);
-alter table blog_user add constraint fk_blog_user_profilePicture_3 foreign key (profile_picture_id) references picture (id);
-create index ix_blog_user_profilePicture_3 on blog_user (profile_picture_id);
-alter table user_log add constraint fk_user_log_user_4 foreign key (user_id) references blog_user (id);
-create index ix_user_log_user_4 on user_log (user_id);
+alter table article_comment add constraint fk_article_comment_post_1 foreign key (post_id) references post (id) on delete restrict on update restrict;
+create index ix_article_comment_post_1 on article_comment (post_id);
+alter table article_comment add constraint fk_article_comment_user_2 foreign key (user_id) references blog_user (id) on delete restrict on update restrict;
+create index ix_article_comment_user_2 on article_comment (user_id);
+alter table picture add constraint fk_picture_user_3 foreign key (user_id) references blog_user (id) on delete restrict on update restrict;
+create index ix_picture_user_3 on picture (user_id);
+alter table post add constraint fk_post_user_4 foreign key (user_id) references blog_user (id) on delete restrict on update restrict;
+create index ix_post_user_4 on post (user_id);
+alter table post add constraint fk_post_rootPost_5 foreign key (root_post_id) references post (id) on delete restrict on update restrict;
+create index ix_post_rootPost_5 on post (root_post_id);
+alter table blog_user add constraint fk_blog_user_profilePicture_6 foreign key (profile_picture_id) references picture (id) on delete restrict on update restrict;
+create index ix_blog_user_profilePicture_6 on blog_user (profile_picture_id);
+alter table user_log add constraint fk_user_log_user_7 foreign key (user_id) references blog_user (id) on delete restrict on update restrict;
+create index ix_user_log_user_7 on user_log (user_id);
 
 
 
 # --- !Downs
 
-drop table if exists picture cascade;
+SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists post cascade;
+drop table if exists article_comment;
 
-drop table if exists blog_user cascade;
+drop table if exists picture;
 
-drop table if exists user_log cascade;
+drop table if exists post;
+
+drop table if exists blog_user;
+
+drop table if exists user_log;
+
+SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists article_comment_seq;
 
 drop sequence if exists picture_seq;
 
