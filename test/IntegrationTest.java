@@ -2,9 +2,6 @@ import org.junit.*;
 
 import play.Logger;
 
-import java.sql.DriverManager;
-import java.sql.DriverManager.*;
-
 import models.*;
 import dao.*;
 
@@ -20,9 +17,6 @@ public class IntegrationTest {
      */    
     @Before
     public void setup() {
-
-        /* Manually register Postgres Driver (not known why necessary) */
-        DriverManager.registerDriver(new org.postgresql.Driver);
 
         logger.debug("Start Up Server");
         running(testServer(9000), new Runnable() {
