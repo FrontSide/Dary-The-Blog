@@ -20,4 +20,4 @@ script:
   sbt test
 
 addons:
-  postgresql: "9.3" 
+  postgresql: "9.1" 
