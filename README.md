@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/FrontSide/Dary-The-Blog.png?label=ready&title=Ready)](https://waffle.io/FrontSide/Dary-The-Blog)
 [![Build Status](https://travis-ci.org/FrontSide/Dary-The-Blog.svg?branch=master)](https://travis-ci.org/FrontSide/Dary-The-Blog)
 
 # Dary-The-Blog
