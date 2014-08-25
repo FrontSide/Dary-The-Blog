@@ -1,5 +1,11 @@
 
 import static org.fest.assertions.Assertions.*;
+import org.junit.*;
+
+import play.Logger;
+
+import models.*;
+import dao.*;
 
 
 /**
@@ -12,7 +18,7 @@ public class ApplicationTest {
 
     //@Before
 
-    //@Test
+    @Test
     public void simpleCheck() {
         int a = 1 + 1;
         assertThat(a).isEqualTo(2);

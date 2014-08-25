@@ -14,10 +14,7 @@ env:
 
 before_script:
 - cp conf/travis.conf conf/application.conf
-- psql -c 'create database dary;' -U postgres 
 
 script: 
   sbt test
 
-addons:
-  postgresql: "9.1" 

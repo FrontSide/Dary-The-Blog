@@ -14,8 +14,8 @@ public class IntegrationTest {
     /**
      * start server
      * set up test data
-     */    
-    @Before
+         
+    @Before */
     public void setup() {
 
         logger.debug("Start Up Server");
@@ -48,12 +48,8 @@ public class IntegrationTest {
 
     }
 
-    /**
-     * add your integration test here
-     * in this example we just check if the welcome page is being shown
-     */
-    
-    @Test
+    /**    
+    @Test */
     public void runInBrowser() {        
     }
 
