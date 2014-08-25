@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FrontSide/Dary-The-Blog.svg?branch=master)](https://travis-ci.org/FrontSide/Dary-The-Blog)
+
 # Dary-The-Blog
 
 A Blogging Web-App written in Java using the Framework Play.
