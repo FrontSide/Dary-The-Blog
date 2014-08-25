@@ -22,7 +22,7 @@ public class IntegrationTest {
     public void setup() {
 
         /* Manually register Postgres Driver (not known why necessary) */
-        DriverManager.registerDriver(new org.postgresql.Driver)
+        DriverManager.registerDriver(new org.postgresql.Driver);
 
         logger.debug("Start Up Server");
         running(testServer(9000), new Runnable() {
