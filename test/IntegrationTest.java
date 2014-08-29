@@ -13,17 +13,15 @@ public class IntegrationTest {
 
     /**
      * start server
-     * set up test data
+     * set up test data */
          
-    @Before */
+    @Before 
     public void setup() {
 
         logger.debug("Start Up Server");
         running(testServer(9000), new Runnable() {
             public void run() {            
-            
-		        logger.debug("Done");
-		
+            		
 		        logger.debug("Persist Test-Data...");
 		        PostDAO dao = new PostDAO();
 		

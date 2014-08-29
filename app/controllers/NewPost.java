@@ -2,6 +2,7 @@ package controllers;
 
 import models.*;
 import dao.*;
+import factories.*;
 import views.html.*;
 
 import play.mvc.*;
@@ -13,6 +14,9 @@ import play.data.Form;
 public class NewPost extends Controller {
 
     final static Logger.ALogger logger = Logger.of(NewPost.class);
+    
+    private static final UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
+    private static final PostDAO postDAO = (PostDAO) new PostDAOFactory().create();
 
     /* ------ New Blog Post ------ */
     public static Result create() {
@@ -23,7 +27,7 @@ public class NewPost extends Controller {
         logger.debug("render newpost.html");
                 
         return ok(newpost.render(postForm, 
-                new UserDAO().getByBlogname(session("user")), false));
+                        userDAO.getByBlogname(session("user")), false));
     }
 
     /* ------ Submit ------ */
@@ -35,15 +39,15 @@ public class NewPost extends Controller {
 
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
-            return badRequest(newpost.render(filledForm, new UserDAO().getByBlogname(session("user")), false));
+            return badRequest(newpost.render(filledForm, userDAO.getByBlogname(session("user")), false));
         }
 
         logger.debug("Form is valid. Create 'Post' Object!");
         Post post = filledForm.get();   
-        post.user = new UserDAO().getByBlogname(session("user"));     
+        post.user = userDAO.getByBlogname(session("user"));     
 
         logger.debug("init persistence in Database");
-        new PostDAO().create(post); 
+        postDAO.create(post); 
 
         //Success flash        
         flash("success", Messages.get("FLASH_NEW_ARTICLE_SUCCESS"));

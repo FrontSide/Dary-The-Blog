@@ -1,12 +1,19 @@
+
 package dao;
+import models.BlogEntity;
 import java.util.List;
+import play.db.ebean.Model.*;
 
-public interface DAO<E> {
+/* Implemented by DAOImpl 
+   Main Purpose: Typing */
+public interface DAO<T extends BlogEntity> {
 
-    public void create(E model);
-    public void deleteById(Long id);
-    public void update(E model);
-    public E getById(Long id);
-    public List<E> getAll();
+    public DAO setFind(Finder<Long, T> find);
+
+    void create(T model);
+    void deleteById(Long id);
+    void update(T model);
+    BlogEntity getById(Long id);
+    List<T> getAll();
 
 }

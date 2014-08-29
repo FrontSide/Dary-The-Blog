@@ -2,6 +2,7 @@ package controllers;
 
 import models.*;
 import dao.*;
+import factories.*;
 import views.html.*;
 import views.html.error.*;
 
@@ -14,12 +15,15 @@ import play.data.Form;
 public class EditPost extends Controller {
 
     final static Logger.ALogger logger = Logger.of(EditPost.class);
+    
+    private static final UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
+    private static final PostDAO postDAO = (PostDAO) new PostDAOFactory().create();
 
     /* ------ New Blog Post ------ */
     public static Result edit(Long id) {
 
-        Post post = new PostDAO().getById(id);
-        User loggedUser = new UserDAO().getByBlogname(session("user"));
+        Post post = postDAO.getById(id);
+        User loggedUser = userDAO.getByBlogname(session("user"));
         
         /* chek if this post has already been deleted/archived 
             or ID doesn't exist'*/
@@ -54,7 +58,7 @@ public class EditPost extends Controller {
         logger.debug("validate form");
         if (filledForm.hasErrors()) {
             return badRequest(newpost.render(filledForm, 
-            		new UserDAO().getByBlogname(session("user")), true));
+            		userDAO.getByBlogname(session("user")), true));
         }
 
         logger.debug("Form is valid. Update Post!");
@@ -62,17 +66,17 @@ public class EditPost extends Controller {
         /* Set OLD post as archived!
            This does not create a new Entry yet */ 
         Long oldId = filledForm.get().id;
-        new PostDAO().markByIdAsArchived(oldId);   
+        postDAO.markByIdAsArchived(oldId);   
 
         /* Bind Form and Create new Post with new ID */
         Post post = filledForm.get();   
-        post.rootPost = new PostDAO().getById(oldId);
+        post.rootPost = postDAO.getById(oldId);
         
         post.id = null; //Remove old ID so new one will be generated
-        post.user = new UserDAO().getByBlogname(session("user"));
+        post.user = userDAO.getByBlogname(session("user"));
 
         logger.debug("init persistence in Database");
-        new PostDAO().create(post); 
+        postDAO.create(post); 
 
         //Success flash        
         flash("success", Messages.get("FLASH_EDIT_SUCCESS"));

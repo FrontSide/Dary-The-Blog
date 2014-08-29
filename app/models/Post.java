@@ -20,14 +20,13 @@ import java.text.SimpleDateFormat;
   * related to a certain user 
   */
 @Entity
-public class Post extends Model {
+public class Post extends BlogEntity {
     
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -1403273957046905695L;
 	
-	final static Logger.ALogger logger = Logger.of(Post.class);
 	/**/
 
 	/* Task ID  Unique Identifier */

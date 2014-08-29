@@ -40,7 +40,8 @@ function injectStrings() {
 /* Check URL path and initialize upload modal */
 $(document).ready(function() {
     var currentLocation = window.location;
-    if (currentLocation.pathname === "/new") {
+    if ( currentLocation.pathname === "/new" 
+        || currentLocation.pathname.indexOf("/edit/") > -1) {
         initPostPictureUpload()
     } else {
         initProfilePictureUpload()

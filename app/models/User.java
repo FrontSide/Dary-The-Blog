@@ -8,6 +8,7 @@ import play.Logger;
 import play.i18n.Messages;
 
 import dao.UserDAO;
+import factories.UserDAOFactory;
 
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
@@ -24,14 +25,13 @@ import org.apache.commons.codec.digest.*;
   */
 @Entity
 @Table(name="blog_user")
-public class User extends Model {
+public class User extends BlogEntity {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 5432253295031618357L;
 
-	final static Logger.ALogger logger = Logger.of(User.class);
     /**/
 
     @Id    
@@ -82,6 +82,7 @@ public class User extends Model {
         return DigestUtils.sha1Hex(clear);
     }
     
+    private final UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
     /* Validator for Registration */
     private final Map<String, List<ValidationError>> validationErrors = 
         new HashMap<String, List<ValidationError>>();
@@ -109,7 +110,7 @@ public class User extends Model {
         logger.debug("Validate Blogname \"" + this.blogname 
                 + "\" for availability");
                 
-        if (new UserDAO().getByBlogname(this.blogname) != null) {
+        if (userDAO.getByBlogname(this.blogname) != null) {
             logger.error("Blogname aleardy exists");
             
             final String FIELD = "blogname";
@@ -121,7 +122,7 @@ public class User extends Model {
         }
 
         logger.error("Validate Email \"" + this.email + "\" for availability");
-        if (new UserDAO().getByEmail(this.email) != null) {
+        if (userDAO.getByEmail(this.email) != null) {
             logger.error("Email aleardy exists");
             
             final String FIELD = "email";

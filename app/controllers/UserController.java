@@ -2,6 +2,7 @@ package controllers;
 
 import views.html.*;
 import dao.*;
+import factories.*;
 import models.User;
 import models.UserLog;
 import forms.Login;
@@ -21,6 +22,8 @@ import play.libs.Json;
 public class UserController extends Controller {
 
     final static Logger.ALogger logger = Logger.of(UserController.class);
+
+    private static UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
 
     /* ------ New Blog Post ------ */
     public static Result signup() {
@@ -78,12 +81,12 @@ public class UserController extends Controller {
         logger.debug("validate form");
         if (filledForm.hasErrors())
             return badRequest(register.render(
-            		Form.form(Login.class), filledForm, null));
+                            Form.form(Login.class), filledForm, null));
 
         User user = filledForm.get(); 
 
         logger.debug("init persistence in Database");
-        new UserDAO().create(user); 
+        userDAO.create(user); 
 
         //Success flash       
         flash("success",  Messages.get("FLASH_SIGNUP_SUCCESS") 
@@ -96,7 +99,7 @@ public class UserController extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result checkBlognameAvailable(String blogname) {
-        if (new UserDAO().getByBlogname(blogname) == null)
+        if (userDAO.getByBlogname(blogname) == null)
             return ok(Json.newObject().put("available", true));
         return ok(Json.newObject().put("available", false));        
     }

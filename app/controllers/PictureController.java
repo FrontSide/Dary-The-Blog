@@ -3,6 +3,7 @@ package controllers;
 import play.mvc.*;
 import models.Picture;
 import dao.*;
+import factories.*;
 
 import play.Logger;
 
@@ -26,6 +27,8 @@ import play.libs.Json;
 public class PictureController extends Controller {
 
     final static Logger.ALogger logger = Logger.of(PictureController.class);
+    
+    private static final UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
 
     /* Path for uploaded Pictures to be stored on Filesystem 
         and loaded on web respectively */
@@ -59,7 +62,7 @@ public class PictureController extends Controller {
     /* Get Path of blog-user's profile picture -- return default if null*/
     public static String getProfilePicturePath(String blogname){        
         try {
-            return new UserDAO().getByBlogname(blogname).profilePicture.id 
+            return userDAO.getByBlogname(blogname).profilePicture.id 
                             + ".picture";
         } catch (Exception e) {
             return "no.picture";
@@ -86,13 +89,13 @@ public class PictureController extends Controller {
                                                         
             /* Store picture info in DB */            
             Picture dbPicture = new Picture();
-            dbPicture.user = new UserDAO().getByBlogname(session("user"));
+            dbPicture.user = userDAO.getByBlogname(session("user"));
             new PictureDAO().create(dbPicture);
                         
             /* If supposed to, assign picture to user as profile picture */
             if (isProfilePicture) {
                 logger.debug("set as profile picture ... ");
-                new UserDAO().updateProfilePicture(dbPicture.user, dbPicture);
+                userDAO.updateProfilePicture(dbPicture.user, dbPicture);
             }
 
             /* Generate Filename */

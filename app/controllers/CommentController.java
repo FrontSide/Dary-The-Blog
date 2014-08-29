@@ -2,6 +2,7 @@ package controllers;
 
 import models.*;
 import dao.*;
+import factories.*;
 import views.html.*;
 
 import java.util.Map;
@@ -16,13 +17,17 @@ import play.data.Form;
 public class CommentController extends Controller {
 
     final static Logger.ALogger logger = Logger.of(CommentController.class);
+    
+    private static final UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
+    private static final PostDAO postDAO = (PostDAO) new PostDAOFactory().create();
+    private static final CommentDAO commentDAO = (CommentDAO) new CommentDAOFactory().create();
    
     /* Require all Comments from a blog-post */
     public static List<Comment> require(Post post, String blogname) {
         
         List<Comment> comments = new ArrayList<Comment>();
-        for (Comment c : new CommentDAO().getAllFromUser(
-                                new UserDAO().getByBlogname(blogname))) {
+        for (Comment c : commentDAO.getAllFromUser(
+                                userDAO.getByBlogname(blogname))) {
             if (post.belongsToComment(c)) comments.add(c); 
         }    
         return comments;
@@ -44,15 +49,15 @@ public class CommentController extends Controller {
         
         //check if commenter is a logged in user otherwise user is null        
         try {
-            comment.user = new UserDAO().getByBlogname(session("user"));
+            comment.user = userDAO.getByBlogname(session("user"));
         } catch (NullPointerException e) {
             logger.error("Not logged user adds comment");
         }
         
-        comment.post = new PostDAO().getById(postId);
+        comment.post = postDAO.getById(postId);
 
         logger.debug("init persistence in Database");
-        new CommentDAO().create(comment); 
+        commentDAO.create(comment); 
 
         return ok();
     }
@@ -67,10 +72,9 @@ public class CommentController extends Controller {
         Long commentId = Long.parseLong(postValues.get("id")[0]);
         
         /* Get Comment woth ID -- check existence */
-        CommentDAO dao = new CommentDAO();
         Comment c = null;
         try {
-            c = dao.getById(commentId); 
+            c = commentDAO.getById(commentId); 
         } catch (NullPointerException e) {
             logger.error("A comment with ID " + commentId + " does not exist!");
             return badRequest();
@@ -83,12 +87,12 @@ public class CommentController extends Controller {
          * Is allowed to delete comment only if owner of blog-post or
          * autor of comment 
          */
-        User loggedUser = new UserDAO().getByBlogname(session("user"));
+        User loggedUser = userDAO.getByBlogname(session("user"));
         if (loggedUser.equals(c.user) || loggedUser.equals(c.post.user)) {
             logger.info("User " + loggedUser.blogname 
                             + "is allowed to delete comment with id :: " 
                             + c.id);
-            dao.markAsDeleted(c);
+            commentDAO.markAsDeleted(c);
             return ok();
         }
         

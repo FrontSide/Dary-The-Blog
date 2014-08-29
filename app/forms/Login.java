@@ -3,6 +3,7 @@ package forms;
 import models.User;
 import play.data.validation.Constraints.Required;
 import dao.UserDAO;
+import factories.UserDAOFactory;
 
 import play.Logger;
 import play.i18n.Messages;
@@ -12,7 +13,8 @@ import play.i18n.Messages;
 	--> http://www.playframework.com/documentation/2.1.0/JavaGuide4 */
 public class Login {
 	
-	final static Logger.ALogger logger = Logger.of(Login.class);
+	private final static Logger.ALogger logger = Logger.of(Login.class);
+    private final static UserDAO userDAO = (UserDAO) new UserDAOFactory().create();
 
 	@Required public String name;
     @Required public String password;
@@ -20,8 +22,7 @@ public class Login {
     /* Check if user with this credentials exists in DB and return it 
        Hashing before password! */ 
     public User findUser() {
-        return new UserDAO().getByLogin(this.name, 
-        		User.hashPassword(this.password));
+        return userDAO.getByLogin(this.name, User.hashPassword(this.password));
     }
 
     public String validate() {

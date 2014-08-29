@@ -16,7 +16,7 @@ import play.db.ebean.*;
   *
   */
 @Entity
-public class Picture extends Model {
+public class Picture extends BlogEntity {
 
        /**
         * 

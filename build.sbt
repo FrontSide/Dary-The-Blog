@@ -2,13 +2,15 @@ import com.typesafe.sbteclipse.core.EclipsePlugin
 
 name := """dary"""
 
-version := "0.2.5-BETA-SNAPSHOT"
+version := "0.2.6-BETA-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 scalaVersion := "2.11.1"
 
 EclipsePlugin.EclipseKeys.preTasks := Seq()
+
+javacOptions += "-Xlint:unchecked" 
 
 libraryDependencies ++= Seq(  
   javaEbean,

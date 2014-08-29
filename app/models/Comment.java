@@ -21,16 +21,14 @@ import java.text.SimpleDateFormat;
   */
 @Entity
 @Table(name="article_comment")
-public class Comment extends Model {
+public class Comment extends BlogEntity {
     
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -1403273957046905695L;
 	
-	final static Logger.ALogger logger = Logger.of(Post.class);
 	/**/
-
     @Id    
     public Long id;
     

@@ -13,7 +13,7 @@ import play.data.validation.Constraints.*;
   * and its uuid (relating to cookie) 
   */
 @Entity
-public class UserLog extends Model {
+public class UserLog extends BlogEntity {
     
     /**
 	 * 

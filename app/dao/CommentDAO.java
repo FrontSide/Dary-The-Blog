@@ -1,8 +1,6 @@
 package dao;
 
-import models.Comment;
-import models.User;
-import models.Post;
+import models.*;
 import java.util.List;
 
 import play.Logger;
@@ -10,48 +8,28 @@ import play.Logger;
 import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
 
-public class CommentDAO implements DAO<Comment> {
+public class CommentDAO extends DAOImpl<Comment> {
 
     final Logger.ALogger logger = Logger.of(this.getClass());
-  
-    public static Finder<Long,Comment> find = 
-        new Finder<Long,Comment>(Long.class, Comment.class);     
-
-    public void create(Comment model) {
-        logger.debug("Save Model");
-        Ebean.save(model);
-    }
-
-    public void deleteById(Long id) {
-        return;
-    }
-
-    public Comment getById(Long id) {
-      return CommentDAO.find.where().eq("id", id).findUnique();
-    }
-
-    public List<Comment> getAll() {
-      return null;
-    }
 
     /* Fetch all Comments from a U */
-    public List<Comment> getAllFromUser(User model) {
-      logger.debug("Get Comments from user " + model.blogname);
-      return CommentDAO.find.where()
-                        .eq("post.user", model)
+    public List<Comment> getAllFromUser(User u) {
+      logger.debug("Get Comments from user " + u.blogname);
+      return this.find.where()
+                        .eq("post.user", u)
                         .eq("isDeleted", false)
                         .orderBy("creDate desc").findList();
     }
     
-    public void markAsDeleted(Comment model) {
-        logger.debug("Mark Comment " + model.id + " as deleted!");
-        model.isDeleted = true;
-        this.update(model);
+    public void markAsDeleted(Comment c) {
+        logger.debug("Mark Comment " + c.id + " as deleted!");
+        c.isDeleted = true;
+        this.update(c);
     }
-
+    
+    @Override
     public void update(Comment model) {
-      logger.debug("Update Model");
-      Ebean.update(model);
+        Ebean.update(model);
     }
-
+    
 }
