@@ -10,9 +10,8 @@ import play.Logger;
 import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
 
+/** Currently unused **/
 public class UserLogDAO extends DAOImpl<UserLog> {
-
-    final Logger.ALogger logger = Logger.of(this.getClass());
     
     public void deleteByBlogname(String blogname) {
         for (UserLog ul : getByBlogname(blogname)) {

@@ -9,11 +9,8 @@ import play.db.ebean.Model.*;
 import com.avaje.ebean.Ebean; 
 import com.avaje.ebean.Expr;
 
-/* TODO: User DAO Factory !! */
 
 public class UserDAO extends DAOImpl<User> {
-
-    final Logger.ALogger logger = Logger.of(this.getClass());
     
     /**
       * Checks is User has entered a valid blogname or email address and

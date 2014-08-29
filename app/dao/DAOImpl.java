@@ -1,13 +1,17 @@
 package dao;
 
+import play.Logger;
+
 import factories.*;
 import java.util.List;
-import java.lang.IllegalStateException;
+import java.lang.UnsupportedOperationException;
 import com.avaje.ebean.Ebean; 
 import play.db.ebean.Model.*;
 import models.BlogEntity;
 
 public abstract class DAOImpl<T extends BlogEntity> implements DAO<T> {
+
+    protected final static Logger.ALogger logger = Logger.of(DAOImpl.class);
 
     protected Finder<Long, T> find;
     public DAO setFind(Finder<Long, T> find) {        
@@ -20,11 +24,11 @@ public abstract class DAOImpl<T extends BlogEntity> implements DAO<T> {
     }
     
     public void deleteById(Long id) {
-        throw new IllegalStateException("Object cannot be deleted");
+        throw new UnsupportedOperationException("Object cannot be deleted");
     }
     
     public void update(T model) {
-        throw new IllegalStateException("Object cannot be updated");
+        throw new UnsupportedOperationException("Object cannot be updated");
     }
     
     public T getById(Long id) {
@@ -32,7 +36,7 @@ public abstract class DAOImpl<T extends BlogEntity> implements DAO<T> {
     }
     
     public List<T> getAll() {
-        throw new IllegalStateException("Cannot get all objects");
+        throw new UnsupportedOperationException("Cannot get all objects");
     }
 
 }

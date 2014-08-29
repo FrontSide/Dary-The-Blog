@@ -35,7 +35,8 @@ public class Application extends Controller {
     public static Result logout() {
         /* Delete UserLog Entry from DB */
         /* For security reasons a user is logged out from EVERY session she's logged in */ 
-        new UserLogDAO().deleteByBlogname(session("user"));
+        // currently deactivated 
+        //new UserLogDAO().deleteByBlogname(session("user"));
         /* Destroy User session and Return to Login-Page */
         session().clear();
 

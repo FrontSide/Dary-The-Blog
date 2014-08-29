@@ -12,7 +12,5 @@ import com.avaje.ebean.Expr;
 
 /* Currently Unused */
 public class PictureDAO extends DAOImpl<Picture> {
-
-    final Logger.ALogger logger = Logger.of(this.getClass());
         
 }
