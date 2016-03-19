@@ -14,7 +14,6 @@ dist
 /RUNNING_PID
 /.settings
 *~
-conf/application.conf
 
 ## Unnecessary Activator/Play Files and Libraries
 
@@ -29,4 +28,3 @@ conf/application.conf
 ## USerdata
 
 /public/userdata/*
-

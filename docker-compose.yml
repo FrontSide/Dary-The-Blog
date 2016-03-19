@@ -1,0 +1,9 @@
+dary:
+    image: fr0ntside/dary
+    ports:
+        - "9002:9000"
+    links:
+        - db
+
+db:
+    image: postgres:9.1
