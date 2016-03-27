@@ -1,9 +1,29 @@
 dary:
     image: fr0ntside/dary
     ports:
-        - "9002:9000"
+        - "9000:9000"
     links:
         - db
-
+    entrypoint:
+        - ./servicestart.sh
+    environment:
+        - POSTGRES_PASSWORD=abcdef
+        - DB_EVOLUTION=true
 db:
     image: postgres:9.1
+    environment: 
+        - POSTGRES_PASSWORD=abcdef
+    ports:
+        - "5432:5432"
+    volumes:
+        - data:/var/lib/postgresql/data
+nginx-tls:
+    image: steveltn/https-portal
+    environment:
+        DOMAINS: 'dary.info -> http://dary:9000'
+        # - PRODUCTION='true'
+    links:
+        - dary
+    ports:
+        - 443:443
+        - 80:80
